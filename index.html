@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<title>Peanut Labs Technical Documentation</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar" data-offset="100">
+
+<!--For Mobile Menu-->
+<div class="mobile">
+  <div class="logo pull-left"><a href="index.html" title="Peanut Labs Monetization API"><img src="img/logo.png" alt="Peanut Labs" title="Peanut Labs Monetization API"></a></div>
+  <a href="javascript:void(0);" class="btn pull-right" data-toggle="collapse" data-target="#nav" ><i class="icon-chevron-down"></i><i class="icon-chevron-up" style="display:none"></i> Menu</a>
+  <div id="nav" class="collapse out">
+    <ul class="nav nav-list">
+      <li>
+        <h5><a href="#overview">Survey API</a></h5>
+      </li>
+      <li class="active"><a href="#overview">Overview</a></li>
+      <!--<li><a href="#integrationoverview">Integration Overview</a></li>-->
+      <li><a href="#apistructure">API Structure</a></li>
+      <li>
+        <h5><a href="#authentication">Getting Started</a></h5>
+      </li>
+      <li><a href="#authentication">Authentication &amp; Authorization</a></li>
+      <li><a href="#responseerrorcodes">Response &amp; Error codes</a></li>
+      <li>
+        <h5><a href="#setupaProject">API Methods</a></h5>
+      </li>
+      <li><a href="#setupaProject">Setup a Project</a></li>
+      <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
+      <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li>
+      <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
+      <li><a href="#updateProjectPrescreener">Update Project Prescreener</a></li>
+      <li><a href="#updateProjectStatus">Update Project Status</a></li>
+      <li><a href="#updateQuotaStatus">Update Quota Status</a></li>
+      <li><a href="#updateDeviceTargeting">Update Device Targeting</a></li>
+      <li><a href="#getProjectReport">Get Project Report</a></li>
+      <li><a href="#getQuotaReport">Get Quota Report</a></li>
+      <li>
+        <h5><a href="#targetingAttributes">Examples</a></h5>
+      </li>
+      <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
+      <li><a href="#filters">Filters</a></li>
+      <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
+      <li><a href="#secureRedirects">Secure Exit Redirects</a></li>
+      <li><a href="#prescreenerFormat">Prescreener Format</a></li>
+      <li>
+        <h5><a href="#ISOCodes">ISO Country Codes</a></h5>
+      </li>
+      <li><a href="#ISOCodes">Overview</a></li>
+      <li>
+        <h5><a href="#listOftargetingAttributes">List of Available Attributes</a></h5>
+      </li>
+      <li><a href="#listOftargetingAttributes">Overview</a></li>
+    </ul>
+  </div>
+</div>
+<!--For Mobile Menu end-->
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2 sidebar" id="sidebar">
+      <div class="logo"><a href="index.html" title="Peanut Labs Monetization API"><img src="img/logo.png" alt="Peanut Labs" title="Peanut Labs Monetization API"></a></div>
+      <ul class="nav nav-list accordion" id="accordion2">
+        <li>
+          <h4><a href="#collapseOne" class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion2">Survey API</a></h4>
+          <ul id="collapseOne" class="collapse in">
+            <li class="active"><a href="#overview">Overview</a></li>
+            <!--<li><a href="#integrationoverview">Integration Overview</a></li>-->
+            <li><a href="#apistructure">API Structure</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Getting Started</a></h4>
+          <ul id="collapseTwo" class="collapse">
+            <li><a href="#authentication">Authentication &amp; Authorization</a></li>
+            <li><a href="#responseerrorcodes">Response &amp; Error codes</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseThree" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3">API Methods</a></h4>
+          <ul id="collapseThree" class="collapse">
+            <li><a href="#setupaProject">Setup a Project</a></li>
+            <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
+            <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li>
+            <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
+            <li><a href="#updateProjectPrescreener">Update Project Prescreener</a></li>
+            <li><a href="#updateProjectStatus">Update Project Status</a></li>
+            <li><a href="#updateQuotaStatus">Update Quota Status</a></li>
+            <li><a href="#updateDeviceTargeting">Update Device Targeting</a></li>
+            <li><a href="#getProjectReport">Get Project Report</a></li>
+            <li><a href="#getQuotaReport">Get Quota Report</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4">Examples</a></h4>
+          <ul id="collapseFour" class="collapse">
+            <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
+            <li><a href="#filters">Filters</a></li>
+            <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
+            <li><a href="#secureRedirects">Secure Exit Redirects</a></li>
+            <li><a href="#prescreenerFormat">Prescreener Format</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseFive" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5">ISO Country Codes</a></h4>
+          <ul id="collapseFive" class="collapse">
+            <li><a href="#ISOCodes">Overview</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseSix" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6">Targeting Attributes</a></h4>
+          <ul id="collapseSix" class="collapse">
+            <li><a href="#listAttributes">Overview</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="span10 content">
+      <div class="row-fluid"> 
+        <!--Survey API -->
+        <div class="section" id="surveyoverview">
+          <div class="span6 column1">
+            <h3 id="overview">Sample API</h3>
+            <h4>Overview</h4>
+            <p>Peanut Labs Sample API, a REST based API, can be programmatically used to connect your client surveys directly with Peanut Labs panelists. This API document describes the usage and resources needed for integrating with Sample API.</p>
+          </div>
+          <div class="span6 column2"> </div>
+        </div>
+        <!--Survey API --> 
+        
+        <!--API Structure-->
+        <div class="section" id="apistructure">
+          <div class="span6 column1">
+            <h4>API Structure</h4>
+            <p>Sample API is organized around REST. Below table describes the Sample API URI structure:</p>
+            <div class="method-list">
+              <ul class="method-list-group">
+                <li class="method-list-item">
+                  <h3>URI</h3>
+                  <p>{Base URI}/{Version}/{Resources}</p>
+                  <div class="clearfix"></div>
+                </li>
+                <li class="method-list-item">
+                  <h3>Base URI</h3>
+                  <p><a href="http://api.peanutlabs.com/rest" target="_blank">api.peanutlabs.com/rest</a> (Production)<br>
+                    <a href="http://api-dev.peanutlabs.com/rest" target="_blank">api-dev.peanutlabs.com/rest</a> (Test)</p>
+                  <div class="clearfix"></div>
+                </li>
+                <li class="method-list-item">
+                  <h3>/Version</h3>
+                  <p>v1</p>
+                  <div class="clearfix"></div>
+                </li>
+                <li class="method-list-item">
+                  <h3>/Resources</h3>
+                  <p>&bull; /projects [GET | POST]<br>
+                    &bull; /quotas [GET | POST]<br>
+                    &bull; /feasibility [POST]</p>
+                  <div class="clearfix"></div>
+                </li>
+                <li class="method-list-item">
+                  <h3>Response.ContentType</h3>
+                  <p>application/JSON</p>
+                  <div class="clearfix"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="span6 column2"> </div>
+        </div>
+        <!--API Structure --> 
+        
+        <!--Authentication and Authorization-->
+        <div class="section" id="authentication">
+          <div class="span6 column1">
+            <h3>Getting Started</h3>
+            <h4>Authentication &amp; Authorization</h4>
+            <p>You authenticate all your requests with Sample API server by sending an HTTP authorization header as specified below:</p>
+            <code class="color red" >advertiser’sId:timestamp:HMAC</code>
+            <p>Sample API server verifies the HTTP Authorization Header before allowing access to Peanut Labs system.</p>
+            <p>Here are all the parameters you will need to generate an HTTP Authorization Header.</p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>Advertiser’s ID</h3>
+                <p>A unique identifier provided to you by Peanut Labs.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Security Key</h3>
+                <p>A secret key provided to you by Peanut Labs.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>timestamp</h3>
+                <p>Timestamp when the request was generated.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>HMAC</h3>
+                <p>Encrypted SHA256 hash to verify your request.<br>
+                  <code class="color red">HMAC = SHA256 of (request_method + request_uri + all API parameters in alphabetical order + security_key + timestamp)</code></p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Example</h6>
+            <p><strong>Let’s say we have the following:</strong></p>
+            <ul>
+              <li>request_method = POST</li>
+              <li>request_uri = /rest/v1/projects</li>
+              <li>params = {“title”:”Display Title”, “link”:”www.google.com”, “attributes”:[“male”,”female”]}</li>
+              <li>request timestamp = 1433895246</li>
+              <li>secret_key = The dog jumped over the house</li>
+            </ul>
+            <p><strong>then, the parameter for HMAC function ends up as:</strong><br>
+              SHA256(POST/rest/vi/projects[“male”,”female”]www.google.comDisplay Title1433895246The dog jumped over the house)</p>
+            <p><strong>which results in:</strong><br>
+              #hash# = fsadihtnch14hoi31</p>
+            <p>The above #hash# should be passed as HTTP Authorization Header with all HTTP requests.<br>
+              HTTP Authorization Header = 1234:1439502620:1439502620</p>
+            <p><strong>where,</strong><br>
+              1234 is the advertiser’s Id,<br>
+              1439502620 is the current timestamp,<br>
+              and 1439502620 is the computed #hash#</p>
+          </div>
+        </div>
+        <!--Authentication and Authorization --> 
+        
+        <!--Response and Error codes-->
+        <div class="section" id="responseerrorcodes">
+          <div class="span6 column1">
+            <h4>Response &amp; Error codes</h4>
+            <p>Sample API uses standard HTTP status code to indicate success or failure of an API request. In general 2xx range would indicate success, 4xx range would indicate an error (such as missing parameters, invalid field or authorization failure) and 5xx will indicate an issues with Sample API server.</p>
+            <p>Sample API response will also return an application/JSON object with more information about the API operation - a <code class="color red">resultCode</code> to indicate success or failure of an API operation; an optional <code class="color red">resultError</code> to indicate a detailed error description, if any; and an optional data field to return data from the API operation.</p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, optional only present when resultCode = 0</span></h3>
+                <p>A detailed error message describing what went wrong.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>&lt;data&gt;<br>
+                  <span class="type">optional</span></h3>
+                <p>A placeholder to return the result of an API operation.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>HTTP Status code summary</h6>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>200</h3>
+                <p>Everything worked as expected</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>400</h3>
+                <p>Bad request</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>403</h3>
+                <p>Invalid security hash</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>404</h3>
+                <p>Incorrect URI</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>500</h3>
+                <p>Something went wrong on Peanut Labs end</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <h6>Example 1: Success response</h6>
+            <p>HTTP Status Code: 200<br>
+              Content: { resultCode : 0 }</p>
+            <h6>Example 2: Error response</h6>
+            <p>HTTP Code: 400<br>
+              Content: { resultCode : 1, resultError: "Project doesn't exist" } </p>
+            <h6>Example 3: Error response</h6>
+            <p>HTTP Status Code: 403<br>
+              Content: { resultCode : 1, resultError: “Invalid Security Hash” }</p>
+          </div>
+        </div>
+        <!--Response and Error codes--> 
+        
+        <!--API methods-->
+        <div class="section" id="setupaProject">
+          <div class="span6 column1">
+            <h3>API Methods</h3>
+            <h4>Setup a Project</h4>
+            <code class="color red">POST /projects</code>
+            <p>Creating a project is the first step to launching your surveys to Peanut Labs panelist. This API is used to create a project.</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>extProjectID<br>
+                  <span class="label-badge orange">required</span> <span class="type">string</span></h3>
+                <p>A unique identifier for your project.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>clientName<br>
+                  <span class="type">string</span></h3>
+                <p>An identifier that you can use to reference your client name.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>title<br>
+                  <span class="type">string, URL encoded</span></h3>
+                <p>A project title of your choosing.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>link<br>
+                  <span class="label-badge orange">Required</span> <span class="type">string, URL encoded</span> </h3>
+                <p>Survey URL where Peanut Labs would send its panelist to take the survey.</p>
+                <br>
+                <div class="alert"><i class="fa fa-info-circle"></i> Link should contain a placeholder <code class="color red">#sid#</code> which Peanut Labs will replace with an unique session identifier <code class="color red">trackerId</code> to track respondents.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>country<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">string</span></h3>
+                <p>2 letter <a href="#ISOCodes">ISO country codes</a>.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>currency<br>
+                  <span class="type">string</span></h3>
+                <p>USD is the only currency  supported.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>notificationEmail<br>
+                  <span class="type">string</span></h3>
+                <p>Project manager’s email where Peanut Labs will send all notifications to.</p>
+                <div class="clearfix"></div>
+              </li>
+              
+              <li class="method-list-item">
+                <h3>deviceTargeting<br>
+                  <span class="type">hash</span></h3>
+                <p>Placeholder for <code class="color red">device_type</code> list.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>device_type<br>
+                  <span class="type">array of string; defaults to all devices</span></h3>
+                <p>Devices our respondents will take the survey on. Supported devices are <code class="color red">desktop</code>, <code class="color red">mobile</code>, and <code class="color red">tablet</code>.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> You don't need to provide this if your survey is available on all devices.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>inclusions<br>
+                  <span class="type">hash</span></h3>
+                <p>Inclusions will let you expose traffic to few specific respondents or set of respondents who were part of your previous projects.<br>
+                  See <a href="#inclusionsExclusions">inclusion/exclusion</a> for an example.</p>
+                <div class="clearfix"></div>
+                
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>type<br>
+                      <span class="type">string</span></h3>
+                    <p>Defines if you want to include specific respondents or respondents from specific projects. Can be <code class="color red">extProjectID</code> or <code class="color red">trackerId</code></p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>completes<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Includes respondents who had completed your previous projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>respondents<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Includes respondents who had attempted your previous projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>dropouts<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Includes respondents who were dropped out of your projects midway.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>overquota<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Includes respondents who got disqualified from previous projects because of overquota.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>screenout<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Includes respondents who were screened out of previous projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child--> 
+                
+              </li>
+              <li class="method-list-item">
+                <h3>exlusions<br>
+                  <span class="type">hash</span></h3>
+                <p>Like inclusions, exclusions can be used to NOT expose traffic to a set of respondents who were part of your previous projects.<br>
+                  See <a href="#inclusionsExclusions">inclusion/exclusion</a> for examples.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>type<br>
+                      <span class="type">string</span></h3>
+                    <p>Defines if you want to include specific respondents or respondents from specific projects. Exclusions can only be applied on <code class="color red">extProjectID</code>.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>completes<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Excludes respondents who had completed your previous projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>respondents<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Excludes respondents who had attempted your previous projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>dropouts<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Excludes respondents who were dropped out of your projects midway.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>overquota<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Excludes respondents who got disqualified from previous projects because of overquota.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>screenout<br>
+                      <span class="type">array of <code class="color red">type</code></span></h3>
+                    <p>Excludes respondents who were screened out of previous projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>preScreener<br>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs prescreener to test user quality</span></h3>
+                <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener example</a> on how to define prescreeners.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid <code class="color red"> preScreener</code> definition.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>autoLaunch<br>
+                  <span class="type">boolean; <code class="color red">false</code> to not launch, <code class="color red">true</code> to launch; defaults to <code class="color red">false</code></span></h3>
+                <p>This controls project launch. Setting this to true will launch the project as soon as it is created. <code class="color red">False</code> would only launch the project to test publishers for you to test the redirect links.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> We highly recommend you test your projects with test publishers for all the redirect links before taking it live.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>quotaSetting<br>
+                  <span class="label-badge orange">required</span> <span class="type">array of hash</span></h3>
+                <p>Defines selection criteria for panelists according to attributes such as <code class="color red">age</code>, <code class="color red">sex</code>, etc.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>extQuotaID<br>
+                      <span class="label-badge orange">required</span> <span class="type">string</span></h3>
+                    <p>A unique quota identifier across all your projects.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>completes<br>
+                      <span class="label-badge orange">required</span> <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of completes required for this quota.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>cpi<br>
+                      <span class="label-badge orange">required</span> <span class="type">decimal &gt;= 0.00</span></h3>
+                    <p>Amount Peanut Labs will be paid for each completes in USD for this quota.</p>
+                    <div class="alert"><i class="fa fa-info-circle"></i> USD is the only currency supported.</div>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>attributes<br>
+                      <span class="label-badge orange">required</span> <span class="type">hash; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                    <p>Targeting attributes for panelists within this quota. Total allocation within each sub-attributes should sum up to 100. See <a href="#targetingAttributes">attributes and nesting</a> for examples.</p>
+                    <div class="clearfix"></div>
+                    <!--Child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>option<br>
+                          <span class="type">string</span></h3>
+                        <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>perc<br>
+                          <span class="type">0 &lt;= integer &lt;= 100</span></h3>
+                        <p>Percentage of respondents desired for this <code class="color red">attributeId</code>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--Child--> 
+                  </li>
+                  <li class="method-list-item">
+                    <h3> filters<br>
+                      <span class="type">hash of array; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                    <p>Filters are just like  attributes which all panelists should belong to before qualifying for a survey. See <a href="#filters">filters</a> for examples.</p>
+                    <div class="alert"> <strong><i class="fa fa-info-circle"></i></strong> Zip code can only be used as filters. An API call cannot have more than 10,000 zip codes in the filter list. </div>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3> dailyCap<br>
+                      <span class="type">integer &gt;= 0; 0 means no limit</span></h3>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3> nested<br>
+                      <span class="type">array</span></h3>
+                    <p>Nesting will apply an inner level targeting within an already targeted group.</p>
+                    <p>See <a href="#targetingAttributes">attributes and nesting</a> for examples. </p>
+                    <div class="alert success"> <strong><i class="fa fa-info-circle"></i></strong> Nesting can run upto three level deep.</div>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child--> 
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>callbacks<br>
+                  <span class="type">hash</span></h3>
+                <p>Callback URL where you should redirect respondents after the survey. Each callback URL contains two placeholders - <code class="color red">#sid#</code> and <code class="color red">#hash#</code> which should be replaced before you call the callback URLs.<br>
+                  <br>
+                  Replace <code class="color red">#sid#</code> by <code class="color red">trackerId</code> which was passed to you when Peanut Labs redirected user to your survey.<br>
+                  <br>
+                  Replace <code class="color red">#hash#</code> with client-side generate hash.<br>
+                  <code class="color red">#hash# = MD5 of (status + trackerId + shared secret key)</code><br>
+                  <br>
+                  See <a href="#secureRedirects">secure exit redirects</a> for an example</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>Complete<br>
+                      <span class="type">string, URL encoded</span></h3>
+                    <p>Redirect URL where you should send respondents to after they complete the survey successfully.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>OverQuotas<br>
+                      <span class="type">string, URL encoded</span></h3>
+                    <p>Redirect URL where you should send respondents to if quota was already filled.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>ScreenOut<br>
+                      <span class="type">string, URL encoded</span></h3>
+                    <p>Redirect URL where you should send respondents to if they disqualified from the survey based on screening questions.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success, 0 for error</p>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string,<br>
+                  only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><strong>POST</strong><br>
+              http://api.peanutlabs.com/rest/v1/Projects</p>
+            <h6>Example Request</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"extProjectId"</span><span>:</span><span>"project001"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"clientName"</span><span>:</span><span>"Peanut Labs"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"title"</span><span>:</span><span>"Test Survey"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"www.mysurvey.com?uid=#sid#"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"country"</span><span>:</span><span>"US"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"currency"</span><span>:</span><span>"USD"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"notificationEmail"</span><span>:</span><span>"testpm@abc.com"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"debugMode"</span><span>:</span><span>null</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"inclusions"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"project002"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"project002"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"extProjectId"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;</span><span>"autoLaunch"</span><span>:</span><span>true</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"quotaSetting"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite001"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>"5"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cpi"</span><span>:</span><span>"3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"q101"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx101-6"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx101-5"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"filters"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"q100"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx100-2"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"q101"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite002"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>"10"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cpi"</span><span>:</span><span>"5"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-30"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"31-49"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"age"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;</span><span>]</span></p>
+            <p><span>}</span></p>
+            <p><span><span><br />
+              <br />
+              </span></span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"callbacks"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"Complete"</span><span>:</span><span>"http:\/\/www.peanutlabs.com\/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=ae8485d4a3b9bd87b330656c19cd7b4b"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"OverQuotas"</span><span>:</span><span>"http:\/\/www.peanutlabs.com\/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=7e1fef48cb914af8a12a100937b21e81"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"ScreenOut"</span><span>:</span><span>"http:\/\/www.peanutlabs.com\/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=60c145788fd1e158a89079c636651eb2"</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span id="docs-internal-guid-e5f6f0a2-297f-ab7f-79b4-4f3ff9688db3"><span>}</span></span></p>
+          </div>
+        </div>
+        <!--API methods--> 
+        
+        <!--add Quota To a Project-->
+        <div class="section" id="addQuotaToaProject">
+          <div class="span6 column1">
+            <h4>Add Quota to a project</h4>
+            <code class="color red">POST /projects/:{extProjectID}/quotas</code>
+            <p>Add a quota to a project. Quota is used for survey targeting.</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>extQuotaId<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">string</span></h3>
+                <p>A unique quota Id.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Quota Id should be unique across all your projects</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>completes<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">integer &gt;= 0</span></h3>
+                <p>Total number of completes required for this quota.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>cpi<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">decimal &gt;= 0.00</span></h3>
+                <p>Amount Peanut Labs will be paid for each completes in USD for this quota.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> USD is the only currency supported.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>attributes<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">hash; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                <p>Targeting attributes for panelists within this quota. Total allocation within each sub-attributes should sum up to 100. See <a href="#targetingAttributes">attributes and nesting</a> for examples.</p>
+                <div class="clearfix"></div>
+                <!--child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>option<br>
+                      <span class="type">string</span></h3>
+                    <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>perc<br>
+                    <span class="type">0 &lt;= integer &lt;= 100<br>
+				    string</span></h3>
+                    <p>Percentage of respondents desired for this attribute.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>filters<br>
+                  <span class="type">hash of array; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                <p>Filters are just like  attributes which all panelists should belong to before qualifying for a survey. See <a href="#filters">filters</a> for examples.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Zip code can only be used as filters. An API call cannot have more than 10,000 zip codes in the filter list.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>dailyCap<br>
+                  <span class="type">integer &gt;= 0; 0 means no limit</span></h3>
+                <p>Maximum number of daily completes desired for this quota.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>nested<br>
+                  <span class="type">array</span></h3>
+                <p>Nesting will apply an inner level targeting within an already targeted group.<br>
+                  <br>
+                  See <a href="#targetingAttributes">attributes and nesting</a> for examples.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>autoLaunch<br>
+                  <span class="type">boolean; <code class="color red">true</code> for launch, <code class="color red">false</code> to not launch; defaults to <code class="color red">false</code> </span></h3>
+                <p>This controls quota launch. Setting this to <code class="color red">true</code> will launch the quota as soon as it is created. </p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><strong>POST</strong><br>
+              http://api.peanutlabs.com/rest/v1/project001/quota</p>
+            <h6>Example Request</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite003"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"cpi"</span><span>:</span><span>"3"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"completes"</span><span>:</span><span>500</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"100"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-25"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"33"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"26-45"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"34"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"46-75"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"33"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sex"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"age"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;</span><span>"filters"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"q3"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"94101"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"9420*"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"9430*"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"autoLaunch"</span><span>:</span><span>1</span></p>
+            <p><span>}</span></p>
+            <p><span><span><br />
+              <br />
+              </span></span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--add Quota To a Project--> 
+        
+        <!--get a project test link-->
+        <div class="section" id="getaprojecttestlink">
+          <div class="span6 column1">
+            <h4>Get Project Test Link</h4>
+            <code class="color red">GET /projects/:{extProjectID}/test</code>
+            <p>Test link API is only called when project <code class="color red">autoLaunch</code> is set to <code class="color red">false</code>. When you create a project with <code class="color red">autoLaunch</code> set to <code class="color red">false</code>, you can use our test publishers to test your project workflow before taking your project live. </p>
+            <div class="alert"><i class="fa fa-info-circle"></i> This method will never be used to once you have integrated your system with Sample API.</div>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>screener<br>
+                  <span class="label-badge orange">required</span> <span class="type">boolean; <code class="color red">false</code> to disable, <code class="color red">true</code> to enable; defaults to <code class="color red">true</code></span></h3>
+                <p>When <code class="color red">true</code> the response will contain a test link to Peanut Lab Reward Center.<br>
+                  When <code class="color red">false</code> the response will contain a direct test link to the survey.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>link<br>
+                  <span class="type">string</span></h3>
+                <p>Test link to Peanut Lab Reward Center or to the survey.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>GET http://api.peanutlabs.com/rest/v1/project001/test</span></p>
+            <h6>Example Request</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"screener"</span><span>:</span><span>true</span></p>
+            <p><span>}</span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"http:\/\/d02.peanutlabs.com\/publisher\/publisherDirect.php?endUserId=1234567890abcdef1234567890abcdef&amp;oid=123456&amp;publisherId=1234"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--get a project test link--> 
+        
+        <!--createfeasibilitycount-->
+        <div class="section" id="createfeasibilitycount">
+          <div class="span6 column1">
+            <h4>Create Feasibility Count</h4>
+            <code class="color red">POST /feasibility</code>
+            <p>Estimates the feasibility of a project based required attributes. Response will return a possible quota group (based on input attributes) and an estimated number of completes possible within each quota group.</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>attributes<br>
+                  <span class="label-badge orange">required</span> <span class="type">hash; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                <p>Targeting attributes for panelists within this quota. Total allocation within each sub-attributes should sum up to 100. See <a href="#targetingAttributes">attributes and nesting</a> for examples.</p>
+                <div class="clearfix"></div>
+                <!--child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>option<br>
+                      <span class="type">string</span></h3>
+                    <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>perc<br>
+                      <span class="type">0 &lt;= integer &lt;= 100</span></h3>
+                    <p>Percentage of respondents desired for this attribute.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>filters <span class="type">hash of array; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                <p>Filters are just like  attributes which all panelists should belong to before qualifying for a survey. See <a href="#filters">filters</a> for examples.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Zip code can only be used as filters. An API call cannot have more than 10,000 zip codes in the filter list.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>days <span class="type">integer &gt;= 0</span></h3>
+                <p>Number of days feasibility estimates is based on. This is the days in field for the project.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>data<br>
+                  <span class="type">array</span></h3>
+                <p>Place holder for response data</p>
+                <div class="clearfix"></div>
+                <!--child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>node<br>
+					<span class="type">hash</span></h3>
+                    <p>Attribute Id(s) and attribute values(s) from <a href="#listAttributes">targeting attributes</a> list.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>count<br>
+                      <span class="type">integer</span></h3>
+                    <p>Number of possible completes for this node.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError <span class="type">string,<br>
+                  only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/feasibility</span></p>
+            <h6>Example Request</h6>
+            
+                <p><span>{ &nbsp;</span></p>
+                <p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"22-60"</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</span><span>,</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>"cc"</span><span>:[ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"US"</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+                <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"days"</span><span>:</span><span>"5"</span></p>
+                <p><span>}</span></p>
+                <p><span>&nbsp;</span></p>
+            <h6>Example Response</h6>
+            
+                <p><span>{ &nbsp;</span></p>
+                <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"node"</span><span>:{ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:</span><span>"22-60"</span><span>,</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cc"</span><span>:</span><span>"US"</span><span>,</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:</span><span>"1"</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"count"</span><span>:</span><span>1869</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"node"</span><span>:{ &nbsp;</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:</span><span>"22-60"</span><span>,</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cc"</span><span>:</span><span>"US"</span><span>,</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:</span><span>"2"</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"count"</span><span>:</span><span>3710</span></p>
+                <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+                <p><span> &nbsp;</span><span>],</span></p>
+                <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+                <p><span>}</span></p>
+            <p><span>&nbsp;</span></p>
+          </div>
+        </div>
+        <!--createfeasibilitycount--> 
+        
+        <!--update Project Prescreener -->
+        <div class="section" id="updateProjectPrescreener">
+          <div class="span6 column1">
+            <h4>Update Project Prescreener</h4>
+            <code class="color red">POST /projects/:{extProjectId}/prescreener</code>
+            <p><strong>Arguments</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>prescreener<br>
+                  <span class="label-badge orange">required</span> <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs prescreener to test user quality</span></h3>
+                <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener format</a> for examples.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid preScreener definition.</div>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid preScreener definition.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/prescreener</span></p>
+            <h6>Example Request</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"preScreener"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Test Survey"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"first"</span><span>:</span><span>"q1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"head"</span><span>:</span><span>""</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"requirements"</span><span>:</span><span>""</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"question"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"Are you currently living in US&gt;"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"asc"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Yes"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Yes"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"No"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"No"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>}</span></p>
+            
+            <p><span>}</span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--updateProjectPrescreener --> 
+        
+        <!--updateProjectStatus -->
+        <div class="section" id="updateProjectStatus">
+          <div class="span6 column1">
+            <h4>Update Project Status</h4>
+            <code class="color red">POST /project/:{extProjectId}/{pause | resume | launch | close}</code>
+            <p>This method updates a project status with specified action.</p>
+            <p><strong>Action</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>pause</h3>
+                <p>Stop traffic to all quotas for this project.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resume</h3>
+                <p>Resume traffic to all quotas for this project.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>launch</h3>
+                <p>Takes a project live for the first time. This is only used when project was created with <code class="color red">autoLaunch</code> set as <code class="color red">false</code>.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>close</h3>
+                <p>Stops all traffic flow into the project and closes it. Once a project is closed it cannot be reopened.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Only use this when you have determined your project is complete and can be closed.</div>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/project001/pause</span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--updateProjectStatus --> 
+        
+        <!--updateQuotaStatus -->
+        <div class="section" id="updateQuotaStatus">
+          <div class="span6 column1">
+            <h4>Update Quota Status</h4>
+            <code class="color red">POST /quotas/:{extQuotaId}/{pause | resume | launch | close}</code>
+            <p>This method updates a quota status. Following are the four possible operations on a quota:</p>
+            <p><strong>Action</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>pause</h3>
+                <p>Stops traffic to a quota.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resume</h3>
+                <p>Resume traffic to a quota.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>launch</h3>
+                <p>Takes a quota live for the first time. This is only used when <code class="color red">quotaSetting</code> was created with <code class="color red">autoLaunch</code> is set to <code class="color red">false</code>.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>close</h3>
+                <p>Stops all traffic flow into a quota and close it completely. Once a quota is closed it cannot be reopened.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Only use this when you have determined your project quota is complete and can be closed.</div>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/invite001/pause</span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--updateQuotaStatus --> 
+        
+        <!--updateDeviceTargeting -->
+        <div class="section" id="updateDeviceTargeting">
+          <div class="span6 column1">
+            <h4>Update Device Targeting</h4>
+            <code class="color red">POST /projects/:{extProjectId}/deviceTargeting</code>
+            <p>This methods updates the device targeting for a live project.</p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>deviceType<br>
+                  <span class="type">array of string; defaults to all devices</span></h3>
+                <p>Devices your respondents will take the survey on. List can take <code class="color red">desktop</code>, <code class="color red">mobile</code>, and <code class="color red">tablet</code> as possible values</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/project001/deviceTargeting</span></p>
+            <h6>Example Request</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"deviceType"</span><span>:[</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;"mobile"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;"desktop"</span></p>
+            <p><span> &nbsp;</span><span>]</span></p>
+            <p><span><span>}</span></span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--updateDeviceTargeting --> 
+        
+        <!--getProjectReport -->
+        <div class="section" id="getProjectReport">
+          <div class="span6 column1">
+            <h4>Get Project Report</h4>
+            <code class="color red">GET /projects/:{extProjectId}</code>
+            <p>This method returns a project report broken down by quotas.</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>data<br>
+                  <span class="type">hash; each key in the hash is an <code class="color red">extQuotaId</code> </span></h3>
+                <p>Placeholder for project details.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>attempts<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of clicks. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>starts<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of dropouts after starting the survey. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>completes<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of observed complets. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>screenouts<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of screenouts </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>overquota<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of overquotas. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>desc<br>
+                      <span class="type">hash</span></h3>
+                    <p>A detailed breakdown of targeting attributes for all the quotas.</p>
+                    <div class="clearfix"></div>
+                    
+                    <!--Child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>attributeId<br>
+                          <span class="type">string</span></h3>
+                        <p><code class="color red">attributeId</code> from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>optionId<br>
+                          <span class="type">string</span></h3>
+                        <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--Child--> 
+                  </li>
+                </ul>
+                <!--Child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span> </h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/project001</span></p>
+            <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"data"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"invite001"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"q101"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"q101-5"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"q101"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"q101-6"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"invite002"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>8</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"18-30"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"31-49"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"invite003"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"sex"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"2"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>8</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"18-25"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"26-45"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"46-75"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--getProjectReport --> 
+        
+        <!--getQuotaReport -->
+        <div class="section" id="getQuotaReport">
+          <div class="span6 column1">
+            <h4>Get Quota Report</h4>
+            <code class="color red">GET /quotas/:{extQuotaId}</code>
+            <p>This method returns the report for a project quota.</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>data<br>
+                  <span class="type">hash; each key in the hash is an extQuotaId </span></h3>
+                <p>Placeholder for quota details.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>attempts<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of clicks. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>starts<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of dropouts after starting the survey. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>completes<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of observed complets. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>screenouts<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of screenouts </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>overquota<br>
+                      <span class="type">integer &gt;= 0</span></h3>
+                    <p>Total number of overquotas. </p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>desc<br>
+                      <span class="type">hash</span></h3>
+                    <p>A detailed breakdown of targeting attributes for all the quotas.</p>
+                    <div class="clearfix"></div>
+                    
+                    <!--Child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>attributeId<br>
+                          <span class="type">string</span></h3>
+                        <p><code class="color red">attributeId</code> from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>optionId<br>
+                          <span class="type">string</span></h3>
+                        <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--Child--> 
+                  </li>
+                </ul>
+                <!--Child--> 
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span> </h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            
+          </div>
+          <div class="span6 column2">
+          <h6>Definition</h6>
+            <p><span>POST http://api.peanutlabs.com/rest/v1/invite002</span></p>
+          <h6>Example Response</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>8</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"18-30"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"31-49"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
+            <p><span><span>}</span></span></p>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <!--getQuotaReport --> 
+        
+        <!-- examples --> 
+        <!--targetingAttributes  -->
+        <div class="section" id="targetingAttributes">
+          <div class="span6 column1">
+            <h3>Examples</h3>
+            <h4>Targeting Attributes and Nesting</h4>
+            <p>Targeting allows you to obtain different number of completes from different types of end users by associating a percentage of the required completes desired with an attribute value. </p>
+            <p>The most simplest form of targeting is to just provide the targeting attributes without any nesting structure. With this targeting, you can specify a requirement like:</p>
+            <ul class="text">
+            	<li>100% of respondents to be male or female, and </li>
+                <li>100% of respondents to be within the age group of 18-25 or 26-45</li>
+                <li>without caring to filter within within each attributes.</li>
+            </ul>
+			<p>In this above scenario it is likely that all males could be of the age group 18-25 and all females within the age group of 26-45, or any combination between the two.</p>
+            <p>If you desire specific control over the mix of attributes within a composition then you may choose to define <code class="color red">nested</code> attributes. In the above scenario with nesting you can achieve a mix to be like:</p>
+            <ul class="text">
+                <li>25% male within the age group of 18-25,</li>
+                <li>25% male within the age group of 26-45,</li>
+                <li>25% female within the age group of 18-25, and</li>
+                <li>25% female within the age group of 26-45.</li>
+			</ul>
+            <div class="alert success"><i class="fa fa-info-circle"></i> Nesting allows you to have a fine grain control over the mix of attributes.</div>
+          </div>
+          <div class="span6 column2">
+          <h6>Example without nesting</h6>
+<p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"1"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"2"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-25"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"20"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"26-45"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"80"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+<p><span> &nbsp;</span><span>}</span></p>
+<p><span><span>&nbsp;</span></span></p>
+<p><span>The above example will target the following panel composition:</span></p>
+<ul>
+<li><span>50% of the respondents will be male and the other 50% female.</span></li>
+<li><span>20% of the respondents will be within the age group 18-25 and the other 80% within the age 26-45.</span></li>
+<li><span>Since age group is not nesting with sex, it is possible that you may get a panel composition as:</span></li>
+<ul>
+<li><span>20% male within the age of 18-25,</span></li>
+<li><span>30% male within the age of 26-45, and</span></li>
+<li><span>50% female within the age of 26-45.</span></li>
+</ul>
+</ul>
+
+
+<h6>Example with nesting</h6>
+<p><span><span>&nbsp;</span></span></p>
+<p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"1"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"2"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-25"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"26-45"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>"q121"</span><span>:[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx121-0"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx121-1"</span><span>,</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+<p><span> &nbsp;</span><span>},</span></p>
+<p><span> &nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"age",</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sex"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"q121"</span></p>
+<p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+<p><span> &nbsp;</span><span>]</span></p>
+
+<p><span>The above example will targets the following panel composition:</span></p>
+<ul>
+<li><span>25% male within age 18-25</span></li>
+<li><span>25% male within age 26-45</span></li>
+<li><span>25% female within age 18-25</span></li>
+<li><span>25% female within age 26-45</span></li>
+<li><span>Of all the above composition, there will be 50% African American and 50% Caucasian</span></li>
+</ul>
+          </div>
+        </div>
+        <!--targetingAttributes  --> 
+        
+        <!--Filters -->
+        <div class="section" id="filters">
+          <div class="span6 column1">
+            <h4>Filters</h4>
+            <p>Filters are attributes where all users should have before qualifying for the survey. </p>
+            <div class="alert">
+              <ul class="text">
+                <li>Zip code can only be used as filters</li>
+                <li>An API call cannot have more than 10,000 zip codes in the filter list</li>
+              </ul>
+            </div>
+          </div>
+          <div class="span6 column2">
+            <p>{"q101":["qx101-1","qx101-2","qx101-3"]}</p>
+            <p>Respondents without attribute qx101-1, qx101-2, qx101-3 will not be invited for the survery.</p>
+          </div>
+        </div>
+        <!--Filters  --> 
+        
+        <!--Inclusions/Exclusions -->
+        <div class="section" id="inclusionsExclusions">
+          <div class="span6 column1">
+            <h4>Inclusions/Exclusions</h4>
+            <p>Projects can include/exclude certain target based on completes, respondents, dropouts, screenouts and overquotas. Inclusions can be filtered by either <code class="color red">extProjectId</code> or <code class="color red">trackerId</code> whereas exclusions can only be filtered by <code class="color red">extProjectID</code>. If no type is passed, it will default to <code class="color red">extProjectId</code>.</p>
+          </div>
+          <div class="span6 column2">
+            <h6>Example 1</h6>
+            <p>{"completes": ["129","130"], "respondents": ["150","156"], "type": "extProjectId"}</p>
+            <ul>
+              <li>include/exclude those who have completed projects with extProjectId 129 or 130</li>
+              <li>include/exclude those who have responded to a project with extProjectId 150 or 156</li>
+            </ul>
+            <h6>Example 2</h6>
+            <p>{"completes": ["129","130"], "respondents": ["150","156"], "dropouts": ["131"], "overquota": ["132"], "screenout": ["133"], "type": "extProjectId"}</p>
+            <ul>
+              <li>include/exclude those who have completed projects with extProjectId 129 or 130</li>
+              <li>include/exclude those who have responded to projects with extProjectId 150 or 156</li>
+              <li>include/exclude those who have dropped out of project with expProjectId 131</li>
+              <li>include/exclude those who have been over quota of project with extProjectId 132</li>
+              <li>include/exclude those who have been screened out of project with extProjectId 133</li>
+            </ul>
+          </div>
+        </div>
+        <!--Inclusions/Exclusions  --> 
+        
+        <!--Secure Exit Redirects -->
+        <div class="section" id="secureRedirects">
+          <div class="span6 column1">
+            <h4>Secure Exit Redirects</h4>
+            <p>After the user completes the survey, user should be redirected to a secure exit redirect links. The link contains an encrypted hash which Peanut Labs validates before updating the user status for the session.</p>
+            <p>The <code class="color red">#hash#</code> parameter can be generated as follows:<br>
+              <code class="color red">#hash# = MD5(status + trackerId + Security Key)</code></p>
+            <p>where,<br>
+              status = C for completes, P for screenout and F for overquota;<br>
+              <code class="color red">trackerId</code> = Peanut Labs passes user session identifier with the survey;<br>
+              Security Key = A secret key provided to you by Peanut Labs.</p>
+            <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
+          </div>
+          <div class="span6 column2">
+            <p><span>The redirect link looks like as follows:</span></p>
+            <p><span><strong>[Complete]</strong></span></p>
+            <p><span>http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=C&amp;h=#hash#</span></p>
+            <p><span><span>&nbsp;</span></span></p>
+            <p><span><strong>[Screenout]</strong></span></p>
+            <p><span>http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=P&amp;h=#hash# </span></p>
+            <p><span><span>&nbsp;</span></span></p>
+            <p><span><strong>[Overquota]</strong> </span></p>
+            <p><span><span>http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=F&amp;h=#hash#</span></span></p>
+          </div>
+        </div>
+        <!--Secure Exit Redirects --> 
+        
+        <!--Prescreener Format -->
+        <div class="section" id="prescreenerFormat">
+          <div class="span6 column1">
+            <h4>Prescreener Format</h4>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>title<br>
+                  <span class="type">string</span></h3>
+                <p>Survey title.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>first<br>
+                  <span class="type">string, only alphanumerics and hyphens ‘-’ allowed</span></h3>
+                <p>Id for the first question.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>head<br>
+                  <span class="type">string</span></h3>
+                <p>A description that an user sees at the start of the prescreener.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>requirements<br>
+                  <span class="type">string</span></h3>
+                <p>Requirements for the survey which is displayed after prescreener has been completed.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>question<br>
+                  <span class="type">array of hash</span></h3>
+                <p>List of all prescreener questions.</p>
+                <div class="clearfix"></div>
+                <!--child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>id<br>
+                      <span class="type">string, only alphanumerics and hyphens ‘-’ allowed</span></h3>
+                    <p>An unique prescreener question Id.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>type<br>
+                      <span class="type">integer</span></h3>
+                    <p>Type of a question as defined by the numbers below:<br>
+                      Radio button: 1<br>
+                      Select/dropdown: 2<br>
+                      Checkboxes: 3<br>
+                      Open input text: 4<br>
+                      Date: 5<br>
+                      Gred: 15<br>
+                      Message only: 15<br>
+                      ‘Message only’ type does not have any controls. It can be used to display any message in the prescreener.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>next<br>
+                      <span class="type">string, alphanumeric and hyphen (-) characters allowed</span></h3>
+                    <p>Id of the question that should follow after this question.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>header<br>
+                      <span class="type">string</span></h3>
+                    <p>Placeholder for question title.</p>
+                    <div class="clearfix"></div>
+                    
+                    <!--child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span></li>
+                      <li class="method-list-item">
+                        <h3>html<br>
+                          <span class="type">boolean</span></h3>
+                        <p><code class="color red">true</code> indicates HTML content; <code class="color red">false</code> indicates plain text.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>content<br>
+                          <span class="type">string</span></h3>
+                        <p>Actual question that will be displayed to an user.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--child--> 
+                  </li>
+                  <li class="method-list-item">
+                    <h3>cellHeaders<br>
+                      <span class="type">hash</span></h3>
+                    <p>Placeholder for grid question headers.</p>
+                    <div class="alert"><i class="fa fa-info-circle"></i> Only applicable for grid questions.</div>
+                    <div class="clearfix"></div>
+                    <!--child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>option<br>
+                          <span class="type">array</span></h3>
+                        <p>Placeholders for grid question headers.</p>
+                        <div class="clearfix"></div>
+                        
+                        <!--child-->
+                        <ul class="method-list-group">
+                          <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                          <li class="method-list-item">
+                            <h3>id<br>
+                              <span class="type">string, alphanumeric and hyphen (-) characters allowed</span></h3>
+                            <p>An unique cell header Id.</p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>title</h3>
+                            <p>Cell header title</p>
+                            <div class="clearfix"></div>
+                          </li>
+                        </ul>
+                        <!--child--> 
+                        
+                      </li>
+                    </ul>
+                    <!--child--> 
+                  </li>
+                  <li class="method-list-item">
+                    <h3>options<br>
+                      <span class="type">hash</span></h3>
+                    <p>Placeholder for multiple answer option.</p>
+                    <div class="clearfix"></div>
+                    <!--child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>option<br>
+                          <span class="type">array</span></h3>
+                        <p>Placeholder for multiple answer option.</p>
+                        <div class="clearfix"></div>
+                        
+                        <!--child-->
+                        <ul class="method-list-group">
+                          <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                          <li class="method-list-item">
+                            <h3>id<br>
+                              <span class="type">string, alphanumeric and hyphen (-) characters allowed</span></h3>
+                            <p>An unique Id among the option set.</p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>title<br>
+                              <span class="type">string</span></h3>
+                            <p>Text to display for an option.</p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>value<br>
+                              <span class="type">string</span></h3>
+                            <p>Specifies the value which can be used to apply sort. Not used otherwise.</p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>target<br>
+                              <span class="type">string</span></h3>
+                            <p>Question id or workflow to branch to. This option is overrides the <code class="color red">next</code> of question defined earlier. Allowed values for workflow is <code class="color red">complete</code> or <code class="color red">screenout.</code></p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>exclusive<br>
+                              <span class="type">boolean</span></h3>
+                            <p>Makes an option exclusive i.e. if this option is selected, then no other option can be selected.</p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>cells<br>
+                              <span class="type">hash</span></h3>
+                            <p>Placeholder for cells.</p>
+                            <div class="alert"><i class="fa fa-info-circle"></i> Only applicable for grid questions.</div>
+                            <div class="clearfix"></div>
+                            
+                            <!--child-->
+                            <ul class="method-list-group">
+                              <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                              <li class="method-list-item">
+                                <h3>id<br>
+                                  <span class="type">string, alphanumeric and hyphen (-) characters allowed</span></h3>
+                                <p>An unique Id among the option set.</p>
+                                <div class="clearfix"></div>
+                              </li>
+                              <li class="method-list-item">
+                                <h3>value<br>
+                                  <span class="type">string</span></h3>
+                                <p>Specifies the value which can be used to apply sort. Not used otherwise.</p>
+                                <div class="clearfix"></div>
+                              </li>
+                              <li class="method-list-item">
+                                <h3>checked<br>
+                                  <span class="type">boolean</span></h3>
+                                <p><code class="color red">true</code> will select the cell; <code class="color red">false</code> will not select the cell.</p>
+                                <div class="clearfix"></div>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <!--child--> 
+                      </li>
+                    </ul>
+                    <!--child--> 
+                  </li>
+                  <li class="method-list-item">
+                    <h3>option-sort-field<br>
+                      <span class="type">string</span></h3>
+                    <p>Determines how options are sorted. Can only be <code class="color red">id</code> or <code class="color red">value</code></p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>option-sort-order<br>
+                      <span class="type">string</span></h3>
+                    <p>Can only be <code class="color red">desc</code>, <code class="color red">asc</code> or <code class="color red">rand</code>. An option with <code class="color red">exclusive</code> as <code class="color red">true</code> will not be sorted and will always appear at the end.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>skip-logic<br>
+                      <span class="type">array</span></h3>
+                    <p>Set of skip-logic that will be executed based on user selected options. </p>
+                    <div class="clearfix"></div>
+                    
+                    <!--child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>options<br>
+                          <span class="type">array</span></h3>
+                        <p>List of <code class="color red">Id</code> from the <code class="color red">options</code> attribute.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>target<br>
+                          <span class="type">string</span></h3>
+                        <p>Question id or workflow to branch to. This option is overrides the <code class="color red">next</code> of question defined earlier. Allowed values for workflow is <code class="color red">complete</code> or <code class="color red">screenout</code>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>priority<br>
+                          <span class="type">integer</span></h3>
+                        <p><code class="color red">skip-logic</code> is sorted based on descending order of <code class="color red">priority</code>. <code class="color red">skip-logic</code> with highest priority will be executed first.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--child--> 
+                  </li>
+                  <li class="method-list-item">
+                    <h3>required<br>
+                      <span class="type">hash</span></h3>
+                    <p>Presence of <code class="color red">required</code> attribute makes the question response mandatory.</p>
+                    <div class="clearfix"></div>
+                    
+                    <!--child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>message<br>
+                          string</h3>
+                        <p>Message to display when user tries to advance without answering the mandatory question.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--child--> 
+                  </li>
+                  <li class="method-list-item">
+                    <h3>ranges<br>
+                      <span class="type">hash</span></h3>
+                    <p>Placeholder for date ranges.</p>
+                    <div class="alert success"><i class="fa fa-info-circle"></i> Only applicable for date type question.</div>
+                    <div class="clearfix"></div>
+                    <!--child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>range<br>
+                          <span class="type">array</span></h3>
+                        <p>Placeholder for a date range.</p>
+                        <div class="clearfix"></div>
+                        <!--child-->
+                        <ul class="method-list-group">
+                          <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                          <li class="method-list-item">
+                            <h3>min<br>
+                              <span class="type">long integer</span></h3>
+                            <p>Unix timestamp for minimum date range. </p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>max<br>
+                              <span class="type">long integer</span></h3>
+                            <p>Unix timestamp for maximum date range. </p>
+                            <div class="clearfix"></div>
+                          </li>
+                          <li class="method-list-item">
+                            <h3>target<br>
+                              <span class="type">string</span></h3>
+                            <p>Branch to question id or workflow, if value is in the range. Allowed values for workflow is <code class="color red">complete</code> or <code class="color red">screenout</code>.</p>
+                            <div class="clearfix"></div>
+                          </li>
+                        </ul>
+                        <!--child--> 
+                      </li>
+                    </ul>
+                    <!--child--> 
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Example for Radio button question</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Opinions Survey"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"first"</span><span>:</span><span>"q1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"head"</span><span>:</span><span>""</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"requirements"</span><span>:</span><span>""</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"question"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"Are you currently living in US&gt;"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"asc"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Yes"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Yes"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"No"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"No"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>}</span></p>
+            <h6>Example for Checkbox type question</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Survey"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"first"</span><span>:</span><span>"q3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"head"</span><span>:</span><span>""</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"requirements"</span><span>:</span><span>""</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"question"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"How many employees work at your company?"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"asc"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"q4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"skip-logic"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-3"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>5</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-4"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>4</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-1"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>3</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-2"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"q4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>2</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"1-99"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"1-99"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"100-499"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"100-499"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"500-999"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"500-999"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"1,000+"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"1,000+"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"What kind of device are you taking this survey on?"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"rand"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Mobile"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Mobile"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Desktop Computer"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Desktop Computer"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Laptop Computer"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Laptop Computer"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"None of the Above"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"None of the Above"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"exclusive"</span><span>:</span><span>"true"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>}</span></p>
+            <h6>Example for Grid type question</h6>
+            <p><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;</span><span>"id"</span><span>:</span><span>"q146"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"type"</span><span>:</span><span>"15"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"describe"</span><span>:</span><span>"Do you, anyone in your household, or someone for whom you provide care suffer from any of the following ailments or medical conditions? (Please select all that apply.)"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"cellHeaders"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"I suffer from"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Someone in my household suffers from"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"I provide care for someone who suffers from"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Not applicable"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"Do you, anyone in your household, or someone for whom you provide care suffer from any of the following ailments or medical conditions? (Please select all that apply.)"</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Cancer: Anal"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cells"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Cancer: Bladder"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cells"</span><span>:[ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-1"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-2"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-3"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-4"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+            <p><span> &nbsp;</span><span>},</span></p>
+            <p><span> &nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please select an option for each question!"</span></p>
+            
+            <p><span> &nbsp;</span><span>}</span></p>
+            <p><span><span>}</span></span></p>
+          </div>
+        </div>
+        <!--Prescreener Format  --> 
+                
+        <!-- Countries and ISO Codes -->
+        <div class="section" id="ISOCodes">
+          <div class="span6 column1">
+            <h4>ISO Country Codes</h4>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>United States</h3>
+                <p>US</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Brazil</h3>
+                <p>BR</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Canada</h3>
+                <p>CA</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>United Kingdom</h3>
+                <p>GB</p>
+                <div class="clearfix"></div>
+              </li>
+              
+              <li class="method-list-item">
+                <h3>Mexico</h3>
+                <p>MX</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>France</h3>
+                <p>FR</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Australia</h3>
+                <p>AU</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+          </div>
+        </div>
+        <!--Countries and ISO Codes --> 
+        
+        <!-- List of Targeting Attributes -->
+        <div class="section" id="listAttributes">
+          <div class="span6 column1">
+            <h4>List of Targeting Attributes</h4>
+            <p>The Peanut Labs profile map contains a complete list of target attributes that can be sent along with the targeting parameters.</p>
+            <ul class="text">
+              <li>Each targeting parameter should be sent as a separate POST parameter</li>
+              <li>Multiple values should be comma separated (e.g. q100=qx100-1,qx100-2,qx100-3 OR dma=453,456,765)</li>
+              <li>Example of attribute parameter <a href="https://docs.google.com/a/peanutlabs.com/spreadsheet/ccc?key=0ArAzF4FwLEUWdEFzdmxRLW5NY2o4LTJEMTRxb0VBd2c&usp=drive_web#gid=0" target="_blank">here</a></li>
+            </ul>
+            
+          </div>
+          <div class="span6 column2">
+          </div>
+        </div>
+        <!--List of Targeting Attributes --> 
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row-fluid footer">&copy; 2015 <a href="http://www.peanutlabs.com" target="_blank">Peanut Labs</a></div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript"> 
+
+var isScrollBusy = false;
+
+
+$(document).ready(function(e) {
+
+$(window).bind('scroll', function(e){		
+		if(isScrollBusy == false) {
+			isScrollBusy = true;			
+			setTimeout('checkScroll();', 500);
+		}
+});
+
+
+$('.accordion-toggle').on('click',function(e){
+if($(this).parent().next().hasClass('in')){
+    e.stopPropagation();
+}
+});
+	
+$('#accordion2').on('show.bs.collapse', function () {	
+	$('#accordion2 .in').collapse("hide");	
+});	
+	
+
+$(".accordion-toggle").click(function(e) {
+	$(".accordion-toggle").removeClass("active");
+	$(e.target).addClass("active");	
+	
+});
+	
+	setTimeout('if($("#accordion2 li.active").parent().hasClass("in") == false) {$("#accordion2 .in").collapse("hide");$("#accordion2 li.active").parent().collapse("show");}', 5000);
+	
+	if($(window).width() > 768) {
+		currSize = 'large';
+	}
+	else {
+		currSize = 'small'	
+	}
+
+});
+
+function checkScroll() {
+
+
+	if($('#accordion2 li.active').parent().hasClass("in") == false) {
+		//alert($('#accordion2 li.active').text());
+		$('#accordion2 .in').collapse("hide");
+		$('#accordion2 li.active').parent().collapse("show");
+	
+		$(".accordion-toggle").removeClass("active");
+		$('#accordion2 .in').prev().children().first().addClass("active");
+	
+	}
+	isScrollBusy = false;
+}
+
+
+</script> 
+<script src="js/custom.js"></script> 
+<script src="js/retina.js"></script>
+</body>
+</html>
