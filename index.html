@@ -356,7 +356,7 @@
               <li class="method-list-item">
                 <h3>notificationEmail<br>
                   <span class="type">string</span></h3>
-                <p>Project manager’s email where Peanut Labs will send all notifications to.</p>
+                <p>The email address to receive notifications, if project was paused due to conversion rules.</p>
                 <div class="clearfix"></div>
               </li>
               
@@ -365,7 +365,9 @@
                   <span class="type">hash</span></h3>
                 <p>Placeholder for <code class="color red">device_type</code> list.</p>
                 <div class="clearfix"></div>
-              </li>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
               <li class="method-list-item">
                 <h3>device_type<br>
                   <span class="type">array of string; defaults to all devices</span></h3>
@@ -373,6 +375,10 @@
                 <div class="alert"><i class="fa fa-info-circle"></i> You don't need to provide this if your survey is available on all devices.</div>
                 <div class="clearfix"></div>
               </li>
+              </ul>
+              <!--Child-->
+              </li>
+              
               <li class="method-list-item">
                 <h3>inclusions<br>
                   <span class="type">hash</span></h3>
@@ -1789,15 +1795,24 @@
             <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
           </div>
           <div class="span6 column2">
-            <p><span>The redirect link looks like as follows:</span></p>
-            <p><span><strong>[Complete]</strong></span></p>
-            <p><span>http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=C&amp;h=#hash#</span></p>
-            <p><span><span>&nbsp;</span></span></p>
-            <p><span><strong>[Screenout]</strong></span></p>
-            <p><span>http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=P&amp;h=#hash# </span></p>
-            <p><span><span>&nbsp;</span></span></p>
-            <p><span><strong>[Overquota]</strong> </span></p>
-            <p><span><span>http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=F&amp;h=#hash#</span></span></p>
+            <p>When a user completes a survey, the exit redirect used is:<br>
+            http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&status=#status#&h=#hash# </p>
+            
+            <p>where, <br>
+            #status# = C for completes, P for screenouts and F for overquotas</p>
+            
+            <p>To compute #hash#, let’s say you have:</p>
+            <ul>
+                <li>status = C</li>
+                <li>trackerId = 123a456</li>
+                <li>security key = 347602146a923872538f3803eb5f3cef</li>
+                </ul>
+            <p>then,<br>
+            md5(C123a456347602146a923872538f3803eb5f3cef) of results in<br>
+            h = aed04fb1182a42cf35fe061b33f82fee</p>
+            
+            <p>Hence, the resulting redirect URL will be:<br>
+            http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&status=C&h=aed04fb1182a42cf35fe061b33f82fee </p>
           </div>
         </div>
         <!--Secure Exit Redirects --> 
@@ -2445,12 +2460,7 @@
         <div class="section" id="listAttributes">
           <div class="span6 column1">
             <h4>List of Targeting Attributes</h4>
-            <p>The Peanut Labs profile map contains a complete list of target attributes that can be sent along with the targeting parameters.</p>
-            <ul class="text">
-              <li>Each targeting parameter should be sent as a separate POST parameter</li>
-              <li>Multiple values should be comma separated (e.g. q100=qx100-1,qx100-2,qx100-3 OR dma=453,456,765)</li>
-              <li>Example of attribute parameter <a href="https://docs.google.com/a/peanutlabs.com/spreadsheet/ccc?key=0ArAzF4FwLEUWdEFzdmxRLW5NY2o4LTJEMTRxb0VBd2c&usp=drive_web#gid=0" target="_blank">here</a></li>
-            </ul>
+            <p>The Peanut Labs <a href="https://docs.google.com/a/peanutlabs.com/spreadsheet/ccc?key=0ArAzF4FwLEUWdEFzdmxRLW5NY2o4LTJEMTRxb0VBd2c&usp=drive_web#gid=0" target="_blank">profile map</a> contains a complete list of target attributes that can be sent along with the targeting parameters.</p>
             
           </div>
           <div class="span6 column2">
