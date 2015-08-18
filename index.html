@@ -150,8 +150,8 @@
                 </li>
                 <li class="method-list-item">
                   <h3>Base URI</h3>
-                  <p><a href="http://api.peanutlabs.com/rest" target="_blank">api.peanutlabs.com/rest</a> (Production)<br>
-                    <a href="http://api-dev.peanutlabs.com/rest" target="_blank">api-dev.peanutlabs.com/rest</a> (Test)</p>
+                  <p><a href="http://api.peanutlabs.com/rest" target="_blank">sample.peanutlabs.com/sample</a> (Production)<br>
+                    <a href="http://api-dev.peanutlabs.com/rest" target="_blank">api-dev.peanutlabs.com/sample</a> (Test)</p>
                   <div class="clearfix"></div>
                 </li>
                 <li class="method-list-item">
@@ -227,11 +227,11 @@
             <p><strong>which results in:</strong><br>
               #hash# = fsadihtnch14hoi31</p>
             <p>The above #hash# should be passed as HTTP Authorization Header with all HTTP requests.<br>
-              HTTP Authorization Header = 1234:1439502620:1439502620</p>
+              HTTP Authorization Header = 1234:1439502620:fsadihtnch14hoi31</p>
             <p><strong>where,</strong><br>
               1234 is the advertiser’s Id,<br>
               1439502620 is the current timestamp,<br>
-              and 1439502620 is the computed #hash#</p>
+              and fsadihtnch14hoi31 is the computed #hash#</p>
           </div>
         </div>
         <!--Authentication and Authorization --> 
@@ -283,7 +283,7 @@
               </li>
               <li class="method-list-item">
                 <h3>404</h3>
-                <p>Incorrect URI</p>
+                <p>Resources not found</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -376,7 +376,7 @@
               <li class="method-list-item">
                 <h3>inclusions<br>
                   <span class="type">hash</span></h3>
-                <p>Inclusions will let you expose traffic to few specific respondents or set of respondents who were part of your previous projects.<br>
+                <p>Inclusions will let you expose traffic to respondents who were part of your previous projects.<br>
                   See <a href="#inclusionsExclusions">inclusion/exclusion</a> for an example.</p>
                 <div class="clearfix"></div>
                 
@@ -384,38 +384,32 @@
                 <ul class="method-list-group">
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
                   <li class="method-list-item">
-                    <h3>type<br>
-                      <span class="type">string</span></h3>
-                    <p>Defines if you want to include specific respondents or respondents from specific projects. Can be <code class="color red">extProjectID</code> or <code class="color red">trackerId</code></p>
-                    <div class="clearfix"></div>
-                  </li>
-                  <li class="method-list-item">
                     <h3>completes<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Includes respondents who had completed your previous projects.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>respondents<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Includes respondents who had attempted your previous projects.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>dropouts<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Includes respondents who were dropped out of your projects midway.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>overquota<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Includes respondents who got disqualified from previous projects because of overquota.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>screenout<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Includes respondents who were screened out of previous projects.</p>
                     <div class="clearfix"></div>
                   </li>
@@ -426,45 +420,39 @@
               <li class="method-list-item">
                 <h3>exlusions<br>
                   <span class="type">hash</span></h3>
-                <p>Like inclusions, exclusions can be used to NOT expose traffic to a set of respondents who were part of your previous projects.<br>
+                <p>Like inclusions, exclusions can be used to NOT expose traffic to respondents who were part of your previous projects.<br>
                   See <a href="#inclusionsExclusions">inclusion/exclusion</a> for examples.</p>
                 <div class="clearfix"></div>
                 <!--Child-->
                 <ul class="method-list-group">
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
                   <li class="method-list-item">
-                    <h3>type<br>
-                      <span class="type">string</span></h3>
-                    <p>Defines if you want to include specific respondents or respondents from specific projects. Exclusions can only be applied on <code class="color red">extProjectID</code>.</p>
-                    <div class="clearfix"></div>
-                  </li>
-                  <li class="method-list-item">
                     <h3>completes<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Excludes respondents who had completed your previous projects.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>respondents<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Excludes respondents who had attempted your previous projects.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>dropouts<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Excludes respondents who were dropped out of your projects midway.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>overquota<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Excludes respondents who got disqualified from previous projects because of overquota.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>screenout<br>
-                      <span class="type">array of <code class="color red">type</code></span></h3>
+                      <span class="type">array of <code class="color red">extProjectId</code></span></h3>
                     <p>Excludes respondents who were screened out of previous projects.</p>
                     <div class="clearfix"></div>
                   </li>
@@ -480,9 +468,9 @@
               </li>
               <li class="method-list-item">
                 <h3>autoLaunch<br>
-                  <span class="type">boolean; <code class="color red">false</code> to not launch, <code class="color red">true</code> to launch; defaults to <code class="color red">false</code></span></h3>
-                <p>This controls project launch. Setting this to true will launch the project as soon as it is created. <code class="color red">False</code> would only launch the project to test publishers for you to test the redirect links.</p>
-                <div class="alert"><i class="fa fa-info-circle"></i> We highly recommend you test your projects with test publishers for all the redirect links before taking it live.</div>
+                  <span class="type">boolean; <code class="color red">false</code> to  launch in test mode, <code class="color red">true</code> to launch to live traffic; defaults to <code class="color red">false</code></span></h3>
+                <p>This controls project launch. Setting this to true will launch the project as soon as it is created. <code class="color red">False</code> would only launch the project in test mode allowing you to test all the redirect links.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> We highly recommend you test your projects for all the redirect links before taking it live.</div>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -614,7 +602,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong><br>
-              http://api.peanutlabs.com/rest/v1/Projects</p>
+              http://api.peanutlabs.com/rest/v1/projects</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extProjectId"</span><span>:</span><span>"project001"</span><span>,</span></p>
@@ -1210,6 +1198,7 @@
               <li class="method-list-item">
                 <h3>launch</h3>
                 <p>Takes a quota live for the first time. This is only used when <code class="color red">quotaSetting</code> was created with <code class="color red">autoLaunch</code> is set to <code class="color red">false</code>.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> If the project was not already launched, launching a quota will also launches the project to live traffic with this quota.</div>                
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -1764,17 +1753,17 @@
         <div class="section" id="inclusionsExclusions">
           <div class="span6 column1">
             <h4>Inclusions/Exclusions</h4>
-            <p>Projects can include/exclude certain target based on completes, respondents, dropouts, screenouts and overquotas. Inclusions can be filtered by either <code class="color red">extProjectId</code> or <code class="color red">trackerId</code> whereas exclusions can only be filtered by <code class="color red">extProjectID</code>. If no type is passed, it will default to <code class="color red">extProjectId</code>.</p>
+            <p>Projects can include/exclude certain target based on completes, respondents, dropouts, screenouts and overquotas. Inclusions/exclusions are filtered by  <code class="color red">extProjectId</code>.</p>
           </div>
           <div class="span6 column2">
             <h6>Example 1</h6>
-            <p>{"completes": ["129","130"], "respondents": ["150","156"], "type": "extProjectId"}</p>
+            <p>{"completes": ["129","130"], "respondents": ["150","156"]}</p>
             <ul>
               <li>include/exclude those who have completed projects with extProjectId 129 or 130</li>
               <li>include/exclude those who have responded to a project with extProjectId 150 or 156</li>
             </ul>
             <h6>Example 2</h6>
-            <p>{"completes": ["129","130"], "respondents": ["150","156"], "dropouts": ["131"], "overquota": ["132"], "screenout": ["133"], "type": "extProjectId"}</p>
+            <p>{"completes": ["129","130"], "respondents": ["150","156"], "dropouts": ["131"], "overquota": ["132"], "screenout": ["133"]}</p>
             <ul>
               <li>include/exclude those who have completed projects with extProjectId 129 or 130</li>
               <li>include/exclude those who have responded to projects with extProjectId 150 or 156</li>
@@ -2391,8 +2380,8 @@
             <h4>ISO Country Codes</h4>
             <ul class="method-list-group">
               <li class="method-list-item">
-                <h3>United States</h3>
-                <p>US</p>
+                <h3>Australia</h3>
+                <p>AU</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -2406,24 +2395,43 @@
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>United Kingdom</h3>
-                <p>GB</p>
+                <h3>France</h3>
+                <p>FR</p>
+                <div class="clearfix"></div>
+              </li>              
+              <li class="method-list-item">
+                <h3>Germany</h3>
+                <p>DE</p>
                 <div class="clearfix"></div>
               </li>
-              
+              <li class="method-list-item">
+                <h3>Italy</h3>
+                <p>IT</p>
+                <div class="clearfix"></div>
+              </li>
               <li class="method-list-item">
                 <h3>Mexico</h3>
                 <p>MX</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>France</h3>
-                <p>FR</p>
+                <h3>Neatherlands</h3>
+                <p>NL</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>Australia</h3>
-                <p>AU</p>
+                <h3>Spain</h3>
+                <p>ES</p>
+                <div class="clearfix"></div>
+              </li>              
+              <li class="method-list-item">
+                <h3>United Kingdom</h3>
+                <p>GB</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>United States</h3>
+                <p>US</p>
                 <div class="clearfix"></div>
               </li>
             </ul>
