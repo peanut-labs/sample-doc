@@ -799,7 +799,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong><br>
-              http://api.peanutlabs.com/rest/v1/project001/quota</p>
+              http://api.peanutlabs.com/rest/v1/projects/project001/quotas</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite003"</span><span>,</span></p>
@@ -896,7 +896,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><span>GET http://api.peanutlabs.com/rest/v1/project001/test</span></p>
+            <p><strong>GET</strong></p>
+            <p><span>http://api.peanutlabs.com/rest/v1/projects/project001/test</span></p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"screener"</span><span>:</span><span>true</span></p>
@@ -994,7 +995,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><span>POST http://api.peanutlabs.com/rest/v1/feasibility</span></p>
+            <p><strong>POST</strong></p>
+            <p><span>http://api.peanutlabs.com/rest/v1/feasibility</span></p>
             <h6>Example Request</h6>
             
                 <p><span>{ &nbsp;</span></p>
@@ -1074,7 +1076,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><span>POST http://api.peanutlabs.com/rest/v1/prescreener</span></p>
+            <p><strong>POST</strong></p>
+            <p>http://api.peanutlabs.com/rest/v1/projects/project001/prescreener</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"preScreener"</span><span>:{ &nbsp;</span></p>
@@ -1129,7 +1132,7 @@
         <div class="section" id="updateProjectStatus">
           <div class="span6 column1">
             <h4>Update Project Status</h4>
-            <code class="color red">POST /project/:{extProjectId}/{pause | resume | launch | close}</code>
+            <code class="color red">POST /projects/:{extProjectId}/{pause | resume | launch | close}</code>
             <p>This method updates a project status with specified action.</p>
             <p><strong>Action</strong></p>
             <ul class="method-list-group">
@@ -1174,7 +1177,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><span>POST http://api.peanutlabs.com/rest/v1/project001/pause</span></p>
+            <p><strong>POST</strong></p>
+            <p>http://api.peanutlabs.com/rest/v1/projects/project001/pause</p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
@@ -1233,7 +1237,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><span>POST http://api.peanutlabs.com/rest/v1/invite001/pause</span></p>
+            <p><strong>POST</strong></p>
+            <p>http://api.peanutlabs.com/rest/v1/quotas/invite001/pause</p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
@@ -1275,7 +1280,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><span>POST http://api.peanutlabs.com/rest/v1/project001/deviceTargeting</span></p>
+            <p><strong>POST</strong></p>
+            <p>http://api.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"deviceType"</span><span>:[</span></p>
@@ -1380,8 +1386,8 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p>GET</p>
-            <p><span>http://api.peanutlabs.com/rest/v1/project001</span></p>
+            <p><strong>GET</strong></p>
+            <p><span>http://api.peanutlabs.com/rest/v1/projects/project001</span></p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"data"</span><span>:{ &nbsp;</span></p>
@@ -1584,8 +1590,8 @@
           </div>
           <div class="span6 column2">
           <h6>Definition</h6>
-          	<p>GET</p>
-            <p><span>http://api.peanutlabs.com/rest/v1/invite002</span></p>
+          	<p><strong>GET</strong></p>
+            <p><span>http://api.peanutlabs.com/rest/v1/quotas/invite002</span></p>
           <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
