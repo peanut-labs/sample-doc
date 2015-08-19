@@ -149,9 +149,10 @@
                   <div class="clearfix"></div>
                 </li>
                 <li class="method-list-item">
-                  <h3>Base URI</h3>
-                  <p><a href="http://api.peanutlabs.com/rest" target="_blank">sample.peanutlabs.com/sample</a> (Production)<br>
-                    <a href="http://api-dev.peanutlabs.com/rest" target="_blank">api-dev.peanutlabs.com/sample</a> (Test)</p>
+                  <h3>Base URL</h3>
+                  <p>https://sample.peanutlabs.com/sample (Production)<br>
+                  https://api-dev.peanutlabs.com/sample (Test)</p>
+                    <div class="alert"><i class="fa fa-info-circle"></i> Sample API supports API call over HTTP, however we strongly recommend you to use HTTPS.</div>
                   <div class="clearfix"></div>
                 </li>
                 <li class="method-list-item">
@@ -357,6 +358,29 @@
                 <h3>notificationEmail<br>
                   <span class="type">string</span></h3>
                 <p>The email address to receive notifications, if project was paused due to conversion rules.</p>
+                <div class="clearfix"></div>
+              </li>
+              
+              <li class="method-list-item">
+                <h3>indicativeIncidence<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">0 &lt;= integer &lt;= 100</span></h3>
+                <p>Incidence rate for your survey. We define incidence as number of completes divided by number of attempts.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Your survey project may be paused if actual conversion rate is lower than indicative incidence by 25% or more. Notification email will be sent to <code class="color red">notificationEmail</code> when such happens.</div>
+                <div class="clearfix"></div>
+              </li>
+              
+              <li class="method-list-item">
+                <h3>lengthOfInterview<br>
+                  <span class="label-badge orange">required</span> <span class="type">integer &gt;= 0; in mins</span></h3>
+                <p>Average number of minutes it takes an average user to complete your survey.</p>
+                <div class="clearfix"></div>
+              </li>
+              
+              <li class="method-list-item">
+                <h3>daysInField<br>
+                <span class="label-badge orange">REQUIRED</span>  <span class="type">integer &gt;= 0; in days</span></h3>
+                <p>The email address to receive notifications, if project was paused due to conversion rules.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> We don’t actively monitor <code class="color red">daysInField</code> but there are scenarios when long running projects befyond <code class="color red">daysInField</code> are paused.</div>
                 <div class="clearfix"></div>
               </li>
               
@@ -608,7 +632,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong><br>
-              http://api.peanutlabs.com/rest/v1/projects</p>
+              https://api.peanutlabs.com/rest/v1/projects</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extProjectId"</span><span>:</span><span>"project001"</span><span>,</span></p>
@@ -618,7 +642,9 @@
             <p><span> &nbsp;</span><span>"country"</span><span>:</span><span>"US"</span><span>,</span></p>
             <p><span> &nbsp;</span><span>"currency"</span><span>:</span><span>"USD"</span><span>,</span></p>
             <p><span> &nbsp;</span><span>"notificationEmail"</span><span>:</span><span>"testpm@abc.com"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"debugMode"</span><span>:</span><span>null</span><span>,</span></p>
+            <p><span>&nbsp;"indicativeIncidence"</span><span>:</span><span>20</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"lengthOfInteview"</span><span>:</span><span>16</span><span>,</span></p>
+            <p><span><span> &nbsp;</span><span>"daysInField"</span><span>:</span><span>5</span><span>,</span></span></p>
             <p><span> &nbsp;</span><span>"inclusions"</span><span>:[ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:[ &nbsp;</span></p>
@@ -689,9 +715,9 @@
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"callbacks"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"Complete"</span><span>:</span><span>"http:\/\/www.peanutlabs.com\/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=ae8485d4a3b9bd87b330656c19cd7b4b"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"OverQuotas"</span><span>:</span><span>"http:\/\/www.peanutlabs.com\/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=7e1fef48cb914af8a12a100937b21e81"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"ScreenOut"</span><span>:</span><span>"http:\/\/www.peanutlabs.com\/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=60c145788fd1e158a89079c636651eb2"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"Complete"</span><span>:</span><span>"https:\/\/www.peanutlabs.com\/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=ae8485d4a3b9bd87b330656c19cd7b4b"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"OverQuotas"</span><span>:</span><span>"https:\/\/www.peanutlabs.com\/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=7e1fef48cb914af8a12a100937b21e81"</span><span>,</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"ScreenOut"</span><span>:</span><span>"https:\/\/www.peanutlabs.com\/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=60c145788fd1e158a89079c636651eb2"</span></p>
             <p><span> &nbsp;</span><span>},</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
             <p><span id="docs-internal-guid-e5f6f0a2-297f-ab7f-79b4-4f3ff9688db3"><span>}</span></span></p>
@@ -799,7 +825,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong><br>
-              http://api.peanutlabs.com/rest/v1/projects/project001/quotas</p>
+              https://api.peanutlabs.com/rest/v1/projects/project001/quotas</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite003"</span><span>,</span></p>
@@ -897,14 +923,14 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>GET</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/projects/project001/test</span></p>
+            <p><span>https://api.peanutlabs.com/rest/v1/projects/project001/test</span></p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"screener"</span><span>:</span><span>true</span></p>
             <p><span>}</span></p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"http:\/\/d02.peanutlabs.com\/publisher\/publisherDirect.php?endUserId=1234567890abcdef1234567890abcdef&amp;oid=123456&amp;publisherId=1234"</span><span>,</span></p>
+            <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"https:\/\/d02.peanutlabs.com\/publisher\/publisherDirect.php?endUserId=1234567890abcdef1234567890abcdef&amp;oid=123456&amp;publisherId=1234"</span><span>,</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
             <p><span><span>}</span></span></p>
           </div>
@@ -996,7 +1022,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/feasibility</span></p>
+            <p><span>https://api.peanutlabs.com/rest/v1/feasibility</span></p>
             <h6>Example Request</h6>
             
                 <p><span>{ &nbsp;</span></p>
@@ -1077,7 +1103,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/projects/project001/prescreener</p>
+            <p>https://api.peanutlabs.com/rest/v1/projects/project001/prescreener</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"preScreener"</span><span>:{ &nbsp;</span></p>
@@ -1178,7 +1204,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/projects/project001/pause</p>
+            <p>https://api.peanutlabs.com/rest/v1/projects/project001/pause</p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
@@ -1238,7 +1264,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/quotas/invite001/pause</p>
+            <p>https://api.peanutlabs.com/rest/v1/quotas/invite001/pause</p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
@@ -1281,7 +1307,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</p>
+            <p>https://api.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"deviceType"</span><span>:[</span></p>
@@ -1387,7 +1413,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>GET</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/projects/project001</span></p>
+            <p><span>https://api.peanutlabs.com/rest/v1/projects/project001</span></p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"data"</span><span>:{ &nbsp;</span></p>
@@ -1591,8 +1617,8 @@
           <div class="span6 column2">
           <h6>Definition</h6>
           	<p><strong>GET</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/quotas/invite002</span></p>
-          <h6>Example Response</h6>
+          	<p><span>https://api.peanutlabs.com/rest/v1/quotas/invite002</span></p>
+          	<h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
@@ -1804,8 +1830,7 @@
           </div>
           <div class="span6 column2">
             <p>When a user completes a survey, the exit redirect used is:<br>
-            http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&status=#status#&h=#hash# </p>
-            
+              https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=#status#&amp;h=#hash# </p>
             <p>where, <br>
             #status# = C for completes, P for screenouts and F for overquotas</p>
             
@@ -1818,9 +1843,8 @@
             <p>then,<br>
             md5(C123a456347602146a923872538f3803eb5f3cef) of results in<br>
             h = aed04fb1182a42cf35fe061b33f82fee</p>
-            
             <p>Hence, the resulting redirect URL will be:<br>
-            http:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&status=C&h=aed04fb1182a42cf35fe061b33f82fee </p>
+              https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&amp;status=C&amp;h=aed04fb1182a42cf35fe061b33f82fee </p>
           </div>
         </div>
         <!--Secure Exit Redirects --> 
@@ -2475,11 +2499,12 @@
           </div>
         </div>
         <!--List of Targeting Attributes --> 
+        
       </div>
     </div>
   </div>
 </div>
-<div class="row-fluid footer">&copy; 2015 <a href="http://www.peanutlabs.com" target="_blank">Peanut Labs</a></div>
+<div class="row-fluid footer"> <a href="mailto:sample.integration@peanutlabs.com">Email Us</a>&nbsp;|&nbsp;&copy; 2015 <a href="http://www.peanutlabs.com" target="_blank">Peanut Labs</a></div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
 <script type="text/javascript" src="js/bootstrap.js"></script> 
 <script type="text/javascript"> 
