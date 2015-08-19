@@ -21,7 +21,7 @@
       <li>
         <h5><a href="#overview">Survey API</a></h5>
       </li>
-      <li class="active"><a href="#overview">Overview </a></li>
+      <li class="active"><a href="#overview">Overview</a></li>
       <!--<li><a href="#integrationoverview">Integration Overview</a></li>-->
       <li><a href="#apistructure">API Structure</a></li>
       <li>
@@ -136,7 +136,7 @@
         </div>
         <!--Survey API --> 
         
-        <!--API Structure-->
+        <!--API Structure -->
         <div class="section" id="apistructure">
           <div class="span6 column1">
             <h4>API Structure</h4>
@@ -2483,20 +2483,14 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
 <script type="text/javascript" src="js/bootstrap.js"></script> 
 <script type="text/javascript"> 
-
 var isScrollBusy = false;
-
-
 $(document).ready(function(e) {
-
 $(window).bind('scroll', function(e){		
 		if(isScrollBusy == false) {
 			isScrollBusy = true;			
 			setTimeout('checkScroll();', 500);
 		}
 });
-
-
 $('.accordion-toggle').on('click',function(e){
 if($(this).parent().next().hasClass('in')){
     e.stopPropagation();
@@ -2507,7 +2501,6 @@ $('#accordion2').on('show.bs.collapse', function () {
 	$('#accordion2 .in').collapse("hide");	
 });	
 	
-
 $(".accordion-toggle").click(function(e) {
 	$(".accordion-toggle").removeClass("active");
 	$(e.target).addClass("active");	
@@ -2522,12 +2515,8 @@ $(".accordion-toggle").click(function(e) {
 	else {
 		currSize = 'small'	
 	}
-
 });
-
 function checkScroll() {
-
-
 	if($('#accordion2 li.active').parent().hasClass("in") == false) {
 		//alert($('#accordion2 li.active').text());
 		$('#accordion2 .in').collapse("hide");
@@ -2539,8 +2528,6 @@ function checkScroll() {
 	}
 	isScrollBusy = false;
 }
-
-
 </script> 
 <script src="js/custom.js"></script> 
 <script src="js/retina.js"></script>
