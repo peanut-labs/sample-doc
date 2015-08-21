@@ -123,6 +123,7 @@ code{ white-space:normal !important;}
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
 	padding-right:20px;
+	margin-bottom:5px;
 }
 
 .sidebar .nav-list li h4 a:hover,
