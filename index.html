@@ -158,8 +158,8 @@
                 </li>
                 <li class="method-list-item">
                   <h3>Base URL</h3>
-                  <p>https://sample.peanutlabs.com/sample (Production)<br>
-                  https://api-dev.peanutlabs.com/sample (Test)</p>
+                  <p><strong>https://sample.peanutlabs.com/sample (Production)<br>
+                  https://api-dev.peanutlabs.com/sample (Test)</strong></p>
                     <div class="alert"><i class="fa fa-info-circle"></i> Sample API supports API call over HTTP, however we strongly recommend you to use HTTPS.</div>
                   <div class="clearfix"></div>
                 </li>
@@ -198,13 +198,13 @@
             <p>Here are all the parameters you will need to generate an HTTP Authorization Header.</p>
             <ul class="method-list-group">
               <li class="method-list-item">
-                <h3>Advertiser’s ID</h3>
+                <h3>Advertiser’s Id</h3>
                 <p>A unique identifier provided to you by Peanut Labs.</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
                 <h3>Security Key</h3>
-                <p>A secret key provided to you by Peanut Labs.</p>
+                <p>A secret_key provided to you by Peanut Labs.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
                 <div class="clearfix"></div>
               </li>
@@ -227,20 +227,23 @@
             <ul>
               <li>request_method = POST</li>
               <li>request_uri = /rest/v1/projects</li>
-              <li>params = {“title”:”Display Title”, “link”:”www.google.com”, “attributes”:[“male”,”female”]}</li>
+              <li>params = Example request from <a href="#setupaProject">setup a project</a></li>
               <li>request timestamp = 1433895246</li>
               <li>secret_key = The dog jumped over the house</li>
             </ul>
-            <p><strong>then, the parameter for HMAC function ends up as:</strong><br>
-              SHA256(POST/rest/vi/projects[“male”,”female”]www.google.comDisplay Title1433895246The dog jumped over the house)</p>
-            <p><strong>which results in:</strong><br>
-              #hash# = fsadihtnch14hoi31</p>
-            <p>The above #hash# should be passed as HTTP Authorization Header with all HTTP requests.<br>
-              HTTP Authorization Header = 1234:1439502620:fsadihtnch14hoi31</p>
-            <p><strong>where,</strong><br>
-              1234 is the advertiser’s Id,<br>
-              1439502620 is the current timestamp,<br>
-              and fsadihtnch14hoi31 is the computed #hash#</p>
+            <p><strong>then, the parameter for HMAC function ends up as:</strong></p>
+              <p><span>SHA256(POST/rest/v1/projectstrueUSUSD5{"device_type":["mobile"]}project001[{"completes":["project002"],"screenouts":["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.comTestSurvey[{"extQuotaId":"invite001","completes":"5","cpi":"3","attributes":{"q101":[{"option":"qx101-6","perc":"50"},{"option":"qx101-5","perc":"50"}]},"filters":{"q100":["qx100-2"]},"nested":[["q101"]]},{"extQuotaId":"invite002","completes":"10","cpi":"5","attributes":{"age":[{"option":"18-30","perc":"50"},{"option":"31-49","perc":"50"}]},"nested":[["age"]]}]1433895246)</span></p>
+                
+                <p><span><strong>which using your secret_key (The dog jumped over the house) results in:</strong></span></p>
+                <p><span>#hash# = 5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span></p>
+                
+                <p><span>The above #hash# should be passed as the authorization header with HTTP request.</span></p>
+                <p><span>Authorization Header = 1234:</span><span>1439502620</span><span>:5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span></p>
+                
+                <p><span><strong>where,</strong></span></p>
+                <p><span>1234 is advertiser&rsquo;s Id,</span></p>
+                <p><span>1439502620 is current timestamp,</span></p>
+                <p><span><span>and </span><span>5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span><span> is the computed #hash#</span></span></p>
           </div>
         </div>
         <!--Authentication and Authorization --> 
@@ -325,15 +328,9 @@
             <p><strong>Request</strong></p>
             <ul class="method-list-group">
               <li class="method-list-item">
-                <h3>extProjectID<br>
+                <h3>extProjectId<br>
                   <span class="label-badge orange">required</span> <span class="type">string</span></h3>
                 <p>A unique identifier for your project.</p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="method-list-item">
-                <h3>clientName<br>
-                  <span class="type">string</span></h3>
-                <p>An identifier that you can use to reference your client name.</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -372,7 +369,7 @@
               <li class="method-list-item">
                 <h3>indicativeIncidence<br>
                   <span class="label-badge orange">REQUIRED</span> <span class="type">0 &lt;= integer &lt;= 100</span></h3>
-                <p>Incidence rate for your survey. We define incidence as number of completes divided by number of attempts.</p>
+                <p>Percent of respondent you expect to qualify for the survey. </p>
                 <div class="alert"><i class="fa fa-info-circle"></i> Your survey project may be paused if actual conversion rate is lower than indicative incidence by 25% or more. Notification email will be sent to <code class="color red">notificationEmail</code> when such happens.</div>
                 <div class="clearfix"></div>
               </li>
@@ -520,7 +517,7 @@
                 <ul class="method-list-group">
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
                   <li class="method-list-item">
-                    <h3>extQuotaID<br>
+                    <h3>extQuotaId<br>
                       <span class="label-badge orange">required</span> <span class="type">string</span></h3>
                     <p>A unique quota identifier across all your projects.</p>
                     <div class="clearfix"></div>
@@ -644,7 +641,7 @@
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extProjectId"</span><span>:</span><span>"project001"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"clientName"</span><span>:</span><span>"Peanut Labs"</span><span>,</span></p>
+            
             <p><span> &nbsp;</span><span>"title"</span><span>:</span><span>"Test Survey"</span><span>,</span></p>
             <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"www.mysurvey.com?uid=#sid#"</span><span>,</span></p>
             <p><span> &nbsp;</span><span>"country"</span><span>:</span><span>"US"</span><span>,</span></p>
@@ -653,6 +650,11 @@
             <p><span>&nbsp;"indicativeIncidence"</span><span>:</span><span>20</span><span>,</span></p>
             <p><span> &nbsp;</span><span>"lengthOfInteview"</span><span>:</span><span>16</span><span>,</span></p>
             <p><span><span> &nbsp;</span><span>"daysInField"</span><span>:</span><span>5</span><span>,</span></span></p>
+            <p><span>&nbsp;"deviceTargeting"</span><span>:</span><span>{</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"device_type":[</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mobile"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;],</span></p>
+            <p><span><span> &nbsp;},</span></span></p>
             <p><span> &nbsp;</span><span>"inclusions"</span><span>:[ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:[ &nbsp;</span></p>
@@ -660,8 +662,8 @@
             <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:[ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"project002"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"extProjectId"</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
+
             <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
             <p><span> &nbsp;</span><span>],</span></p>
             <p><span> &nbsp;</span><span>"autoLaunch"</span><span>:</span><span>true</span><span>,</span></p>
@@ -737,7 +739,7 @@
         <div class="section" id="addQuotaToaProject">
           <div class="span6 column1">
             <h4>Add Quota to a project</h4>
-            <code class="color red">POST /projects/:{extProjectID}/quotas</code>
+            <code class="color red">POST /projects/:{extProjectId}/quotas</code>
             <p>Add a quota to a project. Quota is used for survey targeting.</p>
             <p><strong>Request</strong></p>
             <ul class="method-list-group">
@@ -893,7 +895,7 @@
         <div class="section" id="getaprojecttestlink">
           <div class="span6 column1">
             <h4>Get Project Test Link</h4>
-            <code class="color red">GET /projects/:{extProjectID}/test</code>
+            <code class="color red">GET /projects/:{extProjectId}/test</code>
             <p>Test link API is only called when project <code class="color red">autoLaunch</code> is set to <code class="color red">false</code>. When you create a project with <code class="color red">autoLaunch</code> set to <code class="color red">false</code>, you can use our test publishers to test your project workflow before taking your project live. </p>
             <div class="alert"><i class="fa fa-info-circle"></i> This method will never be used to once you have integrated your system with Sample API.</div>
             <p><strong>Request</strong></p>
