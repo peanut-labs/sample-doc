@@ -203,8 +203,8 @@
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>Security Key</h3>
-                <p>A secret_key provided to you by Peanut Labs.</p>
+                <h3>secret_key</h3>
+                <p>A security key provided to you by Peanut Labs.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
                 <div class="clearfix"></div>
               </li>
@@ -216,7 +216,7 @@
               <li class="method-list-item">
                 <h3>HMAC</h3>
                 <p>Encrypted SHA256 hash to verify your request.<br>
-                  <code class="color red">HMAC = SHA256 of (request_method + request_uri + all API parameters in alphabetical order + security_key + timestamp)</code></p>
+                  <code class="color red">HMAC = SHA256 of (request_method + request_uri + all API parameters in alphabetical order + timestamp) using your secret_key</code></p>
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -232,18 +232,15 @@
               <li>secret_key = The dog jumped over the house</li>
             </ul>
             <p><strong>then, the parameter for HMAC function ends up as:</strong></p>
-              <p><span>SHA256(POST/rest/v1/projectstrueUSUSD5{"device_type":["mobile"]}project001[{"completes":["project002"],"screenouts":["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.comTestSurvey[{"extQuotaId":"invite001","completes":"5","cpi":"3","attributes":{"q101":[{"option":"qx101-6","perc":"50"},{"option":"qx101-5","perc":"50"}]},"filters":{"q100":["qx100-2"]},"nested":[["q101"]]},{"extQuotaId":"invite002","completes":"10","cpi":"5","attributes":{"age":[{"option":"18-30","perc":"50"},{"option":"31-49","perc":"50"}]},"nested":[["age"]]}]1433895246)</span></p>
-                
-                <p><span><strong>which using your secret_key (The dog jumped over the house) results in:</strong></span></p>
-                <p><span>#hash# = 5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span></p>
-                
-                <p><span>The above #hash# should be passed as the authorization header with HTTP request.</span></p>
-                <p><span>Authorization Header = 1234:</span><span>1433895246</span><span>:5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span></p>
-                
-                <p><span><strong>where,</strong></span></p>
+            <p><span>SHA256(POST/rest/v1/projectstrueUSUSD5{"deviceType":["mobile"]}project001[{"completes":["project002"],"screenouts":["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.comTestSurvey[{"extQuotaId":"invite001","completes":"5","cpi":"3","attributes":{"q101":[{"option":"qx101-6","perc":"50"},{"option":"qx101-5","perc":"50"}]},"filters":{"q100":["qx100-2"]},"nested":[["q101"]]},{"extQuotaId":"invite002","completes":"10","cpi":"5","attributes":{"age":[{"option":"18-30","perc":"50"},{"option":"31-49","perc":"50"}]},"nested":[["age"]]}]1433895246)</span></p>
+            <p><span><strong>which using your secret_key (The dog jumped over the house) results in:</strong></span></p>
+            <p><span>#hash# = e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
+            <p><span>The above #hash# should be passed as the authorization header with HTTP request.</span></p>
+            <p><span>Authorization Header = 1234:</span><span>1433895246</span><span>:e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
+            <p><span><strong>where,</strong></span></p>
             <p><span>1234 is advertiser&rsquo;s Id,</span></p>
-                <p><span>1433895246  is current timestamp,</span></p>
-                <p><span><span>and </span><span>5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span><span> is the computed #hash#</span></span></p>
+            <p>1433895246  is current timestamp,</p>
+            <p><span><span>and </span><span>5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span><span> is the computed #hash#</span></span></p>
           </div>
         </div>
         <!--Authentication and Authorization --> 
@@ -335,13 +332,13 @@
               </li>
               <li class="method-list-item">
                 <h3>title<br>
-                  <span class="type">string, URL encoded</span></h3>
+                  <span class="type">string</span></h3>
                 <p>A project title of your choosing.</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
                 <h3>link<br>
-                  <span class="label-badge orange">Required</span> <span class="type">string, URL encoded</span> </h3>
+                  <span class="label-badge orange">Required</span> <span class="type">string</span></h3>
                 <p>Survey URL where Peanut Labs would send its panelist to take the survey.</p>
                 <br>
                 <div class="alert"><i class="fa fa-info-circle"></i> Link should contain a placeholder <code class="color red">#sid#</code> which Peanut Labs will replace with an unique session identifier <code class="color red">trackerId</code> to track respondents.</div>
@@ -398,7 +395,7 @@
                 <ul class="method-list-group">
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
               <li class="method-list-item">
-                <h3>device_type<br>
+                <h3>deviceType<br>
                   <span class="type">array of string; defaults to all devices</span></h3>
                 <p>Devices our respondents will take the survey on. Supported devices are <code class="color red">desktop</code>, <code class="color red">mobile</code>, and <code class="color red">tablet</code>.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> You don't need to provide this if your survey is available on all devices.</div>
@@ -496,9 +493,9 @@
               </li>
               <li class="method-list-item">
                 <h3>preScreener<br>
-                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs prescreener to test user quality</span></h3>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
                 <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener example</a> on how to define prescreeners.</p>
-                <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid <code class="color red"> preScreener</code> definition.</div>
+                <div class="alert"><em class="fa fa-info-circle"></em> Peanut Labs fraud prescreener will be used for no/empty prescreener definition.</div>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -591,10 +588,10 @@
                 <p>Callback URL where you should redirect respondents after the survey. Each callback URL contains two placeholders - <code class="color red">#sid#</code> and <code class="color red">#hash#</code> which should be replaced before you call the callback URLs.<br>
                   <br>
                   Replace <code class="color red">#sid#</code> by <code class="color red">trackerId</code> which was passed to you when Peanut Labs redirected user to your survey.<br>
-                  <br>
+  <br>
                   Replace <code class="color red">#hash#</code> with client-side generate hash.<br>
-                  <code class="color red">#hash# = MD5 of (status + trackerId + shared secret key)</code><br>
-                  <br>
+  <code class="color red">#hash# = MD5 of (status + trackerId + shared secret_key)</code><br>
+  <br>
                   See <a href="#secureRedirects">secure exit redirects</a> for an example</p>
                 <div class="clearfix"></div>
                 <!--Child-->
@@ -653,7 +650,7 @@
             <p><span>&nbsp;"deviceTargeting"</span><span>:</span><span>{</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;</span><span>"device_type":[</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mobile"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;],</span></p>
+            <p><span> &nbsp;&nbsp;&nbsp;]</span></p>
             <p><span><span> &nbsp;},</span></span></p>
             <p><span> &nbsp;</span><span>"inclusions"</span><span>:[ &nbsp;</span></p>
             <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
@@ -1087,9 +1084,9 @@
             <p><strong>Arguments</strong></p>
             <ul class="method-list-group">
               <li class="method-list-item">
-                <h3>prescreener<br>
-                  <span class="label-badge orange">required</span> <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs prescreener to test user quality</span></h3>
-                <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener format</a> for examples.</p>
+                <h3>preScreener<br>
+                <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
+                <p>A set of screening question that users take before qualifying for a survey. Don’t pass this argument to delete a prescreener. See <a href="#prescreenerFormat">precreener format</a> for examples.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid preScreener definition.</div>
                 <div class="clearfix"></div>
               </li>
@@ -1831,11 +1828,11 @@
             <h4>Secure Exit Redirects</h4>
             <p>After the user completes the survey, user should be redirected to a secure exit redirect links. The link contains an encrypted hash which Peanut Labs validates before updating the user status for the session.</p>
             <p>The <code class="color red">#hash#</code> parameter can be generated as follows:<br>
-              <code class="color red">#hash# = MD5(status + trackerId + Security Key)</code></p>
+              <code class="color red">#hash# = MD5(status + trackerId + secret_key)</code></p>
             <p>where,<br>
               status = C for completes, P for screenout and F for overquota;<br>
-              <code class="color red">trackerId</code> = Peanut Labs passes user session identifier with the survey;<br>
-              Security Key = A secret key provided to you by Peanut Labs.</p>
+  <code class="color red">trackerId</code> = Peanut Labs passes user session identifier with the survey;<br>
+              secret_key = A security key provided to you by Peanut Labs.</p>
             <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
           </div>
           <div class="span6 column2">
@@ -1848,8 +1845,8 @@
             <ul>
                 <li>status = C</li>
                 <li>trackerId = 123a456</li>
-                <li>security key = 347602146a923872538f3803eb5f3cef</li>
-                </ul>
+                <li>secret_key = 347602146a923872538f3803eb5f3cef</li>
+            </ul>
             <p>then,<br>
             md5(C123a456347602146a923872538f3803eb5f3cef) of results in<br>
             h = aed04fb1182a42cf35fe061b33f82fee</p>
