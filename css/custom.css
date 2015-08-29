@@ -569,15 +569,14 @@ span.toggle-list:hover{
 	padding-left:25px !important;
 }
 
-
 .section .column2 ul.method-list-group{
 	padding-left:0 !important;
-	border-color:#8e9091;
+	/*border-color:#8e9091;*/
 }
 
-.section .column2 ul.method-list-group li.method-list-item{
+/*.section .column2 ul.method-list-group li.method-list-item{
 	border-color:#8e9091;
-}
+}*/
 
 
 /*example section accordion*/
@@ -685,6 +684,7 @@ i.fa-plus-square{
 }
 
 /*example section accordion end*/
+
 
 /*Responsive*/
 
