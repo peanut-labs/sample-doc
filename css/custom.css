@@ -3,7 +3,7 @@
 
 body{
 	/*background:url(../img/grey.png) repeat-y 0px 0;*/
-	background:#f6f8fa;
+	background:#fff ;
 	color:#535353 !important;
 	font-family: 'Source Sans Pro', sans-serif !important;
 }
@@ -49,7 +49,7 @@ code{ white-space:normal !important;}
 
 .sidebar{
 	padding-left:20px;
-	border-right: 1px solid #dadfe5;
+	border-right: 1px solid #cdcfd0;
 	overflow:hidden;
 	background:white;
 	
@@ -137,9 +137,9 @@ code{ white-space:normal !important;}
 	margin-left: 0px !important;
 }
 
-.content img{
+/*.content img{
 	margin:25px 0;
-}
+}*/
 
 .section{
 	clear:both;
@@ -156,7 +156,7 @@ code{ white-space:normal !important;}
 
 .section ul.text{
 	margin-left:25px !important;
-	margin-bottom:0px;
+	margin-bottom:5px;
 }
 
 .section ul li{
@@ -193,13 +193,20 @@ code{ white-space:normal !important;}
 
 .section .column2{
 	margin-left:0 !important;
-	background: url(../img/sept.png) right bottom no-repeat #f6f8fa;
-	-webkit-box-shadow: #dadfe5 -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
-	-moz-box-shadow: #dadfe5 -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
-	-ms-box-shadow: #dadfe5 -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
-	-o-box-shadow: #dadfe5 -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
-	box-shadow: #dadfe5 -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+	background: url(../img/sept.png) right bottom no-repeat #51565D;
+	-webkit-box-shadow: #333333  -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+	-moz-box-shadow: #333333  -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+	-ms-box-shadow: #333333  -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+	-o-box-shadow: #333333  -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
+	box-shadow: #333333  -1px 0 0,rgba(0,0,0,0.05) 1px 0 2px inset;
 	position: relative;
+	padding-right:0 !important;
+	color:#fff ;
+	
+}
+
+.section .column2 a{
+	font-weight:bold;
 }
 
 .section .column2 .align-bottom{
@@ -220,12 +227,14 @@ code{ white-space:normal !important;}
 	text-transform:uppercase;
 }
 
+.section .column2 h6{
+	color:#d0d0d0;
+}
+
 .section .column2, .section .span6{
 	padding:20px 40px !important;
 	word-wrap:break-word;
 }
-
-.section .column2{ padding-right:0 !important; }
 
 .section .column2 code{
 	display:block;
@@ -281,7 +290,10 @@ code{ white-space:normal !important;}
     top:0px;
 }
 
-.row-fluid .span10{ width:84.5% !important;}
+.row-fluid .span10{
+	width:85.1% !important;
+	background:#51565D;
+}
 
 .footer{
 	background:#f6f8fa;
@@ -375,6 +387,10 @@ small{
 	margin-bottom:20px;
 	margin-top:40px;
 	color:#000 ;
+}
+
+.content .column2 h3{
+	color:#fff;
 }
 
 .content .section h3{
@@ -568,6 +584,122 @@ span.toggle-list:hover{
 	font-size:13px !important;
 	padding-left:25px !important;
 }
+
+.section .column2 ul.method-list-group{
+	padding-left:0 !important;
+	border-color:#8e9091;
+}
+
+.section .column2 ul.method-list-group li.method-list-item{
+	border-color:#8e9091;
+}
+
+
+/*example section accordion*/
+div.ControlsRow, div.HeadersRow {
+	font-family: Georgia;
+}
+div.AdRow{
+  font-family: Georgia; font-size:11px;
+}
+div.Canvas
+{
+  font-family: Lucida Console, Georgia;
+  font-size: 13px;
+	background-color:#ECECEC;
+	color:#000000;
+	border:solid 1px #CECECE;
+}
+.ObjectBrace
+{
+	color:#fff;
+	font-weight:bold;
+}
+.ArrayBrace
+{
+	color:#fff;
+	font-weight:bold;
+}
+.PropertyName
+{
+	color:#AFD137;
+	font-weight:bold;
+}
+.String
+{
+	color:#f9d005;
+}
+.Number
+{
+	color:#f9d005;
+}
+.Boolean
+{
+  color:#6EC5E9;
+}
+.Function
+{
+  color:#AA6633;
+  text-decoration:italic;
+}
+.Null
+{
+  color:#0000FF;
+}
+.Comma
+{
+  color:#fff;
+  font-weight:bold;
+}
+PRE.CodeContainer{
+  margin-top:0px;
+  margin-bottom: 10px;
+  background: #484c52;
+  border: none;
+  padding: 15px;
+  color:#fff;
+}
+PRE.CodeContainer img{
+  cursor:pointer;
+  border:none;
+  margin-bottom:-1px;
+}
+#CollapsibleViewDetail a{
+  padding-left:10px;
+}
+#ControlsRow{
+  white-space:nowrap;
+  font: 11px Georgia;
+}
+#TabSizeHolder{
+  padding-left:10px;
+  padding-right:10px;
+}
+#HeaderTitle{
+  text-align:right;
+  font-size:11px;
+}
+#HeaderSubTitle{
+  margin-bottom:2px;
+  margin-top:0px
+}
+#RawJson{
+  width:99%;
+  height:130px;
+}
+A.OtherToolsLink { color:#555;text-decoration:none; }
+A.OtherToolsLink:hover { text-decoration:underline; }
+
+i.fa-minus-square,
+i.fa-plus-square{
+	position: relative;
+    top: 1px;
+    font-size: 13px;
+    color: #bdbfc2!important;
+    padding: 0 5px;
+}
+
+/*example section accordion end*/
 
 /*Responsive*/
 
