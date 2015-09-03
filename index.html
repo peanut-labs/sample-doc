@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="format-detection" content="telephone=no">
 <title>Peanut Labs Technical Documentation</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 <link rel="stylesheet" type="text/css" href="css/custom.css">
@@ -15,7 +16,7 @@
 <!--For Mobile Menu-->
 <div class="mobile">
   <div class="logo pull-left"><a href="index.html" title="Peanut Labs Monetization API"><img src="img/logo.png" alt="Peanut Labs" title="Peanut Labs Monetization API"></a></div>
-  <a href="javascript:void(0);" class="btn pull-right" data-toggle="collapse" data-target="#nav" ><i class="icon-chevron-down"></i><i class="icon-chevron-up" style="display:none"></i> Menu</a>
+  <a href="javascript:void(0);" class="btn pull-right" data-toggle="collapse" data-target="#nav" ><i class="fa fa-chevron-down"></i><i class="fa fa-chevron-up" style="display:none"></i> Menu</a>
   <div id="nav" class="collapse out">
     <ul class="nav nav-list">
       <li>
@@ -120,10 +121,9 @@
             <li><a href="#listAttributes">Overview</a></li>
           </ul>
         </li>
-        
         <li>
-          <h4><a href="#collapseSix" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6">Contact</a></h4>
-          <ul id="collapseSix" class="collapse">
+          <h4><a href="#collapseSeven" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6">Contact</a></h4>
+          <ul id="collapseSeven" class="collapse">
             <li><a href="#contact">Write Us</a></li>
           </ul>
         </li>
@@ -138,9 +138,8 @@
             <h3 id="overview">Sample API</h3>
             <h4>Overview</h4>
             <p>Peanut Labs Sample API, a REST based API, can be programmatically used to connect your client surveys directly with Peanut Labs panelists. This API document describes the usage and resources needed for integrating with Sample API.</p>
-            
           </div>
-          <div class="span6 column2"> </div>
+          <div class="span6 column2"></div>
         </div>
         <!--Survey API --> 
         
@@ -159,8 +158,8 @@
                 <li class="method-list-item">
                   <h3>Base URL</h3>
                   <p><strong>https://sample.peanutlabs.com/sample</strong> (Production)<br>
-                  <strong>https://api-dev.peanutlabs.com/sample</strong> (Test)</p>
-                    <div class="alert"><i class="fa fa-info-circle"></i> Sample API supports API call over HTTP, however we strongly recommend you to use HTTPS.</div>
+                    <strong>https://api-dev.peanutlabs.com/sample</strong> (Test)</p>
+                  <div class="alert"><i class="fa fa-info-circle"></i> Sample API supports API call over HTTP, however we strongly recommend you to use HTTPS.</div>
                   <div class="clearfix"></div>
                 </li>
                 <li class="method-list-item">
@@ -183,7 +182,7 @@
               </ul>
             </div>
           </div>
-          <div class="span6 column2"> </div>
+          <div class="span6 column2"></div>
         </div>
         <!--API Structure --> 
         
@@ -217,31 +216,48 @@
                 <h3>HMAC</h3>
                 <p>Encrypted SHA256 hash to verify your request.<br>
                   <code class="color red">HMAC = SHA256 of (request_method + request_uri + all API parameters in alphabetical order + timestamp) using your secret_key</code></p>
+                <p>&nbsp;</p>
+                <p><strong>For the API parameters:</strong></p>
+                <p> &bull; sort the argument using the first-level hash<br>
+                  &bull; stringify the values even if the value is a complex object<br>
+                  &bull; concat the values together in alphabetical order </p>
                 <div class="clearfix"></div>
               </li>
             </ul>
           </div>
           <div class="span6 column2">
             <h6>Example</h6>
-            <p><strong>Let’s say we have the following:</strong></p>
-            <ul>
-              <li>request_method = POST</li>
-              <li>request_uri = /rest/v1/projects</li>
-              <li>params = Example request from <a href="#setupaProject">setup a project</a></li>
-              <li>request timestamp = 1433895246</li>
-              <li>secret_key = The dog jumped over the house</li>
-            </ul>
-            <p><strong>then, the parameter for HMAC function ends up as:</strong></p>
-            <p><span>SHA256(POST/rest/v1/projectstrueUSUSD5{"deviceType":["mobile"]}project001[{"completes":["project002"],"screenouts":["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.comTestSurvey[{"extQuotaId":"invite001","completes":"5","cpi":"3","attributes":{"q101":[{"option":"qx101-6","perc":"50"},{"option":"qx101-5","perc":"50"}]},"filters":{"q100":["qx100-2"]},"nested":[["q101"]]},{"extQuotaId":"invite002","completes":"10","cpi":"5","attributes":{"age":[{"option":"18-30","perc":"50"},{"option":"31-49","perc":"50"}]},"nested":[["age"]]}]1433895246)</span></p>
-            <p><span><strong>which using your secret_key (The dog jumped over the house) results in:</strong></span></p>
-            <p><span>#hash# = e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
-            <p><span>The above #hash# should be passed as the authorization header with HTTP request.</span></p>
-            <p><span>Authorization Header = 1234:</span><span>1433895246</span><span>:e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
-            <p><span><strong>where,</strong></span></p>
-            <p><span>1234 is advertiser&rsquo;s Id,</span></p>
-            <p>1433895246  is current timestamp,</p>
-            <p><span><span>and </span><span>5d8ffcc6f5e36aa3942c7a8bb4521c880069b822e82034f0ca34ef5993d7fcc7</span><span> is the computed #hash#</span></span></p>
-          </div>
+            <p class="text">Let’s say we have the following API parameter:</p>
+            
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"A"</span>: <span class="String">"One"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"C"</span>: <span class="String">"Three"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"B"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"X"</span>: <span class="Boolean">true<span class="Comma">,</span> </span>
+      <span class="PropertyName">"Y"</span>: <span class="Boolean">false</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+            <p class="text">The string concatenation for tha above API parameters will looks like:</p>
+            <p class="code"><span class="yellow">One[{"X":true,"Y":false}]Three</span></p>
+            <p>&nbsp;</p>
+            <h6>Example for HMAC computation</h6>
+            <p class="text">For <a href="#setupaProject">setup a project</a> API at timestamp <span class="yellow">1433895246</span>, the HMAC would be:</p>
+            <p class="code">HMAC =<br>
+              SHA256(<span class="yellow">POST/rest/v1/projectstrueUSUSD5{"deviceType":["mobile"]}project001[{"completes":["project002"],"screenouts":["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.comTestSurvey[{"extQuotaId":"invite001","completes":"5","cpi":"3","attributes":{"q101":[{"option":"qx101-6","perc":"50"},{"option":"qx101-5","perc":"50"}]},"filters":{"q100":["qx100-2"]},"nested":[["q101"]]},{"extQuotaId":"invite002","completes":"10","cpi":"5","attributes":{"age":[{"option":"18-30","perc":"50"},{"option":"31-49","perc":"50"}]},"nested":[["age"]]}]1433895246</span>) with secret_key (<span class="yellow">The dog jumped over the house</span>)</p>
+
+            <p class="code">HMAC =<br>
+              <span class="yellow">e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
+            <p>&nbsp;</p>
+            <h6>Example for HTTP Authorization header</h6>
+            <p class="text">Each HTTP API request should send HTTP Authorization header in the format of:</p>
+            <p class="code"><span class="yellow">advertiser’sId:timestamp:HMAC</span></p>
+            <p>&nbsp;</p>
+            <p class="text">For this example, HTTP Authorization becomes:</p>
+            <p class="code"><span class="yellow">1234:1433895246:e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
+            </div>
         </div>
         <!--Authentication and Authorization --> 
         
@@ -303,14 +319,20 @@
             </ul>
             <p>&nbsp;</p>
             <h6>Example 1: Success response</h6>
-            <p>HTTP Status Code: 200<br>
-              Content: { resultCode : 0 }</p>
+            <p>HTTP Status Code: 200</p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="Number">0</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+			<p>&nbsp;</p>
             <h6>Example 2: Error response</h6>
-            <p>HTTP Code: 400<br>
-              Content: { resultCode : 1, resultError: "Project doesn't exist" } </p>
-            <h6>Example 3: Error response</h6>
-            <p>HTTP Status Code: 403<br>
-              Content: { resultCode : 1, resultError: “Invalid Security Hash” }</p>
+            <p>HTTP Code: 400</p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+  <span class="PropertyName">"resultError"</span>: <span class="String">"Project doesn't exist"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+            
           </div>
         </div>
         <!--Response and Error codes--> 
@@ -362,7 +384,6 @@
                 <p>The email address to receive notifications, if project was paused due to conversion rules.</p>
                 <div class="clearfix"></div>
               </li>
-              
               <li class="method-list-item">
                 <h3>indicativeIncidence<br>
                   <span class="label-badge orange">REQUIRED</span> <span class="type">0 &lt;= integer &lt;= 100</span></h3>
@@ -370,22 +391,19 @@
                 <div class="alert"><i class="fa fa-info-circle"></i> Your survey project may be paused if actual conversion rate is lower than indicative incidence by 25% or more. Notification email will be sent to <code class="color red">notificationEmail</code> when such happens.</div>
                 <div class="clearfix"></div>
               </li>
-              
               <li class="method-list-item">
                 <h3>lengthOfInterview<br>
                   <span class="label-badge orange">required</span> <span class="type">integer &gt;= 0; in mins</span></h3>
                 <p>Average number of minutes it takes an average user to complete your survey.</p>
                 <div class="clearfix"></div>
               </li>
-              
               <li class="method-list-item">
                 <h3>daysInField<br>
-                <span class="label-badge orange">REQUIRED</span>  <span class="type">integer &gt;= 0; in days</span></h3>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">integer &gt;= 0; in days</span></h3>
                 <p>Number of days the survey should be active in the field.</p>
                 <div class="alert"><em class="fa fa-info-circle"></em> We don’t actively monitor <code class="color red">daysInField</code> but there are scenarios when long running projects beyond <code class="color red">daysInField</code> are paused.</div>
                 <div class="clearfix"></div>
               </li>
-              
               <li class="method-list-item">
                 <h3>deviceTargeting<br>
                   <span class="type">hash</span></h3>
@@ -394,17 +412,16 @@
                 <!--Child-->
                 <ul class="method-list-group">
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
-              <li class="method-list-item">
-                <h3>deviceType<br>
-                  <span class="type">array of string; defaults to all devices</span></h3>
-                <p>Devices our respondents will take the survey on. Supported devices are <code class="color red">desktop</code>, <code class="color red">mobile</code>, and <code class="color red">tablet</code>.</p>
-                <div class="alert"><i class="fa fa-info-circle"></i> You don't need to provide this if your survey is available on all devices.</div>
-                <div class="clearfix"></div>
+                  <li class="method-list-item">
+                    <h3>deviceType<br>
+                      <span class="type">array of string; defaults to all devices</span></h3>
+                    <p>Devices our respondents will take the survey on. Supported devices are <code class="color red">desktop</code>, <code class="color red">mobile</code>, and <code class="color red">tablet</code>.</p>
+                    <div class="alert"><i class="fa fa-info-circle"></i> You don't need to provide this if your survey is available on all devices.</div>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child--> 
               </li>
-              </ul>
-              <!--Child-->
-              </li>
-              
               <li class="method-list-item">
                 <h3>inclusions<br>
                   <span class="type">hash</span></h3>
@@ -588,10 +605,10 @@
                 <p>Callback URL where you should redirect respondents after the survey. Each callback URL contains two placeholders - <code class="color red">#sid#</code> and <code class="color red">#hash#</code> which should be replaced before you call the callback URLs.<br>
                   <br>
                   Replace <code class="color red">#sid#</code> by <code class="color red">trackerId</code> which was passed to you when Peanut Labs redirected user to your survey.<br>
-  <br>
+                  <br>
                   Replace <code class="color red">#hash#</code> with client-side generate hash.<br>
-  <code class="color red">#hash# = MD5 of (status + trackerId + shared secret_key)</code><br>
-  <br>
+                  <code class="color red">#hash# = MD5 of (status + trackerId + shared secret_key)</code><br>
+                  <br>
                   See <a href="#secureRedirects">secure exit redirects</a> for an example</p>
                 <div class="clearfix"></div>
                 <!--Child-->
@@ -633,101 +650,102 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong><br>
-              https://api.peanutlabs.com/rest/v1/projects</p>
+             <p class="code">
+             <span class="green"><strong>POST</strong></span>
+             <span class="yellow">https://api.peanutlabs.com/rest/v1/projects</span>
+             </p>
+              <p>&nbsp;</p>
             <h6>Example Request</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"extProjectId"</span><span>:</span><span>"project001"</span><span>,</span></p>
-            
-            <p><span> &nbsp;</span><span>"title"</span><span>:</span><span>"Test Survey"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"www.mysurvey.com?uid=#sid#"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"country"</span><span>:</span><span>"US"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"currency"</span><span>:</span><span>"USD"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"notificationEmail"</span><span>:</span><span>"testpm@abc.com"</span><span>,</span></p>
-            <p><span>&nbsp;"indicativeIncidence"</span><span>:</span><span>20</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"lengthOfInteview"</span><span>:</span><span>16</span><span>,</span></p>
-            <p><span><span> &nbsp;</span><span>"daysInField"</span><span>:</span><span>5</span><span>,</span></span></p>
-            <p><span>&nbsp;"deviceTargeting"</span><span>:</span><span>{</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"deviceType":[</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mobile"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;]</span></p>
-            <p><span><span> &nbsp;},</span></span></p>
-            <p><span> &nbsp;</span><span>"inclusions"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"project002"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"project002"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;</span><span>"autoLaunch"</span><span>:</span><span>true</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"quotaSetting"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite001"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>"5"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cpi"</span><span>:</span><span>"3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"q101"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx101-6"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx101-5"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"filters"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"q100"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx100-2"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"q101"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite002"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>"10"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cpi"</span><span>:</span><span>"5"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-30"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"31-49"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"age"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;</span><span>]</span></p>
-            <p><span>}</span></p>
-            <p><span><span><br />
-              <br />
-              </span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
+  <span class="PropertyName">"extProjectId"</span>: <span class="String">"project001"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"title"</span>: <span class="String">"Test Survey"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"link"</span>: <span class="String">"www.mysurvey.com?uid=#sid#"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"country"</span>: <span class="String">"US"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"currency"</span>: <span class="String">"USD"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"notificationEmail"</span>: <span class="String">"testpm@abc.com"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"indicativeIncidence"</span>: <span class="Number">20<span class="Comma">,</span> </span>
+  <span class="PropertyName">"lengthOfInteview"</span>: <span class="Number">16<span class="Comma">,</span> </span>
+  <span class="PropertyName">"daysInField"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+  <span class="PropertyName">"deviceTargeting"</span>: <span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
+    <span class="PropertyName">"deviceType"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"mobile"</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"inclusions"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"completes"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="String">"project002"</span>
+      </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+      <span class="PropertyName">"screenouts"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="String">"project002"</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"autoLaunch"</span>: <span class="Boolean">true<span class="Comma">,</span> </span>
+  <span class="PropertyName">"quotaSetting"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"extQuotaId"</span>: <span class="String">"invite001"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"completes"</span>: <span class="String">"5"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"cpi"</span>: <span class="String">"3"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"q101"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"option"</span>: <span class="String">"qx101-6"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"option"</span>: <span class="String">"qx101-5"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"filters"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"q100"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="String">"qx100-2"</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"nested"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="String">"q101"</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"extQuotaId"</span>: <span class="String">"invite002"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"completes"</span>: <span class="String">"10"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"cpi"</span>: <span class="String">"5"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"age"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"option"</span>: <span class="String">"18-30"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"option"</span>: <span class="String">"31-49"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"nested"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="String">"age"</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"callbacks"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"Complete"</span><span>:</span><span>"https:\/\/www.peanutlabs.com\/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=ae8485d4a3b9bd87b330656c19cd7b4b"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"OverQuotas"</span><span>:</span><span>"https:\/\/www.peanutlabs.com\/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=7e1fef48cb914af8a12a100937b21e81"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"ScreenOut"</span><span>:</span><span>"https:\/\/www.peanutlabs.com\/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=60c145788fd1e158a89079c636651eb2"</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span id="docs-internal-guid-e5f6f0a2-297f-ab7f-79b4-4f3ff9688db3"><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"callbacks"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"Complete"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=ae8485d4a3b9bd87b330656c19cd7b4b"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"OverQuotas"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=7e1fef48cb914af8a12a100937b21e81"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"ScreenOut"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=60c145788fd1e158a89079c636651eb2"</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--API methods--> 
@@ -776,8 +794,8 @@
                   </li>
                   <li class="method-list-item">
                     <h3>perc<br>
-                    <span class="type">0 &lt;= integer &lt;= 100<br>
-				    string</span></h3>
+                      <span class="type">0 &lt;= integer &lt;= 100<br>
+                      string</span></h3>
                     <p>Percentage of respondents desired for this attribute.</p>
                     <div class="clearfix"></div>
                   </li>
@@ -831,59 +849,60 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong><br>
-              https://api.peanutlabs.com/rest/v1/projects/project001/quotas</p>
+            <p class="code"><span class="green"><strong>POST</strong></span>
+              <span class="yellow">https://api.peanutlabs.com/rest/v1/projects/project001/quotas</span></p>
+              <p>&nbsp;</p>
             <h6>Example Request</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite003"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"cpi"</span><span>:</span><span>"3"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"completes"</span><span>:</span><span>500</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"100"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-25"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"33"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"26-45"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"34"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"46-75"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"33"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sex"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"age"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;</span><span>"filters"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"q3"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"94101"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"9420*"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"9430*"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"autoLaunch"</span><span>:</span><span>1</span></p>
-            <p><span>}</span></p>
-            <p><span><span><br />
-              <br />
-              </span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"extQuotaId"</span>: <span class="String">"invite003"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"cpi"</span>: <span class="String">"3"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"completes"</span>: <span class="Number">500<span class="Comma">,</span> </span>
+  <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"sex"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"2"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"100"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"age"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"18-25"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"33"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"26-45"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"34"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"46-75"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"33"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"nested"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"sex"</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"age"</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"filters"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"q3"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"94101"<span class="Comma">,</span> </span>
+      <span class="String">"9420*"<span class="Comma">,</span> </span>
+      <span class="String">"9430*"</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"autoLaunch"</span>: <span class="Number">1</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--add Quota To a Project--> 
@@ -929,17 +948,21 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>GET</strong></p>
-            <p><span>https://api.peanutlabs.com/rest/v1/projects/project001/test</span></p>
+            <p class="code"><span class="green"><strong>GET</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/projects/project001/test</span></p>
+            <p>&nbsp;</p>
             <h6>Example Request</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"screener"</span><span>:</span><span>true</span></p>
-            <p><span>}</span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"screener"</span>: <span class="Boolean">true</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"link"</span><span>:</span><span>"https:\/\/d02.peanutlabs.com\/publisher\/publisherDirect.php?endUserId=1234567890abcdef1234567890abcdef&amp;oid=123456&amp;publisherId=1234"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"link"</span>: <span class="String">"https://d02.peanutlabs.com/publisher/publisherDirect.php?endUserId=1234567890abcdef1234567890abcdef&amp;oid=123456&amp;publisherId=1234"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--get a project test link--> 
@@ -1000,7 +1023,7 @@
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
                   <li class="method-list-item">
                     <h3>node<br>
-					<span class="type">hash</span></h3>
+                      <span class="type">hash</span></h3>
                     <p>Attribute Id(s) and attribute values(s) from <a href="#listAttributes">targeting attributes</a> list.</p>
                     <div class="clearfix"></div>
                   </li>
@@ -1028,50 +1051,50 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong></p>
-            <p><span>https://api.peanutlabs.com/rest/v1/feasibility</span></p>
+            <p class="code"><span class="green"><strong>POST</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/feasibility</span></p>
+            <p>&nbsp;</p>
             <h6>Example Request</h6>
-            
-                <p><span>{ &nbsp;</span></p>
-                <p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"22-60"</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</span><span>,</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>"cc"</span><span>:[ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"US"</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-                <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"days"</span><span>:</span><span>"5"</span></p>
-                <p><span>}</span></p>
-                <p><span>&nbsp;</span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"age"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"22-60"</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"sex"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="Number">1<span class="Comma">,</span> </span>
+      <span class="Number">2</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"cc"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"US"</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"days"</span>: <span class="String">"5"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example Response</h6>
-            
-                <p><span>{ &nbsp;</span></p>
-                <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"node"</span><span>:{ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:</span><span>"22-60"</span><span>,</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cc"</span><span>:</span><span>"US"</span><span>,</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:</span><span>"1"</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"count"</span><span>:</span><span>1869</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"node"</span><span>:{ &nbsp;</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:</span><span>"22-60"</span><span>,</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cc"</span><span>:</span><span>"US"</span><span>,</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:</span><span>"2"</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"count"</span><span>:</span><span>3710</span></p>
-                <p><span> &nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-                <p><span> &nbsp;</span><span>],</span></p>
-                <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-                <p><span>}</span></p>
-            <p><span>&nbsp;</span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"data"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"node"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"age"</span>: <span class="String">"22-60"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"cc"</span>: <span class="String">"US"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"sex"</span>: <span class="String">"1"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"count"</span>: <span class="Number">1869</span>
+    </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"node"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"age"</span>: <span class="String">"22-60"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"cc"</span>: <span class="String">"US"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"sex"</span>: <span class="String">"2"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"count"</span>: <span class="Number">3710</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--createfeasibilitycount--> 
@@ -1085,7 +1108,7 @@
             <ul class="method-list-group">
               <li class="method-list-item">
                 <h3>preScreener<br>
-                <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
                 <p>A set of screening question that users take before qualifying for a survey. Don’t pass this argument to delete a prescreener. See <a href="#prescreenerFormat">precreener format</a> for examples.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid preScreener definition.</div>
                 <div class="clearfix"></div>
@@ -1109,54 +1132,58 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong></p>
-            <p>https://api.peanutlabs.com/rest/v1/projects/project001/prescreener</p>
+            <p class="code">
+            <span class="green"><strong>POST</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/projects/project001/prescreener</span></p>
+            <p>&nbsp;</p>
             <h6>Example Request</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"preScreener"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Test Survey"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"first"</span><span>:</span><span>"q1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"head"</span><span>:</span><span>""</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"requirements"</span><span>:</span><span>""</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"question"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"Are you currently living in US?"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"asc"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Yes"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Yes"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"No"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"No"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>}</span></p>
-            
-            <p><span>}</span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"preScreener"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"title"</span>: <span class="String">"Test Survey"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"first"</span>: <span class="String">"q1"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"head"</span>: <span class="String">""<span class="Comma">,</span> </span>
+    <span class="PropertyName">"requirements"</span>: <span class="String">""<span class="Comma">,</span> </span>
+    <span class="PropertyName">"question"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"q1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"type"</span>: <span class="String">"1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"header"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"html"</span>: <span class="String">"false"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"content"</span>: <span class="String">"Are you currently living in US?"</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="PropertyName">"option-sort-field"</span>: <span class="String">"id"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"option-sort-order"</span>: <span class="String">"asc"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="PropertyName">"next"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+            <span class="ObjectBrace">{</span><span class="collapsible">
+              <span class="PropertyName">"id"</span>: <span class="String">"qx1-1"<span class="Comma">,</span> </span>
+              <span class="PropertyName">"title"</span>: <span class="String">"Yes"<span class="Comma">,</span> </span>
+              <span class="PropertyName">"value"</span>: <span class="String">"Yes"<span class="Comma">,</span> </span>
+              <span class="PropertyName">"target"</span>: <span class="String">"complete"</span>
+            </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+            <span class="ObjectBrace">{</span><span class="collapsible">
+              <span class="PropertyName">"id"</span>: <span class="String">"qx1-2"<span class="Comma">,</span> </span>
+              <span class="PropertyName">"title"</span>: <span class="String">"No"<span class="Comma">,</span> </span>
+              <span class="PropertyName">"value"</span>: <span class="String">"No"<span class="Comma">,</span> </span>
+              <span class="PropertyName">"target"</span>: <span class="String">"screenout"</span>
+            </span><span class="ObjectBrace">}</span>
+          </span><span class="ArrayBrace">]</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--updateProjectPrescreener --> 
@@ -1210,12 +1237,14 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong></p>
-            <p>https://api.peanutlabs.com/rest/v1/projects/project001/pause</p>
+            <p class="code"><span class="green"><strong>POST</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/projects/project001/pause</span></p>
+            <p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--updateProjectStatus --> 
@@ -1241,7 +1270,7 @@
               <li class="method-list-item">
                 <h3>launch</h3>
                 <p>Takes a quota live for the first time. This is only used when <code class="color red">quotaSetting</code> was created with <code class="color red">autoLaunch</code> is set to <code class="color red">false</code>.</p>
-                <div class="alert"><i class="fa fa-info-circle"></i> If the project was not already launched, launching a quota will also launches the project to live traffic with this quota.</div>                
+                <div class="alert"><i class="fa fa-info-circle"></i> If the project was not already launched, launching a quota will also launches the project to live traffic with this quota.</div>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -1270,12 +1299,14 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong></p>
-            <p>https://api.peanutlabs.com/rest/v1/quotas/invite001/pause</p>
+            <p class="code"><span class="green"><strong>POST</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/quotas/invite001/pause</span></p>
+            <p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--updateQuotaStatus --> 
@@ -1313,19 +1344,23 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>POST</strong></p>
-            <p>https://api.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</p>
+            <p class="code"><span class="green"><strong>POST</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</span></p>
+            <p>&nbsp;</p>
             <h6>Example Request</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"deviceType"</span><span>:[</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;"mobile"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;"desktop"</span></p>
-            <p><span> &nbsp;</span><span>]</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"deviceType"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"mobile"<span class="Comma">,</span> </span>
+    <span class="String">"desktop"</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--updateDeviceTargeting --> 
@@ -1419,116 +1454,118 @@
           </div>
           <div class="span6 column2">
             <h6>Definition</h6>
-            <p><strong>GET</strong></p>
-            <p><span>https://api.peanutlabs.com/rest/v1/projects/project001</span></p>
+            <p class="code"><span class="green"><strong>GET</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/projects/project001</span></p>
+            <p>&nbsp;</p>
             <h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"data"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"invite001"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"q101"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"q101-5"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"q101"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"q101-6"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"invite002"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>8</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"18-30"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"31-49"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"invite003"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"sex"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"2"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>8</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"18-25"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"26-45"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"46-75"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"data"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"invite001"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"q101"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"q101-5"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"q101"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"q101-6"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"invite002"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">8<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"18-30"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">7<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"31-49"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"invite003"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"sex"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"2"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+      <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">8<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"18-25"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">7<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"26-45"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attempts"</span>: <span class="Number">7<span class="Comma">,</span> </span>
+          <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+          <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+          <span class="PropertyName">"screenouts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"starts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+          <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"optionId"</span>: <span class="String">"46-75"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
           </div>
         </div>
         <!--getProjectReport --> 
@@ -1619,42 +1656,43 @@
                 <div class="clearfix"></div>
               </li>
             </ul>
-            
           </div>
           <div class="span6 column2">
-          <h6>Definition</h6>
-          	<p><strong>GET</strong></p>
-          	<p><span>https://api.peanutlabs.com/rest/v1/quotas/invite002</span></p>
-          	<h6>Example Response</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>8</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>2</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"18-30"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attempts"</span><span>:</span><span>7</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"completes"</span><span>:</span><span>5</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"overquota"</span><span>:</span><span>0</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"screenouts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"starts"</span><span>:</span><span>1</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"desc"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"attributeId"</span><span>:</span><span>"age"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"optionId"</span><span>:</span><span>"31-49"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
-            <p><span><span>}</span></span></p>
+            <h6>Definition</h6>
+            <p class="code"><span class="green"><strong>GET</strong></span>
+            <span class="yellow">https://api.peanutlabs.com/rest/v1/quotas/invite002</span></p>
+            <p>&nbsp;</p>
+            <h6>Example Response</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"data"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"attempts"</span>: <span class="Number">8<span class="Comma">,</span> </span>
+        <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+        <span class="PropertyName">"overquota"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+        <span class="PropertyName">"screenouts"</span>: <span class="Number">2<span class="Comma">,</span> </span>
+        <span class="PropertyName">"starts"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+        <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"optionId"</span>: <span class="String">"18-30"</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"attempts"</span>: <span class="Number">7<span class="Comma">,</span> </span>
+        <span class="PropertyName">"completes"</span>: <span class="Number">5<span class="Comma">,</span> </span>
+        <span class="PropertyName">"overquota"</span>: <span class="Number">0<span class="Comma">,</span> </span>
+        <span class="PropertyName">"screenouts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+        <span class="PropertyName">"starts"</span>: <span class="Number">1<span class="Comma">,</span> </span>
+        <span class="PropertyName">"desc"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"attributeId"</span>: <span class="String">"age"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"optionId"</span>: <span class="String">"31-49"</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"resultCode"</span>: <span class="String">"1"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
             <div class="clearfix"></div>
           </div>
         </div>
@@ -1669,110 +1707,111 @@
             <p>Targeting allows you to obtain different number of completes from different types of end users by associating a percentage of the required completes desired with an attribute value. </p>
             <p>The most simplest form of targeting is to just provide the targeting attributes without any nesting structure. With this targeting, you can specify a requirement like:</p>
             <ul class="text">
-            	<li>100% of respondents to be male or female, and </li>
-                <li>100% of respondents to be within the age group of 18-25 or 26-45</li>
-                <li>without caring to filter within within each attributes.</li>
+              <li>100% of respondents to be male or female, and </li>
+              <li>100% of respondents to be within the age group of 18-25 or 26-45</li>
+              <li>without caring to filter within within each attributes.</li>
             </ul>
-			<p>In this above scenario it is likely that all males could be of the age group 18-25 and all females within the age group of 26-45, or any combination between the two.</p>
+            <p>In this above scenario it is likely that all males could be of the age group 18-25 and all females within the age group of 26-45, or any combination between the two.</p>
             <p>If you desire specific control over the mix of attributes within a composition then you may choose to define <code class="color red">nested</code> attributes. In the above scenario with nesting you can achieve a mix to be like:</p>
             <ul class="text">
-                <li>25% male within the age group of 18-25,</li>
-                <li>25% male within the age group of 26-45,</li>
-                <li>25% female within the age group of 18-25, and</li>
-                <li>25% female within the age group of 26-45.</li>
-			</ul>
+              <li>25% male within the age group of 18-25,</li>
+              <li>25% male within the age group of 26-45,</li>
+              <li>25% female within the age group of 18-25, and</li>
+              <li>25% female within the age group of 26-45.</li>
+            </ul>
             <div class="alert success"><i class="fa fa-info-circle"></i> Nesting allows you to have a fine grain control over the mix of attributes.</div>
           </div>
           <div class="span6 column2">
-          <h6>Example without nesting</h6>
-<p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"1"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"2"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-25"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"20"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"26-45"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"80"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-<p><span> &nbsp;</span><span>}</span></p>
-<p><span><span>&nbsp;</span></span></p>
-<p><span>The above example will target the following panel composition:</span></p>
-<ul>
-<li><span>50% of the respondents will be male and the other 50% female.</span></li>
-<li><span>20% of the respondents will be within the age group 18-25 and the other 80% within the age 26-45.</span></li>
-<li><span>Since age group is not nesting with sex, it is possible that you may get a panel composition as:</span></li>
-<ul>
-<li><span>20% male within the age of 18-25,</span></li>
-<li><span>30% male within the age of 26-45, and</span></li>
-<li><span>50% female within the age of 26-45.</span></li>
-</ul>
-</ul>
-
-
-<h6>Example with nesting</h6>
-<p><span><span>&nbsp;</span></span></p>
-<p><span> &nbsp;</span><span>"attributes"</span><span>:{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>"sex"</span><span>:[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"1"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"2"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>"age"</span><span>:[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"18-25"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"26-45"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>"q121"</span><span>:[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx121-0"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:</span><span>"qx121-1"</span><span>,</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"perc"</span><span>:</span><span>"50"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-<p><span> &nbsp;</span><span>},</span></p>
-<p><span> &nbsp;</span><span>"nested"</span><span>:[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"age",</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sex"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>[ &nbsp;</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"q121"</span></p>
-<p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-<p><span> &nbsp;</span><span>]</span></p>
-
-<p><span>The above example will targets the following panel composition:</span></p>
-<ul>
-<li><span>25% male within age 18-25</span></li>
-<li><span>25% male within age 26-45</span></li>
-<li><span>25% female within age 18-25</span></li>
-<li><span>25% female within age 26-45</span></li>
-<li><span>Of all the above composition, there will be 50% African American and 50% Caucasian</span></li>
-</ul>
+            <h6>Example without nesting</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"sex"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"2"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"age"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"18-25"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"20"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"26-45"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"80"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+            <p class="text">The above example will target the following panel composition:</p>
+            <ul>
+              <li><span>50% of the respondents will be male and the other 50% female.</span></li>
+              <li><span>20% of the respondents will be within the age group 18-25 and the other 80% within the age 26-45.</span></li>
+              <li><span>Since age group is not nesting with sex, it is possible that you may get a panel composition as:</span></li>
+              <ul>
+                <li><span>20% male within the age of 18-25,</span></li>
+                <li><span>30% male within the age of 26-45, and</span></li>
+                <li><span>50% female within the age of 26-45.</span></li>
+              </ul>
+            </ul>
+            <p>&nbsp;</p>
+            <h6>Example with nesting</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span></span><span class="collapsible">
+  <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span></span><span class="collapsible">
+    <span class="PropertyName">"sex"</span>: <span class="ArrayBrace">[</span></span><span class="collapsible">
+      <span class="ObjectBrace">{</span></span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span></span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"2"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"age"</span>: <span class="ArrayBrace">[</span></span><span class="collapsible">
+      <span class="ObjectBrace">{</span></span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"18-25"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span></span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"26-45"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="PropertyName">"q121"</span>: <span class="ArrayBrace">[</span></span><span class="collapsible">
+      <span class="ObjectBrace">{</span></span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"qx121-2"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span></span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="String">"qx121-1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"perc"</span>: <span class="String">"50"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"nested"</span>: <span class="ArrayBrace">[</span></span><span class="collapsible">
+    <span class="ArrayBrace">[</span></span><span class="collapsible">
+      <span class="String">"age"<span class="Comma">,</span> </span>
+      <span class="String">"sex"</span>
+    </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+    <span class="ArrayBrace">[</span></span><span class="collapsible">
+      <span class="String">"q121"</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span></pre>
+            <p class="text">The above example will targets the following panel composition:</p>
+            <ul>
+              <li><span>25% male within age 18-25</span></li>
+              <li><span>25% male within age 26-45</span></li>
+              <li><span>25% female within age 18-25</span></li>
+              <li><span>25% female within age 26-45</span></li>
+              <li><span>Of the above composition 50% will be single and 50% will be married</span></li>
+            </ul>
           </div>
         </div>
         <!--targetingAttributes  --> 
@@ -1790,8 +1829,15 @@
             </div>
           </div>
           <div class="span6 column2">
-            <p>{"q101":["qx101-1","qx101-2","qx101-3"]}</p>
-            <p>Respondents without attribute qx101-1, qx101-2, qx101-3 will not be invited for the survery.</p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"q101"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"qx101-1"<span class="Comma">,</span> </span>
+    <span class="String">"qx101-2"<span class="Comma">,</span> </span>
+    <span class="String">"qx101-3"</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+            <p class="text">Respondents without attribute qx101-1, qx101-2, qx101-3 will not be invited for the survery.</p>
           </div>
         </div>
         <!--Filters  --> 
@@ -1800,17 +1846,47 @@
         <div class="section" id="inclusionsExclusions">
           <div class="span6 column1">
             <h4>Inclusions/Exclusions</h4>
-            <p>Projects can include/exclude certain target based on completes, respondents, dropouts, screenouts and overquotas. Inclusions/exclusions are filtered by  <code class="color red">extProjectId</code>.</p>
+            <p>Projects can include/exclude certain target based on completes, respondents, dropouts, screenouts and overquotas. Inclusions/exclusions are filtered by <code class="color red">extProjectId</code>.</p>
           </div>
           <div class="span6 column2">
             <h6>Example 1</h6>
-            <p>{"completes": ["129","130"], "respondents": ["150","156"]}</p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"completes"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"129"<span class="Comma">,</span> </span>
+    <span class="String">"130"</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"respondents"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"150"<span class="Comma">,</span> </span>
+    <span class="String">"156"</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
             <ul>
               <li>include/exclude those who have completed projects with extProjectId 129 or 130</li>
               <li>include/exclude those who have responded to a project with extProjectId 150 or 156</li>
             </ul>
+            <p>&nbsp;</p>
             <h6>Example 2</h6>
-            <p>{"completes": ["129","130"], "respondents": ["150","156"], "dropouts": ["131"], "overquota": ["132"], "screenout": ["133"]}</p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"completes"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"129"<span class="Comma">,</span> </span>
+    <span class="String">"130"</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"respondents"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"150"<span class="Comma">,</span> </span>
+    <span class="String">"156"</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"dropouts"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"131"</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"overquota"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"132"</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+  <span class="PropertyName">"screenout"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="String">"133"</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
             <ul>
               <li>include/exclude those who have completed projects with extProjectId 129 or 130</li>
               <li>include/exclude those who have responded to projects with extProjectId 150 or 156</li>
@@ -1827,31 +1903,30 @@
           <div class="span6 column1">
             <h4>Secure Exit Redirects</h4>
             <p>After the user completes the survey, user should be redirected to a secure exit redirect links. The link contains an encrypted hash which Peanut Labs validates before updating the user status for the session.</p>
-            <p>The <code class="color red">#hash#</code> parameter can be generated as follows:<br>
-              <code class="color red">#hash# = MD5(status + trackerId + secret_key)</code></p>
+            <p>The <code class="color red">hash</code> parameter can be generated as follows:<br>
+              <code class="color red">#h# = MD5(status + trackerId + secret_key)</code></p>
             <p>where,<br>
               status = C for completes, P for screenout and F for overquota;<br>
-  <code class="color red">trackerId</code> = Peanut Labs passes user session identifier with the survey;<br>
+              <code class="color red">trackerId</code> = Peanut Labs passed user’s session identifier along with the survey entry link;<br>
               secret_key = A security key provided to you by Peanut Labs.</p>
             <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
           </div>
           <div class="span6 column2">
-            <p>When a user completes a survey, the exit redirect used is:<br>
-              https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=#sid#&amp;status=#status#&amp;h=#hash# </p>
-            <p>where, <br>
-            #status# = C for completes, P for screenouts and F for overquotas</p>
-            
-            <p>To compute #hash#, let’s say you have:</p>
+            <h6>Example to compute hash</h6>
+            <p class="text">To compute hash, let’s say you have:</p>
             <ul>
-                <li>status = C</li>
-                <li>trackerId = 123a456</li>
-                <li>secret_key = 347602146a923872538f3803eb5f3cef</li>
+              <li>status = <span class="yellow">C</span></li>
+              <li>trackerId = <span class="yellow">123a456</span></li>
+              <li>secret_key = <span class="yellow">The dog jumped over the house</span></li>
             </ul>
-            <p>then,<br>
-            md5(C123a456347602146a923872538f3803eb5f3cef) of results in<br>
-            h = aed04fb1182a42cf35fe061b33f82fee</p>
-            <p>Hence, the resulting redirect URL will be:<br>
-              https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&amp;status=C&amp;h=aed04fb1182a42cf35fe061b33f82fee </p>
+            
+            <p class="text">then,</p>
+              <p class="code">#h# = md5(<span class="yellow">C123a456The dog jumped over the house</span>)</p>
+            
+            <p class="code">#h# = <span class="yellow">7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
+            
+            <p class="text">The resulting redirect URL becomes:</p>
+            <p class="code"><span class="yellow">https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&amp;status=C&amp;h=7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
           </div>
         </div>
         <!--Secure Exit Redirects --> 
@@ -2169,265 +2244,268 @@
           </div>
           <div class="span6 column2">
             <h6>Example for Radio button question</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Opinions Survey"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"first"</span><span>:</span><span>"q1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"head"</span><span>:</span><span>""</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"requirements"</span><span>:</span><span>""</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"question"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"Are you currently living in US&gt;"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"asc"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Yes"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Yes"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx1-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"No"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"No"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>}</span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"title"</span>: <span class="String">"Opinions Survey"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"first"</span>: <span class="String">"q1"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"head"</span>: <span class="String">""<span class="Comma">,</span> </span>
+  <span class="PropertyName">"requirements"</span>: <span class="String">""<span class="Comma">,</span> </span>
+  <span class="PropertyName">"question"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"id"</span>: <span class="String">"q1"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"type"</span>: <span class="String">"1"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"header"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"html"</span>: <span class="String">"false"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"content"</span>: <span class="String">"Are you currently living in US&gt;"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"option-sort-field"</span>: <span class="String">"id"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"option-sort-order"</span>: <span class="String">"asc"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"next"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx1-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"Yes"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"Yes"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">"complete"</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx1-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"No"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"No"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">"screenout"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example for Checkbox type question</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Survey"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"first"</span><span>:</span><span>"q3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"head"</span><span>:</span><span>""</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"requirements"</span><span>:</span><span>""</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"question"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"How many employees work at your company?"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"asc"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"q4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"skip-logic"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-3"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>5</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-4"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>4</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-1"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>3</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"qx3-2"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"q4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"priority"</span><span>:</span><span>2</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>],</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"1-99"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"1-99"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"100-499"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"100-499"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"500-999"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"500-999"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx3-4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"1,000+"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"1,000+"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>""</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"q4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"type"</span><span>:</span><span>"1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"What kind of device are you taking this survey on?"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-field"</span><span>:</span><span>"id"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option-sort-order"</span><span>:</span><span>"rand"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please answer this question."</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Mobile"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Mobile"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Desktop Computer"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Desktop Computer"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Laptop Computer"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"Laptop Computer"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"complete"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx4-4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"None of the Above"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"None of the Above"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"target"</span><span>:</span><span>"screenout"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"exclusive"</span><span>:</span><span>"true"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>}</span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"title"</span>: <span class="String">"Survey"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"first"</span>: <span class="String">"q3"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"head"</span>: <span class="String">""<span class="Comma">,</span> </span>
+  <span class="PropertyName">"requirements"</span>: <span class="String">""<span class="Comma">,</span> </span>
+  <span class="PropertyName">"question"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"id"</span>: <span class="String">"q3"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"type"</span>: <span class="String">"3"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"header"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"html"</span>: <span class="String">"false"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"content"</span>: <span class="String">"How many employees work at your company?"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"option-sort-field"</span>: <span class="String">"id"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"option-sort-order"</span>: <span class="String">"asc"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"next"</span>: <span class="String">"q4"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"skip-logic"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+            <span class="String">"qx3-3"</span>
+          </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+          <span class="PropertyName">"target"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"priority"</span>: <span class="Number">5</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+            <span class="String">"qx3-4"</span>
+          </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+          <span class="PropertyName">"target"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"priority"</span>: <span class="Number">4</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+            <span class="String">"qx3-1"</span>
+          </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+          <span class="PropertyName">"target"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"priority"</span>: <span class="Number">3</span>
+        </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+        <span class="ObjectBrace">{</span><span class="collapsible">
+          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+            <span class="String">"qx3-2"</span>
+          </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+          <span class="PropertyName">"target"</span>: <span class="String">"q4"<span class="Comma">,</span> </span>
+          <span class="PropertyName">"priority"</span>: <span class="Number">2</span>
+        </span><span class="ObjectBrace">}</span>
+      </span><span class="ArrayBrace">]</span><span class="Comma">,</span> 
+      <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx3-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"1-99"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"1-99"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx3-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"100-499"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"100-499"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx3-3"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"500-999"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"500-999"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx3-4"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"1,000+"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"1,000+"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+    <span class="ObjectBrace">{</span><span class="collapsible">
+      <span class="PropertyName">"id"</span>: <span class="String">"q4"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"type"</span>: <span class="String">"1"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"header"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"html"</span>: <span class="String">"false"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"content"</span>: <span class="String">"What kind of device are you taking this survey on?"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"option-sort-field"</span>: <span class="String">"id"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"option-sort-order"</span>: <span class="String">"rand"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="PropertyName">"next"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx4-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"Mobile"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"Mobile"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">"screenout"</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx4-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"Desktop Computer"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"Desktop Computer"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">"complete"</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx4-3"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"Laptop Computer"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"Laptop Computer"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">"complete"</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx4-4"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"title"</span>: <span class="String">"None of the Above"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"None of the Above"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"target"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"exclusive"</span>: <span class="String">"true"</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ArrayBrace">]</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
             <h6>Example for Grid type question</h6>
-            <p><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;</span><span>"id"</span><span>:</span><span>"q146"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"type"</span><span>:</span><span>"15"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"next"</span><span>:</span><span>"complete"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"describe"</span><span>:</span><span>"Do you, anyone in your household, or someone for whom you provide care suffer from any of the following ailments or medical conditions? (Please select all that apply.)"</span><span>,</span></p>
-            <p><span> &nbsp;</span><span>"cellHeaders"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"I suffer from"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Someone in my household suffers from"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"I provide care for someone who suffers from"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"col4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Not applicable"</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"header"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"html"</span><span>:</span><span>"false"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"content"</span><span>:</span><span>"Do you, anyone in your household, or someone for whom you provide care suffer from any of the following ailments or medical conditions? (Please select all that apply.)"</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"options"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"option"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Cancer: Anal"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cells"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-0-4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-0-4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"title"</span><span>:</span><span>"Cancer: Bladder"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"cells"</span><span>:[ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-1"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-2"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-3"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"id"</span><span>:</span><span>"qx146-1-4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"value"</span><span>:</span><span>"qx146-1-4"</span><span>,</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>"checked"</span><span>:</span><span>false</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>}</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>]</span></p>
-            <p><span> &nbsp;</span><span>},</span></p>
-            <p><span> &nbsp;</span><span>"required"</span><span>:{ &nbsp;</span></p>
-            <p><span> &nbsp;&nbsp;&nbsp;</span><span>"message"</span><span>:</span><span>"Please select an option for each question!"</span></p>
-            
-            <p><span> &nbsp;</span><span>}</span></p>
-            <p><span><span>}</span></span></p>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"id"</span>: <span class="String">"q146"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"type"</span>: <span class="String">"15"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"next"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"describe"</span>: <span class="String">"Do you, anyone in your household, or someone for whom you provide care suffer from any of the following ailments or medical conditions? (Please select all that apply.)"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"cellHeaders"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"col1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"title"</span>: <span class="String">"I suffer from"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"col2"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"title"</span>: <span class="String">"Someone in my household suffers from"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"col3"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"title"</span>: <span class="String">"I provide care for someone who suffers from"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"col4"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"title"</span>: <span class="String">"Not applicable"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"header"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"html"</span>: <span class="String">"false"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"content"</span>: <span class="String">"Do you, anyone in your household, or someone for whom you provide care suffer from any of the following ailments or medical conditions? (Please select all that apply.)"</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"qx146-0"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"title"</span>: <span class="String">"High Blood Pressure"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"value"</span>: <span class="String">"qx146-0"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"cells"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-0-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-0-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-0-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-0-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-0-3"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-0-3"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-0-4"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-0-4"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"id"</span>: <span class="String">"qx146-1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"title"</span>: <span class="String">"Diabetes"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"value"</span>: <span class="String">"qx146-1"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"cells"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-1-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-1-1"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-1-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-1-2"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-1-3"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-1-3"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+          <span class="ObjectBrace">{</span><span class="collapsible">
+            <span class="PropertyName">"id"</span>: <span class="String">"qx146-1-4"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"value"</span>: <span class="String">"qx146-1-4"<span class="Comma">,</span> </span>
+            <span class="PropertyName">"checked"</span>: <span class="Boolean">false</span>
+          </span><span class="ObjectBrace">}</span>
+        </span><span class="ArrayBrace">]</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span> 
+  <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"message"</span>: <span class="String">"Please select an option for each question!"</span>
+  </span><span class="ObjectBrace">}</span>
+</span><span class="ObjectBrace">}</span></pre>
           </div>
         </div>
         <!--Prescreener Format  --> 
-                
+        
         <!-- Countries and ISO Codes -->
         <div class="section" id="ISOCodes">
           <div class="span6 column1">
@@ -2452,7 +2530,7 @@
                 <h3>France</h3>
                 <p>FR</p>
                 <div class="clearfix"></div>
-              </li>              
+              </li>
               <li class="method-list-item">
                 <h3>Germany</h3>
                 <p>DE</p>
@@ -2477,7 +2555,7 @@
                 <h3>Spain</h3>
                 <p>ES</p>
                 <div class="clearfix"></div>
-              </li>              
+              </li>
               <li class="method-list-item">
                 <h3>United Kingdom</h3>
                 <p>GB</p>
@@ -2490,8 +2568,7 @@
               </li>
             </ul>
           </div>
-          <div class="span6 column2">
-          </div>
+          <div class="span6 column2"></div>
         </div>
         <!--Countries and ISO Codes --> 
         
@@ -2499,11 +2576,9 @@
         <div class="section" id="listAttributes">
           <div class="span6 column1">
             <h4>List of Targeting Attributes</h4>
-            <p>The Peanut Labs <a href="files/client-copy-of-pl-profile-map-2015-v3.xlsx" target="_blank">profile map</a> contains a complete list of target attributes that can be sent along with the targeting parameters.</p>
-            
+            <p>The Peanut Labs <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes that can be sent along with the targeting parameters.</p>
           </div>
-          <div class="span6 column2">
-          </div>
+          <div class="span6 column2"></div>
         </div>
         <!--List of Targeting Attributes --> 
         
@@ -2513,10 +2588,9 @@
             <h4>Contact Us</h4>
             <p>Please email <a href="sample.integration@peanutlabs.com">sample.integration@peanutlabs.com</a> for any questions or concerns.</p>
           </div>
-          <div class="span6 column2">
-          </div>
+          <div class="span6 column2"></div>
         </div>
-        <!--List of Targeting Attributes -->
+        <!--List of Targeting Attributes --> 
         
       </div>
     </div>
@@ -2571,6 +2645,22 @@ function checkScroll() {
 	}
 	isScrollBusy = false;
 }
+
+// example section accordion
+//function ExpImgClicked(img){
+// var container = img.parentNode.nextSibling;
+// if(!container) return;
+// var disp = "none";
+// $(img).addClass('fa-plus-square');
+// $(img).removeClass('fa-minus-square');  
+// if(container.style.display == "none"){
+//     disp = "inline";
+//     $(img).removeClass('fa-plus-square');
+//     $(img).addClass('fa-minus-square');
+// }
+// container.style.display = disp;
+//}
+
 </script> 
 <script src="js/custom.js"></script> 
 <script src="js/retina.js"></script>
