@@ -69,7 +69,7 @@ $( document ).ready(function() {
 
 //Remove background of last child under the sections
 
-	$('.section:last-child .span6').css('background-image','none');
+	$('.section:last-child .span6').css('border','none');
 	
 	//sticky
 		var s = $(".sidebar .nav, .sidebar a.logo ");
@@ -111,7 +111,7 @@ $( document ).ready(function() {
 
 $(window).load(function(){  
 //Auto height for Sidebar		
-	$('.sidebar').height($('.content').height());
+	$('.sidebar').height($('.content').height() + 11);
 //Auto width for Sidebar LI	
 	$('.sidebar ul , .sidebar .logo').width($('.sidebar').width());
 
