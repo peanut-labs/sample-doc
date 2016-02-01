@@ -227,36 +227,39 @@
           </div>
           <div class="span6 column2">
             <h6>Example</h6>
-            <p class="text">Let’s say we have the following API parameter:</p>
+            <p class="text">For <a href="#setupaProject">setup a project</a>, example from below your JSON body may look like:</p>
 
-            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
-  <span class="PropertyName">"A"</span>: <span class="String">"One"<span class="Comma">,</span> </span>
-  <span class="PropertyName">"C"</span>: <span class="String">"Three"<span class="Comma">,</span> </span>
-  <span class="PropertyName">"B"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
-    <span class="ObjectBrace">{</span><span class="collapsible">
-      <span class="PropertyName">"X"</span>: <span class="Boolean">1<span class="Comma">,</span> </span>
-      <span class="PropertyName">"Y"</span>: <span class="Boolean">0</span>
-    </span><span class="ObjectBrace">}</span>
-  </span><span class="ArrayBrace">]</span>
-</span><span class="ObjectBrace">}</span>
+            <pre class="CodeContainer"><span class="yellow">{"extProjectId": "project001", "title": "Test Survey", "link": "www.mysurvey.com?uid=#sid#", "country": "US", "currency": "USD", "notificationEmail": "testpm@abc.com", "indicativeIncidence": 20, "lengthOfInteview": 16, "daysInField": 5, "deviceTargeting": {"deviceType": [ "mobile"]}, "inclusions": [{"completes": ["project002"], "screenouts": ["project002"]}], "autoLaunch": 1, "quotaSetting": [{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]}</span>
 </pre>
-            <p class="text">The string concatenation for tha above API parameters will looks like:</p>
-            <p class="code"><span class="yellow">One[{"X":1,"Y":0}]Three</span></p>
+            <p class="text">Once you have sorted the object by first-level key, here is how it will look:</p>
+            <p class="code"><span class="yellow">
+              autoLaunch: 1<br><br>
+              country: US<br><br>
+              currency: USD<br><br>
+              daysInField: 5<br><br>
+              deviceTargeting: {"deviceType": [ "mobile"]}<br><br>
+              extProjectId: "project001"<br><br>
+              inclusions: [{"completes": ["project002"], "screenouts": ["project002"]}]<br><br>
+              indicativeIncidence: 20<br><br>
+              lengthOfInteview: 16<br><br>
+              link: www.mysurvey.com?uid=#sid#<br><br>
+              notificationEmail: testpm@abc.com<br><br>
+              quotaSetting: [{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]<br><br>
+              title: Test Survey
+</span></p>
             <p>&nbsp;</p>
-            <h6>Example for HMAC computation</h6>
-            <p class="text">For <a href="#setupaProject">setup a project</a> API at timestamp <span class="yellow">1433895246</span>, the HMAC would be:</p>
+            <p class="text">At timestamp <span class="yellow">1433895246</span>, the HMAC can be calculated as:</p>
             <p class="code">HMAC =<br>
-              SHA256(<span class="yellow">POST/rest/v1/projectstrueUSUSD5{"deviceType":["mobile"]}project001[{"completes":["project002"],"screenouts":["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.comTestSurvey[{"extQuotaId":"invite001","completes":"5","cpi":"3","attributes":{"q101":[{"option":"qx101-6","perc":"50"},{"option":"qx101-5","perc":"50"}]},"filters":{"q100":["qx100-2"]},"nested":[["q101"]]},{"extQuotaId":"invite002","completes":"10","cpi":"5","attributes":{"age":[{"option":"18-30","perc":"50"},{"option":"31-49","perc":"50"}]},"nested":[["age"]]}]1433895246</span>) with secret_key (<span class="yellow">The dog jumped over the house</span>)</p>
+              SHA256(<span class="yellow">POST/rest/v1/projects1USUSD5{"deviceType": [ "mobile"]}project001[{"completes": ["project002"], "screenouts": ["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.com[{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]Test Survey1433895246</span>) with secret_key (<span class="yellow">The dog jumped over the house</span>)</p>
 
             <p class="code">HMAC =<br>
-              <span class="yellow">e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
+              <span class="yellow">7bd960e29ff0a8dabae495f18d8274790795efa1edafa8394ff259f959764acf</span></p>
             <p>&nbsp;</p>
-            <h6>Example for HTTP Authorization header</h6>
-            <p class="text">Each HTTP API request should send HTTP Authorization header in the format of:</p>
+            <p class="text">The above HMAC should be part of authorization header when making an API request. HTTP Authorization header follows the format:</p>
             <p class="code"><span class="yellow">advertiser’sId:timestamp:HMAC</span></p>
             <p>&nbsp;</p>
-            <p class="text">For this example, HTTP Authorization becomes:</p>
-            <p class="code"><span class="yellow">1234:1433895246:e063a4032bb3c2054a2cfe95feaa9b654b1d15e110536fe98f09ae8557ecbe67</span></p>
+            <p class="text">So finally your HTTP Authorization will look like:</p>
+            <p class="code"><span class="yellow">1234:1433895246:7bd960e29ff0a8dabae495f18d8274790795efa1edafa8394ff259f959764acf</span></p>
             </div>
         </div>
         <!--Authentication and Authorization -->
