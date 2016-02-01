@@ -577,7 +577,7 @@
                   </li>
                   <li class="method-list-item">
                     <h3> filters<br>
-                      <span class="type">hash of array; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
+                      <span class="label-badge orange">required</span> <span class="type">hash of array; each key in the hash is the <code class="color red">attributeId</code> of that attribute</span></h3>
                     <p>Filters are just like  attributes which all panelists should belong to before qualifying for a survey. See <a href="#filters">filters</a> for examples.</p>
                     <div class="alert"> <strong><i class="fa fa-info-circle"></i></strong> Zip code can only be used as filters. An API call cannot have more than 10,000 zip codes in the filter list. </div>
                     <div class="clearfix"></div>
@@ -1708,11 +1708,10 @@
             <h3>Examples</h3>
             <h4>Targeting Attributes and Nesting</h4>
             <p>Targeting allows you to obtain different number of completes from different types of end users by associating a percentage of the required completes desired with an attribute value. </p>
-            <p>The most simplest form of targeting is to just provide the targeting attributes without any nesting structure. With this targeting, you can specify a requirement like:</p>
+            <p>The most simplest form of targeting is to provide all the targeting attributes with all attributes also within a single <code class="color red">nested</code> attributes. For example, you can specify a requirement like:</p>
             <ul class="text">
               <li>100% of respondents to be male or female, and </li>
               <li>100% of respondents to be within the age group of 18-25 or 26-45</li>
-              <li>without caring to filter within within each attributes.</li>
             </ul>
             <p>In this above scenario it is likely that all males could be of the age group 18-25 and all females within the age group of 26-45, or any combination between the two.</p>
             <p>If you desire specific control over the mix of attributes within a composition then you may choose to define <code class="color red">nested</code> attributes. In the above scenario with nesting you can achieve a mix to be like:</p>
@@ -1725,7 +1724,7 @@
             <div class="alert success"><i class="fa fa-info-circle"></i> Nesting allows you to have a fine grain control over the mix of attributes.</div>
           </div>
           <div class="span6 column2">
-            <h6>Example without nesting</h6>
+            <h6>Example with one nest</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
   <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
     <span class="PropertyName">"sex"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
@@ -1748,7 +1747,13 @@
         <span class="PropertyName">"perc"</span>: <span class="String">"80"</span>
       </span><span class="ObjectBrace">}</span>
     </span><span class="ArrayBrace">]</span>
-  </span><span class="ObjectBrace">}</span>
+  </span><span class="ObjectBrace">}</span></span><span class="Comma">,</span>
+  <span class="PropertyName">"nested"</span>: <span class="ArrayBrace">[</span></span><span class="collapsible">
+    <span class="ArrayBrace">[</span></span><span class="collapsible">
+      <span class="String">"age"<span class="Comma">,</span> </span>
+      <span class="String">"sex"</span>
+    </span><span class="ArrayBrace">]</span>
+  <span class="ArrayBrace">]</span>
 </span><span class="ObjectBrace">}</span>
 </pre>
             <p class="text">The above example will target the following panel composition:</p>
@@ -1763,7 +1768,7 @@
               </ul>
             </ul>
             <p>&nbsp;</p>
-            <h6>Example with nesting</h6>
+            <h6>Example with multiple nest</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span></span><span class="collapsible">
   <span class="PropertyName">"attributes"</span>: <span class="ObjectBrace">{</span></span><span class="collapsible">
     <span class="PropertyName">"sex"</span>: <span class="ArrayBrace">[</span></span><span class="collapsible">
