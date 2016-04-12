@@ -227,7 +227,7 @@
           </div>
           <div class="span6 column2">
             <h6>Example</h6>
-            <p class="text">For <a href="#setupaProject">setup a project</a>, example from below your JSON body may look like:</p>
+            <p class="text">For <a href="#setupaProject">setup a project</a> (example from below), your JSON body may look like:</p>
 
             <pre class="CodeContainer"><span class="yellow">{"extProjectId": "project001", "title": "Test Survey", "link": "www.mysurvey.com?uid=#sid#", "country": "US", "currency": "USD", "notificationEmail": "testpm@abc.com", "indicativeIncidence": 20, "lengthOfInteview": 16, "daysInField": 5, "deviceTargeting": {"deviceType": [ "mobile"]}, "inclusions": [{"completes": ["project002"], "screenouts": ["project002"]}], "autoLaunch": 1, "quotaSetting": [{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]}</span>
 </pre>
@@ -742,9 +742,9 @@
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
   <span class="PropertyName">"callbacks"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
-    <span class="PropertyName">"Complete"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=ae8485d4a3b9bd87b330656c19cd7b4b"<span class="Comma">,</span> </span>
-    <span class="PropertyName">"OverQuotas"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=7e1fef48cb914af8a12a100937b21e81"<span class="Comma">,</span> </span>
-    <span class="PropertyName">"ScreenOut"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=60c145788fd1e158a89079c636651eb2"</span>
+    <span class="PropertyName">"Complete"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"OverQuotas"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"ScreenOut"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=#hash#"</span>
   </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
   <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
 </span><span class="ObjectBrace">}</span>
