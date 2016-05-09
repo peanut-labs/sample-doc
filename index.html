@@ -2270,7 +2270,7 @@
       <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
         <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
       </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
-      <span class="PropertyName">"next"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"next"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
       <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
         <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
           <span class="ObjectBrace">{</span><span class="collapsible">
@@ -2282,8 +2282,7 @@
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx1-2"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"No"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"value"</span>: <span class="String">"No"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">"screenout"</span>
+            <span class="PropertyName">"value"</span>: <span class="String">"No"
           </span><span class="ObjectBrace">}</span>
         </span><span class="ArrayBrace">]</span>
       </span><span class="ObjectBrace">}</span>
@@ -2311,62 +2310,31 @@
       <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
         <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
       </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
-      <span class="PropertyName">"next"</span>: <span class="String">"q4"<span class="Comma">,</span> </span>
-      <span class="PropertyName">"skip-logic"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
-        <span class="ObjectBrace">{</span><span class="collapsible">
-          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
-            <span class="String">"qx3-3"</span>
-          </span><span class="ArrayBrace">]</span><span class="Comma">,</span>
-          <span class="PropertyName">"target"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
-          <span class="PropertyName">"priority"</span>: <span class="Number">5</span>
-        </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
-        <span class="ObjectBrace">{</span><span class="collapsible">
-          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
-            <span class="String">"qx3-4"</span>
-          </span><span class="ArrayBrace">]</span><span class="Comma">,</span>
-          <span class="PropertyName">"target"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
-          <span class="PropertyName">"priority"</span>: <span class="Number">4</span>
-        </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
-        <span class="ObjectBrace">{</span><span class="collapsible">
-          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
-            <span class="String">"qx3-1"</span>
-          </span><span class="ArrayBrace">]</span><span class="Comma">,</span>
-          <span class="PropertyName">"target"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
-          <span class="PropertyName">"priority"</span>: <span class="Number">3</span>
-        </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
-        <span class="ObjectBrace">{</span><span class="collapsible">
-          <span class="PropertyName">"options"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
-            <span class="String">"qx3-2"</span>
-          </span><span class="ArrayBrace">]</span><span class="Comma">,</span>
-          <span class="PropertyName">"target"</span>: <span class="String">"q4"<span class="Comma">,</span> </span>
-          <span class="PropertyName">"priority"</span>: <span class="Number">2</span>
-        </span><span class="ObjectBrace">}</span>
-      </span><span class="ArrayBrace">]</span><span class="Comma">,</span>
+      <span class="PropertyName">"next"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
       <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
         <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx3-1"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"1-99"<span class="Comma">,</span> </span>
             <span class="PropertyName">"value"</span>: <span class="String">"1-99"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">""</span>
           </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx3-2"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"100-499"<span class="Comma">,</span> </span>
             <span class="PropertyName">"value"</span>: <span class="String">"100-499"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+            <span class="PropertyName">"target"</span>: <span class="String">"q4"</span>
           </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx3-3"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"500-999"<span class="Comma">,</span> </span>
             <span class="PropertyName">"value"</span>: <span class="String">"500-999"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+            <span class="PropertyName">"target"</span>: <span class="String">"q4"</span>
           </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx3-4"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"1,000+"<span class="Comma">,</span> </span>
             <span class="PropertyName">"value"</span>: <span class="String">"1,000+"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">""</span>
+            <span class="PropertyName">"target"</span>: <span class="String">"q4"</span>
           </span><span class="ObjectBrace">}</span>
         </span><span class="ArrayBrace">]</span>
       </span><span class="ObjectBrace">}</span>
@@ -2383,14 +2351,13 @@
       <span class="PropertyName">"required"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
         <span class="PropertyName">"message"</span>: <span class="String">"Please answer this question."</span>
       </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
-      <span class="PropertyName">"next"</span>: <span class="String">"complete"<span class="Comma">,</span> </span>
+      <span class="PropertyName">"next"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
       <span class="PropertyName">"options"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
         <span class="PropertyName">"option"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx4-1"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"Mobile"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"value"</span>: <span class="String">"Mobile"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">"screenout"</span>
+            <span class="PropertyName">"value"</span>: <span class="String">"Mobile"
           </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
           <span class="ObjectBrace">{</span><span class="collapsible">
             <span class="PropertyName">"id"</span>: <span class="String">"qx4-2"<span class="Comma">,</span> </span>
@@ -2408,7 +2375,6 @@
             <span class="PropertyName">"id"</span>: <span class="String">"qx4-4"<span class="Comma">,</span> </span>
             <span class="PropertyName">"title"</span>: <span class="String">"None of the Above"<span class="Comma">,</span> </span>
             <span class="PropertyName">"value"</span>: <span class="String">"None of the Above"<span class="Comma">,</span> </span>
-            <span class="PropertyName">"target"</span>: <span class="String">"screenout"<span class="Comma">,</span> </span>
             <span class="PropertyName">"exclusive"</span>: <span class="String">1</span>
           </span><span class="ObjectBrace">}</span>
         </span><span class="ArrayBrace">]</span>
