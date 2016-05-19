@@ -229,7 +229,7 @@
             <h6>Example</h6>
             <p class="text">For <a href="#setupaProject">setup a project</a> (example from below), your JSON body may look like:</p>
 
-            <pre class="CodeContainer"><span class="yellow">{"extProjectId": "project001", "title": "Test Survey", "link": "www.mysurvey.com?uid=#sid#", "country": "US", "currency": "USD", "notificationEmail": "testpm@abc.com", "indicativeIncidence": 20, "lengthOfInteview": 16, "daysInField": 5, "deviceTargeting": {"deviceType": [ "mobile"]}, "inclusions": [{"completes": ["project002"], "screenouts": ["project002"]}], "autoLaunch": 1, "quotaSetting": [{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]}</span>
+            <pre class="CodeContainer"><span class="yellow">{"extProjectId": "project001", "title": "Test Survey", "link": "www.mysurvey.com?uid=#sid#", "country": "US", "currency": "USD", "notificationEmail": "testpm@abc.com", "indicativeIncidence": 20, "lengthOfInterview": 16, "daysInField": 5, "deviceTargeting": {"deviceType": [ "mobile"]}, "inclusions": [{"completes": ["project002"], "screenouts": ["project002"]}], "autoLaunch": 1, "quotaSetting": [{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]}</span>
 </pre>
             <p class="text">Once you have sorted the object by first-level key, here is how it will look:</p>
             <p class="code"><span class="yellow">
@@ -241,7 +241,7 @@
               extProjectId: project001<br><br>
               inclusions: [{"completes": ["project002"], "screenouts": ["project002"]}]<br><br>
               indicativeIncidence: 20<br><br>
-              lengthOfInteview: 16<br><br>
+              lengthOfInterview: 16<br><br>
               link: www.mysurvey.com?uid=#sid#<br><br>
               notificationEmail: testpm@abc.com<br><br>
               quotaSetting: [{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]<br><br>
@@ -667,7 +667,7 @@
   <span class="PropertyName">"currency"</span>: <span class="String">"USD"<span class="Comma">,</span> </span>
   <span class="PropertyName">"notificationEmail"</span>: <span class="String">"testpm@abc.com"<span class="Comma">,</span> </span>
   <span class="PropertyName">"indicativeIncidence"</span>: <span class="Number">20<span class="Comma">,</span> </span>
-  <span class="PropertyName">"lengthOfInteview"</span>: <span class="Number">16<span class="Comma">,</span> </span>
+  <span class="PropertyName">"lengthOfInterview"</span>: <span class="Number">16<span class="Comma">,</span> </span>
   <span class="PropertyName">"daysInField"</span>: <span class="Number">5<span class="Comma">,</span> </span>
   <span class="PropertyName">"deviceTargeting"</span>: <span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
     <span class="PropertyName">"deviceType"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
