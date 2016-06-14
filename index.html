@@ -36,6 +36,7 @@
       <li><a href="#setupaProject">Setup a Project</a></li>
       <li><a href="#updateaProject">Update a Project</a></li>
       <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
+      <li><a href="#updateQuotaForaProject">Update Quota for a Project</a></li>
       <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li>
       <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
       <li><a href="#updateProjectPrescreener">Update Project Prescreener</a></li>
@@ -91,6 +92,7 @@
             <li><a href="#setupaProject">Setup a Project</a></li>
             <li><a href="#updateaProject">Update a Project</a></li>
             <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
+            <li><a href="#updateQuotaForaProject">Update Quota for a Project</a></li>
             <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li>
             <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
             <li><a href="#updateProjectPrescreener">Update Project Prescreener</a></li>
@@ -756,6 +758,8 @@
         <!--API methods-->
 
         <!--API methods-->
+
+        <!--Update a Project-->
         <div class="section" id="updateaProject">
           <div class="span6 column1">
             <h4>Update a Project</h4>
@@ -966,7 +970,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>POST</strong></span>
-              <span class="yellow">http://api-dev://api-dev.peanutlabs.com/rest/v1/projects/project001/quotas</span></p>
+              <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/quotas</span></p>
               <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1011,6 +1015,59 @@
     </span><span class="ArrayBrace">]</span>
   </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
   <span class="PropertyName">"autoLaunch"</span>: <span class="Number">1</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
+            <h6>Example Response</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+          </div>
+        </div>
+        <!--add Quota To a Project-->
+
+        <!--update Quota For a Project-->
+        <div class="section" id="updateQuotaForaProject">
+          <div class="span6 column1">
+            <h4>Update Quota for a project</h4>
+            <code class="color red">PUT /quotas/:{extQuotaId}</code>
+            <p>Updates a project quota. Not all quota attributes can be updated.</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>cpi<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">decimal &gt;= 0.00</span></h3>
+                <p>Amount Peanut Labs will be paid for each completes in USD for this quota.</p>
+                <div class="alert"><i class="fa fa-info-circle"></i> USD is the only currency supported.</div>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p class="code"><span class="green"><strong>PUT</strong></span>
+              <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/quotas/invite003</span></p>
+              <p>&nbsp;</p>
+            <h6>Example Request</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"cpi"</span>: <span class="String">"5"</span>
 </span><span class="ObjectBrace">}</span>
 </pre>
 <p>&nbsp;</p>
