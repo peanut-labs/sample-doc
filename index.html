@@ -1914,7 +1914,7 @@
             <h4>Secure Exit Redirects</h4>
             <p>After the user completes the survey, user should be redirected to a secure exit redirect links. The link contains an encrypted hash which Peanut Labs validates before updating the user status for the session.</p>
             <p>The <code class="color red">hash</code> parameter can be generated as follows:<br>
-              <code class="color red">#h# = MD5(status + trackerId + secret_key)</code></p>
+              <code class="color red">#hash# = MD5(status + trackerId + secret_key)</code></p>
             <p>where,<br>
               status = C for completes, P for screenout and F for overquota;<br>
               <code class="color red">trackerId</code> = Peanut Labs passed user’s session identifier along with the survey entry link;<br>
@@ -1931,9 +1931,9 @@
             </ul>
 
             <p class="text">then,</p>
-              <p class="code">#h# = md5(<span class="yellow">C123a456The dog jumped over the house</span>)</p>
+              <p class="code">#hash# = md5(<span class="yellow">C123a456The dog jumped over the house</span>)</p>
 
-            <p class="code">#h# = <span class="yellow">7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
+            <p class="code">#hash# = <span class="yellow">7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
 
             <p class="text">The resulting redirect URL becomes:</p>
             <p class="code"><span class="yellow">https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&amp;status=C&amp;h=7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
@@ -2548,7 +2548,7 @@
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>Neatherlands</h3>
+                <h3>Netherlands</h3>
                 <p>NL</p>
                 <div class="clearfix"></div>
               </li>
