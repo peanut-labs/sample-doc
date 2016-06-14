@@ -43,6 +43,8 @@
       <li><a href="#updateProjectStatus">Update Project Status</a></li>
       <li><a href="#updateQuotaStatus">Update Quota Status</a></li>
       <li><a href="#updateDeviceTargeting">Update Device Targeting</a></li>
+      <li><a href="#getProjectStatus">Get Project Status</a></li>
+      <li><a href="#getQuotaStatus">Get Quota Status</a></li>
       <li><a href="#getProjectReport">Get Project Report</a></li>
       <li><a href="#getQuotaReport">Get Quota Report</a></li>
       <li>
@@ -99,6 +101,8 @@
             <li><a href="#updateProjectStatus">Update Project Status</a></li>
             <li><a href="#updateQuotaStatus">Update Quota Status</a></li>
             <li><a href="#updateDeviceTargeting">Update Device Targeting</a></li>
+            <li><a href="#getProjectStatus">Get Project Status</a></li>
+            <li><a href="#getQuotaStatus">Get Quota Status</a></li>
             <li><a href="#getProjectReport">Get Project Report</a></li>
             <li><a href="#getQuotaReport">Get Quota Report</a></li>
           </ul>
@@ -1537,6 +1541,158 @@
           </div>
         </div>
         <!--updateDeviceTargeting -->
+
+        <!--getProjectStatus -->
+        <div class="section" id="getProjectStatus">
+          <div class="span6 column1">
+            <h4>Get Project Status</h4>
+            <code class="color red">GET /projects/:{extProjectId}/status</code>
+            <p>This method returns a project status broken down by quotas.</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>data<br>
+                  <span class="type">hash</span></h3>
+                <p>Placeholder for project status.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+
+                  <li class="method-list-item">
+                    <h3>status<br>
+                      <span class="type">string</span></h3>
+                    <p>Can be one of the following values <code class="color red">PRELAUNCH</code>, <code class="color red">LAUNCHED</code>, <code class="color red">PAUSED</code>, <code class="color red">CLOSED</code>.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                  <li class="method-list-item">
+                    <h3>quotas<br>
+                      <span class="type">array of hash</span></h3>
+                    <p>A detailed breakdown of quota statuses.</p>
+                    <div class="clearfix"></div>
+
+                    <!--Child-->
+                    <ul class="method-list-group">
+                      <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                      <li class="method-list-item">
+                        <h3>extQuotaId<br>
+                          <span class="type">string</span></h3>
+                        <p>A quota for this project.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                      <li class="method-list-item">
+                        <h3>status<br>
+                          <span class="type">string</span></h3>
+                        <p>Can be one of the following values <code class="color red">PRELAUNCH</code>, <code class="color red">LAUNCHED</code>, <code class="color red">PAUSED</code>, <code class="color red">CLOSED</code>.</p>
+                        <div class="clearfix"></div>
+                      </li>
+                    </ul>
+                    <!--Child-->
+                  </li>
+                </ul>
+                <!--Child-->
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span> </h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p class="code"><span class="green"><strong>GET</strong></span>
+            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/status</span></p>
+            <p>&nbsp;</p>
+            <h6>Example Response</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"data"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"status"</span>: <span class="String">"LAUNCHED"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"quotas"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"extQuotaId"</span>: <span class="String">"invite001"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"status"</span>: <span class="String">"LAUNCHED"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"extQuotaId"</span>: <span class="String">"invite001"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"status"</span>: <span class="String">"PAUSED"</span>
+      </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
+      <span class="ObjectBrace">{</span><span class="collapsible">
+        <span class="PropertyName">"extQuotaId"</span>: <span class="String">"invite001"<span class="Comma">,</span> </span>
+        <span class="PropertyName">"status"</span>: <span class="String">"PRELAUNCH"</span>
+      </span><span class="ObjectBrace">}</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
+  <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+          </div>
+        </div>
+        <!--getProjectStatus -->
+
+        <!--getQuotaStatus -->
+        <div class="section" id="getQuotaStatus">
+          <div class="span6 column1">
+            <h4>Get Quota Status</h4>
+            <code class="color red">GET /quotas/:{extQuotaId}/status</code>
+            <p>This method returns a quota status.</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>data<br>
+                  <span class="type">hash</span></h3>
+                <p>Placeholder for quota status.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+
+                  <li class="method-list-item">
+                    <h3>status<br>
+                      <span class="type">string</span></h3>
+                    <p>Can be one of the following values <code class="color red">PRELAUNCH</code>, <code class="color red">LAUNCHED</code>, <code class="color red">PAUSED</code>, <code class="color red">CLOSED</code>.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child-->
+              </li>
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span> </h3>
+                <p>1 for success; 0 for error.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string, only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p class="code"><span class="green"><strong>GET</strong></span>
+            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/quotas/invite001/status</span></p>
+            <p>&nbsp;</p>
+            <h6>Example Response</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"data"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"status"</span>: <span class="String">"LAUNCHED"</span>
+  </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
+  <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+          </div>
+        </div>
+        <!--getQuotaStatus -->
 
         <!--getProjectReport -->
         <div class="section" id="getProjectReport">
