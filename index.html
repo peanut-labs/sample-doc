@@ -34,6 +34,7 @@
         <h5><a href="#setupaProject">API Methods</a></h5>
       </li>
       <li><a href="#setupaProject">Setup a Project</a></li>
+      <li><a href="#updateaProject">Update a Project</a></li>
       <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
       <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li>
       <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
@@ -88,6 +89,7 @@
           <h4><a href="#collapseThree" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3">API Methods</a></h4>
           <ul id="collapseThree" class="collapse">
             <li><a href="#setupaProject">Setup a Project</a></li>
+            <li><a href="#updateaProject">Update a Project</a></li>
             <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
             <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li>
             <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
@@ -746,6 +748,117 @@
     <span class="PropertyName">"OverQuotas"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
     <span class="PropertyName">"ScreenOut"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=#hash#"</span>
   </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
+  <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+          </div>
+        </div>
+        <!--API methods-->
+
+        <!--API methods-->
+        <div class="section" id="updateaProject">
+          <div class="span6 column1">
+            <h4>Update a Project</h4>
+            <code class="color red">PUT /projects/:{extProjectId}</code>
+            <p>This API is used to update certain project attributes. Not all project attributes can be updated.</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>title<br>
+                  <span class="type">string</span></h3>
+                <p>A project title of your choosing.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>notificationEmail<br>
+                  <span class="type">string</span></h3>
+                <p>The email address to receive notifications, if project was paused due to conversion rules.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>indicativeIncidence<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">0 &lt;= integer &lt;= 100</span></h3>
+                <p>Percent of respondent you expect to qualify for the survey. </p>
+                <div class="alert"><i class="fa fa-info-circle"></i> Your survey project may be paused if actual conversion rate is lower than indicative incidence by 25% or more. Notification email will be sent to <code class="color red">notificationEmail</code> when such happens.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>lengthOfInterview<br>
+                  <span class="label-badge orange">required</span> <span class="type">integer &gt;= 0; in mins</span></h3>
+                <p>Average number of minutes it takes an average user to complete your survey.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>daysInField<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">integer &gt;= 0; in days</span></h3>
+                <p>Number of days the survey should be active in the field.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>deviceTargeting<br>
+                  <span class="type">hash</span></h3>
+                <p>Placeholder for <code class="color red">deviceType </code> list.</p>
+                <div class="clearfix"></div>
+                <!--Child-->
+                <ul class="method-list-group">
+                  <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
+                  <li class="method-list-item">
+                    <h3>deviceType<br>
+                      <span class="type">array of string; defaults to all devices</span></h3>
+                    <p>Devices our respondents will take the survey on. Supported devices are <code class="color red">desktop</code>, <code class="color red">mobile</code>, and <code class="color red">tablet</code>.</p>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+                <!--Child-->
+              </li>
+
+              <li class="method-list-item">
+                <h3>preScreener<br>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
+                <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener example</a> on how to define prescreeners.</p>
+                <div class="alert"><em class="fa fa-info-circle"></em> Peanut Labs fraud prescreener will be used for no/empty prescreener definition.</div>
+                <div class="clearfix"></div>
+              </li>
+
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Response</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>resultCode<br>
+                  <span class="type">0 or 1</span></h3>
+                <p>1 for success, 0 for error</p>
+              </li>
+              <li class="method-list-item">
+                <h3>resultError<br>
+                  <span class="type">string,<br>
+                  only present if resultcode = 0</span></h3>
+                <p>Descriptive error message. See <a href="#responseerrorcodes">response and error codes</a> for details.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+             <p class="code">
+             <span class="green"><strong>PUT</strong></span>
+             <span class="yellow">https://api-dev.peanutlabs.com/rest/v1/projects/project001</span>
+             </p>
+              <p>&nbsp;</p>
+            <h6>Example Request</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
+  <span class="PropertyName">"title"</span>: <span class="String">"Survey for you"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"indicativeIncidence"</span>: <span class="Number">10<span class="Comma">,</span> </span>
+  <span class="PropertyName">"lengthOfInterview"</span>: <span class="Number">10<span class="Comma">,</span> </span>
+  <span class="PropertyName">"deviceTargeting"</span>: <span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
+    <span class="PropertyName">"deviceType"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"desktop"</span>
+      </span><span class="ArrayBrace">]</span>
+    </span><span class="ObjectBrace">}</span>
+  </span><span class="ObjectBrace">}</span>
+</pre>
+<p>&nbsp;</p>
+            <h6>Example Response</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
   <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
 </span><span class="ObjectBrace">}</span>
 </pre>
