@@ -571,13 +571,13 @@
                       <li class="method-list-item">
                         <h3>option<br>
                           <span class="type">string</span></h3>
-                        <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <p><code class="color red">optionId</code> option from the list of available <a href="#listAttributes">targeting attribute options</a>.</p>
                         <div class="clearfix"></div>
                       </li>
                       <li class="method-list-item">
                         <h3>perc<br>
                           <span class="type">0 &lt;= integer &lt;= 100</span></h3>
-                        <p>Percentage of respondents desired for this <code class="color red">attributeId</code>.</p>
+                        <p>Percentage of respondents desired for this <code class="color red">optionId</code>.</p>
                         <div class="clearfix"></div>
                       </li>
                     </ul>
@@ -913,14 +913,14 @@
                   <li class="method-list-item">
                     <h3>option<br>
                       <span class="type">string</span></h3>
-                    <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                    <p><code class="color red">optionId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
                     <h3>perc<br>
                       <span class="type">0 &lt;= integer &lt;= 100<br>
                       string</span></h3>
-                    <p>Percentage of respondents desired for this attribute.</p>
+                    <p>Percentage of respondents desired for this attribute option.</p>
                     <div class="clearfix"></div>
                   </li>
                 </ul>
@@ -1161,15 +1161,9 @@
                 <ul class="method-list-group">
                   <li class="method-list-item"> <span class="toggle-list" data-show-text="Show child attributes" data-hide-text="Hide child attributes">Show child attributes</span> </li>
                   <li class="method-list-item">
-                    <h3>option<br>
-                      <span class="type">string</span></h3>
-                    <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
-                    <div class="clearfix"></div>
-                  </li>
-                  <li class="method-list-item">
-                    <h3>perc<br>
-                      <span class="type">0 &lt;= integer &lt;= 100</span></h3>
-                    <p>Percentage of respondents desired for this attribute.</p>
+                    <h3>attributeId<br>
+                      <span class="type">array</span></h3>
+                    <p>Array of <code class="color red">optionId</code> from the list of available <a href="#listAttributes">targeting attribute options</a>.</p>
                     <div class="clearfix"></div>
                   </li>
                 </ul>
@@ -1201,7 +1195,7 @@
                   <li class="method-list-item">
                     <h3>node<br>
                       <span class="type">hash</span></h3>
-                    <p>Attribute Id(s) and attribute values(s) from <a href="#listAttributes">targeting attributes</a> list.</p>
+                    <p>Attribute Id(s) and option id(s) from <a href="#listAttributes">targeting attributes</a> list.</p>
                     <div class="clearfix"></div>
                   </li>
                   <li class="method-list-item">
@@ -1758,7 +1752,7 @@
                       <li class="method-list-item">
                         <h3>optionId<br>
                           <span class="type">string</span></h3>
-                        <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <p><code class="color red">optionId</code> option from the list of available <a href="#listAttributes">targeting attribute options</a>.</p>
                         <div class="clearfix"></div>
                       </li>
                     </ul>
@@ -1963,7 +1957,7 @@
                       <li class="method-list-item">
                         <h3>optionId<br>
                           <span class="type">string</span></h3>
-                        <p><code class="color red">attributeId</code> option from the list of available <a href="#listAttributes">targeting attributes</a>.</p>
+                        <p><code class="color red">optionId</code> option from the list of available <a href="#listAttributes">targeting attribute options</a>.</p>
                         <div class="clearfix"></div>
                       </li>
                     </ul>
@@ -2033,14 +2027,14 @@
           <div class="span6 column1">
             <h3>Examples</h3>
             <h4>Targeting Attributes and Nesting</h4>
-            <p>Targeting allows you to obtain different number of completes from different types of end users by associating a percentage of the required completes desired with an attribute value. </p>
-            <p>The most simplest form of targeting is to provide all the targeting attributes with all attributes also within a single <code class="color red">nested</code> attributes. For example, you can specify a requirement like:</p>
+            <p>Targeting allows you to obtain different number of completes from different types of end users by associating a percentage of the required completes desired with an attribute option. </p>
+            <p>The most simplest form of targeting is to provide all the targeting attributes id(s) within a single <code class="color red">nested</code> parameter. For example, you can specify a requirement like:</p>
             <ul class="text">
               <li>100% of respondents to be male or female, and </li>
               <li>100% of respondents to be within the age group of 18-25 or 26-45</li>
             </ul>
             <p>In this above scenario it is likely that all males could be of the age group 18-25 and all females within the age group of 26-45, or any combination between the two.</p>
-            <p>If you desire specific control over the mix of attributes within a composition then you may choose to define <code class="color red">nested</code> attributes. In the above scenario with nesting you can achieve a mix to be like:</p>
+            <p>If you desire specific control over the mix of attributes within a composition then you may choose to define <code class="color red">nested</code> parameter. In the above scenario with nesting you can achieve a mix to be like:</p>
             <ul class="text">
               <li>25% male within the age group of 18-25,</li>
               <li>25% male within the age group of 26-45,</li>
@@ -2497,7 +2491,7 @@
                       <li class="method-list-item">
                         <h3>options<br>
                           <span class="type">array</span></h3>
-                        <p>List of <code class="color red">Id</code> from the <code class="color red">options</code> attribute.</p>
+                        <p>List of <code class="color red">Id</code> from the <code class="color red">options</code> hash above.</p>
                         <div class="clearfix"></div>
                       </li>
                       <li class="method-list-item">
@@ -2518,7 +2512,7 @@
                   <li class="method-list-item">
                     <h3>required<br>
                       <span class="type">hash</span></h3>
-                    <p>Presence of <code class="color red">required</code> attribute makes the question response mandatory.</p>
+                    <p>Presence of <code class="color red">required</code> parameter makes the question response mandatory.</p>
                     <div class="clearfix"></div>
 
                     <!--child-->
@@ -2933,7 +2927,7 @@
         <div class="section" id="listAttributes">
           <div class="span6 column1">
             <h4>List of Targeting Attributes</h4>
-            <p>The Peanut Labs <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes that can be sent along with the targeting parameters.</p>
+            <p>The Peanut Labs <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes and options that can be sent along with the targeting parameters.</p>
           </div>
           <div class="span6 column2"></div>
         </div>
