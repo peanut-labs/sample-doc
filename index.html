@@ -258,16 +258,16 @@
             <p>&nbsp;</p>
             <p class="text">At timestamp <span class="yellow">1433895246</span>, the HMAC can be calculated as:</p>
             <p class="code">HMAC =<br>
-              SHA256(<span class="yellow">POST/rest/v1/projects1USUSD5{"deviceType": [ "mobile"]}project001[{"completes": ["project002"], "screenouts": ["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.com[{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]Test Survey1433895246</span>) with secret_key (<span class="yellow">The dog jumped over the house</span>)</p>
+              SHA256(<span class="yellow">POST/sample/v1/projects1USUSD5{"deviceType": [ "mobile"]}project001[{"completes": ["project002"], "screenouts": ["project002"]}]2016www.mysurvey.com?uid=#sid#testpm@abc.com[{"extQuotaId": "invite001", "completes": "5", "cpi": "3", "attributes": {"q101": [{"option": "qx101-6", "perc": "50"}, {"option": "qx101-5", "perc": "50"}]}, "filters": {"q100": ["qx100-2"]}, "nested": [["q101"]]}, {"extQuotaId": "invite002", "completes": "10", "cpi": "5", "attributes": {"age": [{ "option": "18-30", "perc": "50"}, {"option": "31-49", "perc": "50"}]}, "nested": [["age"]]}]Test Survey1433895246</span>) with secret_key (<span class="yellow">The dog jumped over the house</span>)</p>
 
             <p class="code">HMAC =<br>
-              <span class="yellow">7bd960e29ff0a8dabae495f18d8274790795efa1edafa8394ff259f959764acf</span></p>
+              <span class="yellow">170824c7fafc2d444f966f1914c7f8e718d8072b9ca63c8ac2613c6b3031bda5</span></p>
             <p>&nbsp;</p>
             <p class="text">The above HMAC should be part of authorization header when making an API request. HTTP Authorization header follows the format:</p>
             <p class="code"><span class="yellow">advertiser’sId:timestamp:HMAC</span></p>
             <p>&nbsp;</p>
             <p class="text">So finally your HTTP Authorization will look like:</p>
-            <p class="code"><span class="yellow">1234:1433895246:7bd960e29ff0a8dabae495f18d8274790795efa1edafa8394ff259f959764acf</span></p>
+            <p class="code"><span class="yellow">1234:1433895246:170824c7fafc2d444f966f1914c7f8e718d8072b9ca63c8ac2613c6b3031bda5</span></p>
             </div>
         </div>
         <!--Authentication and Authorization -->
@@ -597,7 +597,9 @@
                   </li>
                   <li class="method-list-item">
                     <h3> nested<br>
-                      <span class="type">array</span></h3>
+                      <span class="label-badge orange">required</span>
+                      <span class="type">array</span>
+                  </h3>
                     <p>Nesting will apply an inner level targeting within an already targeted group.</p>
                     <p>See <a href="#targetingAttributes">attributes and nesting</a> for examples. </p>
                     <div class="alert success"> <strong><i class="fa fa-info-circle"></i></strong> Nesting can run upto three level deep.</div>
@@ -663,7 +665,7 @@
             <h6>Definition</h6>
              <p class="code">
              <span class="green"><strong>POST</strong></span>
-             <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects</span>
+             <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects</span>
              </p>
               <p>&nbsp;</p>
             <h6>Example Request</h6>
@@ -849,7 +851,7 @@
             <h6>Definition</h6>
              <p class="code">
              <span class="green"><strong>PUT</strong></span>
-             <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001</span>
+             <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001</span>
              </p>
               <p>&nbsp;</p>
             <h6>Example Request</h6>
@@ -941,7 +943,9 @@
               </li>
               <li class="method-list-item">
                 <h3>nested<br>
-                  <span class="type">array</span></h3>
+                  <span class="label-badge orange">required</span>
+                  <span class="type">array</span>
+                </h3>
                 <p>Nesting will apply an inner level targeting within an already targeted group.<br>
                   <br>
                   See <a href="#targetingAttributes">attributes and nesting</a> for examples.</p>
@@ -974,7 +978,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>POST</strong></span>
-              <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/quotas</span></p>
+              <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/quotas</span></p>
               <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1067,7 +1071,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>PUT</strong></span>
-              <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/quotas/invite003</span></p>
+              <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/quotas/invite003</span></p>
               <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1126,7 +1130,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>GET</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/test</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/test</span></p>
             <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1223,7 +1227,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>POST</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/feasibility</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/feasibility</span></p>
             <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1305,7 +1309,7 @@
             <h6>Definition</h6>
             <p class="code">
             <span class="green"><strong>POST</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/prescreener</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/prescreener</span></p>
             <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1409,7 +1413,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>POST</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/pause</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/pause</span></p>
             <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1471,7 +1475,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>POST</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/quotas/invite001/pause</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/quotas/invite001/pause</span></p>
             <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1516,7 +1520,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>POST</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/deviceTargeting</span></p>
             <p>&nbsp;</p>
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1603,7 +1607,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>GET</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001/status</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/status</span></p>
             <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1674,7 +1678,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>GET</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/quotas/invite001/status</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/quotas/invite001/status</span></p>
             <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1778,7 +1782,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>GET</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/projects/project001</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001</span></p>
             <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
@@ -1983,7 +1987,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p class="code"><span class="green"><strong>GET</strong></span>
-            <span class="yellow">http://api-dev.peanutlabs.com/rest/v1/quotas/invite002</span></p>
+            <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/quotas/invite002</span></p>
             <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
