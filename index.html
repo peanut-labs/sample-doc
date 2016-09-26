@@ -150,8 +150,8 @@
                 </li>
                 <li class="method-list-item">
                   <h3>Base URI</h3>
-                  <p><a href="http://api.peanutlabs.com/rest" target="_blank">sample.peanutlabs.com/sample</a> (Production)<br>
-                    <a href="http://api-dev.peanutlabs.com/rest" target="_blank">api-dev.peanutlabs.com/sample</a> (Test)</p>
+                  <p><a href="http://sample.peanutlabs.com/sample" target="_blank">sample.peanutlabs.com/sample</a> (Production)<br>
+                    <a href="http://api-dev.peanutlabs.com/sample" target="_blank">api-dev.peanutlabs.com/sample</a> (Test)</p>
                   <div class="clearfix"></div>
                 </li>
                 <li class="method-list-item">
@@ -217,13 +217,13 @@
             <p><strong>Let’s say we have the following:</strong></p>
             <ul>
               <li>request_method = POST</li>
-              <li>request_uri = /rest/v1/projects</li>
+              <li>request_uri = /sample/v1/projects</li>
               <li>params = {“title”:”Display Title”, “link”:”www.google.com”, “attributes”:[“male”,”female”]}</li>
               <li>request timestamp = 1433895246</li>
               <li>secret_key = The dog jumped over the house</li>
             </ul>
             <p><strong>then, the parameter for HMAC function ends up as:</strong><br>
-              SHA256(POST/rest/vi/projects[“male”,”female”]www.google.comDisplay Title1433895246The dog jumped over the house)</p>
+              SHA256(POST/sample/vi/projects[“male”,”female”]www.google.comDisplay Title1433895246The dog jumped over the house)</p>
             <p><strong>which results in:</strong><br>
               #hash# = fsadihtnch14hoi31</p>
             <p>The above #hash# should be passed as HTTP Authorization Header with all HTTP requests.<br>
@@ -608,7 +608,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong><br>
-              http://api.peanutlabs.com/rest/v1/projects</p>
+              http://api-dev.peanutlabs.com/sample/v1/projects</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extProjectId"</span><span>:</span><span>"project001"</span><span>,</span></p>
@@ -799,7 +799,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong><br>
-              http://api.peanutlabs.com/rest/v1/projects/project001/quotas</p>
+              http://api-dev.peanutlabs.com/sample/v1/projects/project001/quotas</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"extQuotaId"</span><span>:</span><span>"invite003"</span><span>,</span></p>
@@ -897,7 +897,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>GET</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/projects/project001/test</span></p>
+            <p><span>http://api-dev.peanutlabs.com/sample/v1/projects/project001/test</span></p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"screener"</span><span>:</span><span>true</span></p>
@@ -996,7 +996,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/feasibility</span></p>
+            <p><span>http://api-dev.peanutlabs.com/sample/v1/feasibility</span></p>
             <h6>Example Request</h6>
             
                 <p><span>{ &nbsp;</span></p>
@@ -1077,7 +1077,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/projects/project001/prescreener</p>
+            <p>http://api-dev.peanutlabs.com/sample/v1/projects/project001/prescreener</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"preScreener"</span><span>:{ &nbsp;</span></p>
@@ -1178,7 +1178,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/projects/project001/pause</p>
+            <p>http://api-dev.peanutlabs.com/sample/v1/projects/project001/pause</p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
@@ -1238,7 +1238,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/quotas/invite001/pause</p>
+            <p>http://api-dev.peanutlabs.com/sample/v1/quotas/invite001/pause</p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"resultCode"</span><span>:</span><span>"1"</span></p>
@@ -1281,7 +1281,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>POST</strong></p>
-            <p>http://api.peanutlabs.com/rest/v1/projects/project001/deviceTargeting</p>
+            <p>http://api-dev.peanutlabs.com/sample/v1/projects/project001/deviceTargeting</p>
             <h6>Example Request</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"deviceType"</span><span>:[</span></p>
@@ -1387,7 +1387,7 @@
           <div class="span6 column2">
             <h6>Definition</h6>
             <p><strong>GET</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/projects/project001</span></p>
+            <p><span>http://api-dev.peanutlabs.com/sample/v1/projects/project001</span></p>
             <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"data"</span><span>:{ &nbsp;</span></p>
@@ -1591,7 +1591,7 @@
           <div class="span6 column2">
           <h6>Definition</h6>
           	<p><strong>GET</strong></p>
-            <p><span>http://api.peanutlabs.com/rest/v1/quotas/invite002</span></p>
+            <p><span>http://api-dev.peanutlabs.com/sample/v1/quotas/invite002</span></p>
           <h6>Example Response</h6>
             <p><span>{ &nbsp;</span></p>
             <p><span> &nbsp;</span><span>"data"</span><span>:[ &nbsp;</span></p>
