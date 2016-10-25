@@ -1367,7 +1367,7 @@
         <div class="section" id="updateProjectStatus">
           <div class="span6 column1">
             <h4>Update Project Status</h4>
-            <code class="color red">POST /projects/:{extProjectId}/{pause | resume | launch | close}</code>
+            <code class="color red">POST /projects/:{extProjectId}/{pause | launch | close}</code>
             <p>This method updates a project status with specified action.</p>
             <p><strong>Action</strong></p>
             <ul class="method-list-group">
@@ -1377,13 +1377,8 @@
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>resume</h3>
-                <p>Resume traffic to all quotas for this project.</p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="method-list-item">
                 <h3>launch</h3>
-                <p>Takes a project live for the first time. This is only used when project was created with <code class="color red">autoLaunch</code> set as <code class="color red">0</code>.</p>
+                <p>Takes a project live.</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -1428,7 +1423,7 @@
         <div class="section" id="updateQuotaStatus">
           <div class="span6 column1">
             <h4>Update Quota Status</h4>
-            <code class="color red">POST /quotas/:{extQuotaId}/{pause | resume | launch | close}</code>
+            <code class="color red">POST /quotas/:{extQuotaId}/{pause | launch | close}</code>
             <p>This method updates a quota status. Following are the four possible operations on a quota:</p>
             <p><strong>Action</strong></p>
             <ul class="method-list-group">
@@ -1438,13 +1433,8 @@
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
-                <h3>resume</h3>
-                <p>Resume traffic to a quota.</p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="method-list-item">
                 <h3>launch</h3>
-                <p>Takes a quota live for the first time. This is only used when <code class="color red">quotaSetting</code> was created with <code class="color red">autoLaunch</code> is set to <code class="color red">0</code>.</p>
+                <p>Takes a quota live.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> If the project was not already launched, launching a quota will also launches the project to live traffic with this quota.</div>
                 <div class="clearfix"></div>
               </li>
