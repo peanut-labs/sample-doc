@@ -20,15 +20,13 @@
   <div id="nav" class="collapse out">
     <ul class="nav nav-list">
       <li>
-        <h5><a href="#overview">Survey API</a></h5>
+        <h5><a href="#intro">Survey API</a></h5>
       </li>
-      <li class="active"><a href="#overview">Overview</a></li>
-      <!--<li><a href="#integrationoverview">Integration Overview</a></li>-->
-      <li><a href="#apistructure">API Structure</a></li>
+      <li class="active"><a href="#intro">Overview</a></li>
       <li>
         <h5><a href="#authentication">Getting Started</a></h5>
       </li>
-      <li><a href="#authentication">Authentication &amp; Authorization</a></li>
+      <li><a href="#authentication">Authentication</a></li>
       <li><a href="#responseerrorcodes">Response &amp; Error codes</a></li>
       <li>
         <h5><a href="#setupaProject">API Methods</a></h5>
@@ -37,7 +35,6 @@
       <li><a href="#updateaProject">Update a Project</a></li>
       <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
       <li><a href="#updateQuotaForaProject">Update Quota for a Project</a></li>
-      <!-- <li><a href="#getaprojecttestlink">Get a Project Test Link</a></li> -->
       <li><a href="#createfeasibilitycount">Create Feasibility Count</a></li>
       <li><a href="#updateProjectPrescreener">Update Project Prescreener</a></li>
       <li><a href="#updateProjectStatus">Update Project Status</a></li>
@@ -48,21 +45,19 @@
       <li><a href="#getProjectReport">Get Project Report</a></li>
       <li><a href="#getQuotaReport">Get Quota Report</a></li>
       <li>
-        <h5><a href="#targetingAttributes">Examples</a></h5>
+        <h5><a href="#targetingAttributes">Guides</a></h5>
       </li>
       <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
       <li><a href="#filters">Filters</a></li>
       <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
       <li><a href="#secureRedirects">Secure Exit Redirects</a></li>
-      <li><a href="#prescreenerFormat">Prescreener Format</a></li>
+      <li><a href="#prescreenerFormat">Using Prescreeners</a></li>
+      <li><a href="#stateManagement">State Management</a></li>
       <li>
-        <h5><a href="#ISOCodes">ISO Country Codes</a></h5>
+        <h5><a href="#ISOCodes">Resources</a></h5>
       </li>
-      <li><a href="#ISOCodes">Overview</a></li>
-      <li>
-        <h5><a href="#listOftargetingAttributes">List of Available Attributes</a></h5>
-      </li>
-      <li><a href="#listOftargetingAttributes">Overview</a></li>
+      <li><a href="#ISOCodes">ISO Codes</a></li>
+      <li><a href="#listAttributes">List of Available Attributes</a></li>
     </ul>
   </div>
 </div>
@@ -74,17 +69,15 @@
       <div class="logo"><a href="index.html" title="Peanut Labs Monetization API"><img src="img/logo.png" alt="Peanut Labs" title="Peanut Labs Monetization API"></a></div>
       <ul class="nav nav-list accordion" id="accordion2">
         <li>
-          <h4><a href="#collapseOne" class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion2">Survey API</a></h4>
+          <h4><a href="#collapseOne" class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion2">Introduction</a></h4>
           <ul id="collapseOne" class="collapse in">
-            <li class="active"><a href="#overview">Overview </a></li>
-            <!--<li><a href="#integrationoverview">Integration Overview</a></li>-->
-            <li><a href="#apistructure">API Structure</a></li>
+            <li class="active"><a href="#intro">Introduction</a></li>
           </ul>
         </li>
         <li>
           <h4><a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Getting Started</a></h4>
           <ul id="collapseTwo" class="collapse">
-            <li><a href="#authentication">Authentication &amp; Authorization</a></li>
+            <li><a href="#authentication">Authentication</a></li>
             <li><a href="#responseerrorcodes">Response &amp; Error codes</a></li>
           </ul>
         </li>
@@ -108,25 +101,21 @@
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4">Examples</a></h4>
+          <h4><a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4">Guides</a></h4>
           <ul id="collapseFour" class="collapse">
             <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
             <li><a href="#filters">Filters</a></li>
             <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
             <li><a href="#secureRedirects">Secure Exit Redirects</a></li>
-            <li><a href="#prescreenerFormat">Prescreener Format</a></li>
+            <li><a href="#prescreenerFormat">Using Prescreeners</a></li>
+            <li><a href="#stateManagement">State Management</a></li>
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseFive" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5">ISO Country Codes</a></h4>
+          <h4><a href="#collapseFive" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5">Resources</a></h4>
           <ul id="collapseFive" class="collapse">
-            <li><a href="#ISOCodes">Overview</a></li>
-          </ul>
-        </li>
-        <li>
-          <h4><a href="#collapseSix" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6">Targeting Attributes</a></h4>
-          <ul id="collapseSix" class="collapse">
-            <li><a href="#listAttributes">Overview</a></li>
+            <li><a href="#ISOCodes">ISO Codes</a></li>
+            <li><a href="#listAttributes">List of Attributes</a></li>
           </ul>
         </li>
         <li>
@@ -140,65 +129,29 @@
     </div>
     <div class="span10 content">
       <div class="row-fluid">
-        <!--Survey API -->
+        <!--API Reference-->
         <div class="section" id="surveyoverview">
           <div class="span6 column1">
-            <h3 id="overview">Sample API</h3>
-            <h4>Overview</h4>
+            <h3 id="intro">Sample API Reference</h3>
             <p>Peanut Labs Sample API, a REST based API, can be programmatically used to connect your client surveys directly with Peanut Labs panelists. This API document describes the usage and resources needed for integrating with Sample API.</p>
+            <p>Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. JSON is returned by all API responses, including errors. To make the APIs explorable, we provide a Test account and a Live account. Requests sent to the test account does not go to our actual panelists and therefore does not incur any cost.</p>
+            <p>We also provide a PHP SDK that you can use directly to make API requests. Please checkout this <a href="https://github.com/peanut-labs/php-sample-api-sdk" target="_blank">Github</a> page for the SDK. It provides built in logic for Authentication, and therefore makes it easier to consume our APIs.</p>
           </div>
-          <div class="span6 column2"></div>
-        </div>
-        <!--Survey API -->
-
-        <!--API Structure -->
-        <div class="section" id="apistructure">
-          <div class="span6 column1">
-            <h4>API Structure</h4>
-            <p>Sample API is organized around REST. Below table describes the Sample API URI structure:</p>
-            <div class="method-list">
-              <ul class="method-list-group">
-                <li class="method-list-item">
-                  <h3>URI</h3>
-                  <p>{Base URI}/{Version}/{Resources}</p>
-                  <div class="clearfix"></div>
-                </li>
-                <li class="method-list-item">
-                  <h3>Base URL</h3>
-                  <p><strong>https://sample.peanutlabs.com/sample</strong> (Production)<br>
-                    <strong>http://api-dev.peanutlabs.com/sample</strong> (Test)</p>
-                  <div class="alert"><i class="fa fa-info-circle"></i> Sample API supports API call over HTTP, however we strongly recommend you to use HTTPS.</div>
-                  <div class="clearfix"></div>
-                </li>
-                <li class="method-list-item">
-                  <h3>/Version</h3>
-                  <p>v1</p>
-                  <div class="clearfix"></div>
-                </li>
-                <li class="method-list-item">
-                  <h3>/Resources</h3>
-                  <p>&bull; /projects [GET | POST]<br>
-                    &bull; /quotas [GET | POST]<br>
-                    &bull; /feasibility [POST]</p>
-                  <div class="clearfix"></div>
-                </li>
-                <li class="method-list-item">
-                  <h3>Response.ContentType</h3>
-                  <p>application/JSON</p>
-                  <div class="clearfix"></div>
-                </li>
-              </ul>
-            </div>
+          <div class="span6 column2">
+            <h6>Production API endpoint</h6>
+            <pre class="CodeContainer"><span class="yellow"><p><strong>https://sample.peanutlabs.com/sample/v1/{METHOD}</strong> </p></span></pre>
+            <h6>Sandbox API endpoint</h6>
+            <pre class="CodeContainer"><span class="yellow"><p><strong>http://api-dev.peanutlabs.com/sample/v1/{METHOD}</strong></p></span></pre>
+            <p class="text">We support API calls over HTTP, however we strongly recommend you to use HTTPS.</p>
           </div>
-          <div class="span6 column2"></div>
         </div>
-        <!--API Structure -->
+        <!--API Reference -->
 
-        <!--Authentication and Authorization-->
+        <!--Authentication-->
         <div class="section" id="authentication">
           <div class="span6 column1">
             <h3>Getting Started</h3>
-            <h4>Authentication &amp; Authorization</h4>
+            <h4>Authentication</h4>
             <p>You authenticate all your requests with Sample API server by sending an HTTP authorization header as specified below:</p>
             <code class="color red" >advertiser’sId:timestamp:HMAC</code>
             <p>Sample API server verifies the HTTP Authorization Header before allowing access to Peanut Labs system.</p>
@@ -270,7 +223,7 @@
             <p class="code"><span class="yellow">1234:1433895246:170824c7fafc2d444f966f1914c7f8e718d8072b9ca63c8ac2613c6b3031bda5</span></p>
             </div>
         </div>
-        <!--Authentication and Authorization -->
+        <!--Authentication -->
 
         <!--Response and Error codes-->
         <div class="section" id="responseerrorcodes">
@@ -752,17 +705,15 @@
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
   <span class="PropertyName">"callbacks"</span>: <span class="ObjectBrace">{</span><span class="collapsible">
-    <span class="PropertyName">"Complete"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
-    <span class="PropertyName">"OverQuotas"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
-    <span class="PropertyName">"ScreenOut"</span>: <span class="String">"https://www.peanutlabs.com/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=#hash#"</span>
+    <span class="PropertyName">"Complete"</span>: <span class="String">"http://api-dev.peanutlabs.com/transactionComplete.php?status=C&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"OverQuotas"</span>: <span class="String">"http://api-dev.peanutlabs.com/transactionComplete.php?status=F&amp;trackerId=#sid#&amp;h=#hash#"<span class="Comma">,</span> </span>
+    <span class="PropertyName">"ScreenOut"</span>: <span class="String">"http://api-dev.peanutlabs.com/transactionComplete.php?status=P&amp;trackerId=#sid#&amp;h=#hash#"</span>
   </span><span class="ObjectBrace">}</span><span class="Comma">,</span>
   <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
 </span><span class="ObjectBrace">}</span>
 </pre>
           </div>
         </div>
-        <!--API methods-->
-
         <!--API methods-->
 
         <!--Update a Project-->
@@ -2015,11 +1966,11 @@
         </div>
         <!--getQuotaReport -->
 
-        <!-- examples -->
+        <!-- guides -->
         <!--targetingAttributes  -->
         <div class="section" id="targetingAttributes">
           <div class="span6 column1">
-            <h3>Examples</h3>
+            <h3>Guides</h3>
             <h4>Targeting Attributes and Nesting</h4>
             <p>Targeting allows you to obtain different number of completes from different types of end users by associating a percentage of the required completes desired with an attribute option. </p>
             <p>The most simplest form of targeting is to provide all the targeting attributes id(s) within a single <code class="color red">nested</code> parameter. For example, you can specify a requirement like:</p>
@@ -2144,7 +2095,7 @@
         <div class="section" id="filters">
           <div class="span6 column1">
             <h4>Filters</h4>
-            <p>Filters are attributes where all users should have before qualifying for the survey. </p>
+            <p>Filters are attributes which all users should have before qualifying for the survey.</p>
             <div class="alert">
               <ul class="text">
                 <li>Zip code can only be used as filters</li>
@@ -2250,15 +2201,16 @@
             <p class="code">#hash# = <span class="yellow">7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
 
             <p class="text">The resulting redirect URL becomes:</p>
-            <p class="code"><span class="yellow">https:\/\/api-callbacks.peanutlabs.com\/transactionComplete.php?trackerId=123a456&amp;status=C&amp;h=7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
+            <p class="code"><span class="yellow">https://api-callbacks.peanutlabs.com/transactionComplete.php?trackerId=123a456&amp;status=C&amp;h=7a0ee4af327cfee9854d963e2a2b1fbf</span></p>
           </div>
         </div>
         <!--Secure Exit Redirects -->
 
-        <!--Prescreener Format -->
+        <!--Using Prescreeners -->
         <div class="section" id="prescreenerFormat">
           <div class="span6 column1">
-            <h4>Prescreener Format</h4>
+            <h4>Using Prescreeners</h4>
+            <p>Prescreeners are a way to ask a few questions to qualify a user for a survey, without actually taking them to the client survey. Prescreeners should only be used to prescreen on attributes that we don't already know about the users. To see the list of attributes we support targeting on, check <a href="#listAttributes">List of Available Attributes</a></p>
             <ul class="method-list-group">
               <li class="method-list-item">
                 <h3>title<br>
@@ -2305,10 +2257,7 @@
                       Radio button: 1<br>
                       Select/dropdown: 2<br>
                       Checkboxes: 3<br>
-                      Open input text: 4<br>
-                      Date: 5<br>
-                      Gred: 15<br>
-                      Message only: 15<br>
+                      Message only: 9<br>
                       ‘Message only’ type does not have any controls. It can be used to display any message in the prescreener.</p>
                     <div class="clearfix"></div>
                   </li>
@@ -2702,12 +2651,62 @@
 <p>&nbsp;</p>
           </div>
         </div>
-        <!--Prescreener Format  -->
+        <!--Using Prescreeners -->
 
+        <!--State Management -->
+        <div class="section" id="stateManagement">
+          <div class="span6 column1">
+            <h4>State Management</h4>
+            <p>Every Project/Quota in the PeanutLabs system has an associated state that determines its behavior and the operations that are allowed within that state. It is therefore important to understand the different states and how transitions work within each state.</p>
+            <p>Please see the state diagram on the right to learn about the lifecycle of Projects/Quotas and how they transisiton from one state to another</p>
+            <p>Here is a list of valid states of project/quotas and what the state means</p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>PreLaunch</h3>
+                <p>Project/Quota is created in our system, but is not open to our users to take it.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Launched</h3>
+                <p>Project/Quota is live and can get traffic.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Paused</h3>
+                <p>Project/Quota is temporarily cut off from getting traffic.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Closed</h3>
+                <p>Project/Quota is permanently closed and cannot be reopened.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <br>
+            <div class="alert">
+              <p><strong>Key Things to Remember about states:</strong></p>
+              <ul class="text">
+                <li>A Quota can be in launched state only if the project is launched</li>
+                <li>Pausing a Project, pauses all the launched quotas</li>
+                <li>Launching a paused Project, launches all paused quotas</li>
+                <li>Quota/Project can move to Paused/Closed states by our monitoring system, and they cannot be relaunched again</li>
+              </ul>
+            </div>
+          </div>
+          <div class="span6 column2">
+            <img src="img/Sample%20API%20State%20Management.png">
+          </div>
+        </div>
+        <!--State Management -->
+        <!-- guides -->
+
+        <!-- Resources -->
         <!-- Countries and ISO Codes -->
         <div class="section" id="ISOCodes">
           <div class="span6 column1">
+            <h3>Resources</h3>
             <h4>ISO Country Codes</h4>
+            <p>List of countries supported by PeanutLabs</p>
             <ul class="method-list-group">
               <li class="method-list-item">
                 <h3>Australia</h3>
@@ -2889,8 +2888,9 @@
           <div class="span6 column2"></div>
         </div>
         <!--List of Targeting Attributes -->
+        <!--Resources -->
 
-        <!-- List of Targeting Attributes -->
+        <!-- Contact Us -->
         <div class="section" id="contact">
           <div class="span6 column1">
             <h4>Contact Us</h4>
@@ -2898,7 +2898,7 @@
           </div>
           <div class="span6 column2"></div>
         </div>
-        <!--List of Targeting Attributes -->
+        <!--Contact Us -->
 
       </div>
     </div>
