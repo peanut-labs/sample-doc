@@ -24,6 +24,11 @@
       </li>
       <li class="active"><a href="#intro">Overview</a></li>
       <li>
+        <h5><a href="#terminologies">Key Concepts</a></h5>
+      </li>
+      <li><a href="#terminologies">Terminologies</a></li>
+      <li><a href="#stateManagement">State Management</a></li>
+      <li>
         <h5><a href="#authentication">Getting Started</a></h5>
       </li>
       <li><a href="#authentication">Authentication</a></li>
@@ -52,7 +57,6 @@
       <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
       <li><a href="#secureRedirects">Secure Exit Redirects</a></li>
       <li><a href="#prescreenerFormat">Using Prescreeners</a></li>
-      <li><a href="#stateManagement">State Management</a></li>
       <li>
         <h5><a href="#ISOCodes">Resources</a></h5>
       </li>
@@ -75,15 +79,22 @@
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Getting Started</a></h4>
+          <h4><a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Key Concepts</a></h4>
           <ul id="collapseTwo" class="collapse">
+            <li><a href="#terminologies">Terminologies</a></li>
+            <li><a href="#stateManagement">State Management</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Getting Started</a></h4>
+          <ul id="collapseThree" class="collapse">
             <li><a href="#authentication">Authentication</a></li>
             <li><a href="#responseerrorcodes">Response &amp; Error codes</a></li>
           </ul>
         </li>
         <li>
           <h4><a href="#collapseThree" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3">API Methods</a></h4>
-          <ul id="collapseThree" class="collapse">
+          <ul id="collapseFour" class="collapse">
             <li><a href="#setupaProject">Setup a Project</a></li>
             <li><a href="#updateaProject">Update a Project</a></li>
             <li><a href="#addQuotaToaProject">Add Quota to a Project</a></li>
@@ -102,18 +113,17 @@
         </li>
         <li>
           <h4><a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4">Guides</a></h4>
-          <ul id="collapseFour" class="collapse">
+          <ul id="collapseFive" class="collapse">
             <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
             <li><a href="#filters">Filters</a></li>
             <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
             <li><a href="#secureRedirects">Secure Exit Redirects</a></li>
             <li><a href="#prescreenerFormat">Using Prescreeners</a></li>
-            <li><a href="#stateManagement">State Management</a></li>
           </ul>
         </li>
         <li>
           <h4><a href="#collapseFive" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5">Resources</a></h4>
-          <ul id="collapseFive" class="collapse">
+          <ul id="collapseSix" class="collapse">
             <li><a href="#ISOCodes">ISO Codes</a></li>
             <li><a href="#listAttributes">List of Attributes</a></li>
           </ul>
@@ -146,6 +156,82 @@
           </div>
         </div>
         <!--API Reference -->
+
+        <!--Key Concepts-->
+        <div class="section" id="terminologies">
+          <div class="span6 column1">
+            <h3>Key Concepts</h3>
+            <h4>Terminologies</h4>
+            <p>Here are all some of the key terminologies that is used extensively in this documentation, and its therefore important to understand what they mean</p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>Project</h3>
+                <p>A Project is the top most level resource that represents a single survey.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Quota</h3>
+                <p>A Quota allows you to target survey takers based on certain demographics, and is also the numerical representation of the required completes. Defining a quota is mandatory when setting up a project.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Feasibility</h3>
+                <p>Feasibility is the analysis and evaluation of a study, to determine how much completes is possible from a certain demographic.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="span6 column2">
+
+          </div>
+        </div>
+
+        <!--State Management -->
+        <div class="section" id="stateManagement">
+          <div class="span6 column1">
+            <h4>State Management</h4>
+            <p>Every Project/Quota in the PeanutLabs system has an associated state that determines its behavior and the operations that are allowed within that state. It is therefore important to understand the different states and how transitions work within each state.</p>
+            <p>Please see the state diagram on the right to learn about the lifecycle of Projects/Quotas and how they transisiton from one state to another</p>
+            <p>Here is a list of valid states of project/quotas and what the state means</p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>PreLaunch</h3>
+                <p>Project/Quota is created in our system, but is not open to our users to take it.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Launched</h3>
+                <p>Project/Quota is live and can get traffic.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Paused</h3>
+                <p>Project/Quota is temporarily cut off from getting traffic.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>Closed</h3>
+                <p>Project/Quota is permanently closed and cannot be reopened.</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <br>
+            <div class="alert">
+              <p><strong>Key Things to Remember about states:</strong></p>
+              <ul class="text">
+                <li>A Quota can be in launched state only if the project is launched</li>
+                <li>Pausing a Project, pauses all the launched quotas</li>
+                <li>Launching a paused Project, launches all paused quotas</li>
+                <li>Quota/Project can move to Paused/Closed states by our monitoring system, and they cannot be relaunched again</li>
+              </ul>
+            </div>
+          </div>
+          <div class="span6 column2">
+            <img src="img/Sample%20API%20State%20Management.png">
+          </div>
+        </div>
+        <!--State Management -->
+        <!--Key Concepts -->
 
         <!--Authentication-->
         <div class="section" id="authentication">
@@ -2653,51 +2739,7 @@
         </div>
         <!--Using Prescreeners -->
 
-        <!--State Management -->
-        <div class="section" id="stateManagement">
-          <div class="span6 column1">
-            <h4>State Management</h4>
-            <p>Every Project/Quota in the PeanutLabs system has an associated state that determines its behavior and the operations that are allowed within that state. It is therefore important to understand the different states and how transitions work within each state.</p>
-            <p>Please see the state diagram on the right to learn about the lifecycle of Projects/Quotas and how they transisiton from one state to another</p>
-            <p>Here is a list of valid states of project/quotas and what the state means</p>
-            <ul class="method-list-group">
-              <li class="method-list-item">
-                <h3>PreLaunch</h3>
-                <p>Project/Quota is created in our system, but is not open to our users to take it.</p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="method-list-item">
-                <h3>Launched</h3>
-                <p>Project/Quota is live and can get traffic.</p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="method-list-item">
-                <h3>Paused</h3>
-                <p>Project/Quota is temporarily cut off from getting traffic.</p>
-                <div class="clearfix"></div>
-              </li>
-              <li class="method-list-item">
-                <h3>Closed</h3>
-                <p>Project/Quota is permanently closed and cannot be reopened.</p>
-                <div class="clearfix"></div>
-              </li>
-            </ul>
-            <br>
-            <div class="alert">
-              <p><strong>Key Things to Remember about states:</strong></p>
-              <ul class="text">
-                <li>A Quota can be in launched state only if the project is launched</li>
-                <li>Pausing a Project, pauses all the launched quotas</li>
-                <li>Launching a paused Project, launches all paused quotas</li>
-                <li>Quota/Project can move to Paused/Closed states by our monitoring system, and they cannot be relaunched again</li>
-              </ul>
-            </div>
-          </div>
-          <div class="span6 column2">
-            <img src="img/Sample%20API%20State%20Management.png">
-          </div>
-        </div>
-        <!--State Management -->
+
         <!-- guides -->
 
         <!-- Resources -->
