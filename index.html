@@ -1405,23 +1405,35 @@
           <div class="span6 column1">
             <h4>Update Project Status</h4>
             <code class="color red">POST /projects/:{extProjectId}/{pause | launch | close}</code>
-            <p>This method updates a project status with specified action.</p>
+            <p>This method updates a project status with specified action.</p> 
+            <p>Project status also changes the status at the quota level. To ensure that it does not changes all the quotas, pass a list of Quota Ids as mentioned in the example request</p>
             <p><strong>Action</strong></p>
             <ul class="method-list-group">
               <li class="method-list-item">
                 <h3>pause</h3>
                 <p>Stop traffic to all quotas for this project.</p>
+                <p>Changes the state of all quotas from Launched to Paused</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
                 <h3>launch</h3>
-                <p>Takes a project live.</p>
+                <p>Takes a project live.</p> 
+                <p>Changes the state of all quotas from <strong>Paused/Prelaunch</strong> to <strong>Launched</strong></p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
                 <h3>close</h3>
                 <p>Stops all traffic flow into the project and closes it. Once a project is closed it cannot be reopened.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> Only use this when you have determined your project is complete and can be closed.</div>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Request</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>extQuotaIdList<br></h3>
+                <p>List of Quota Ids. This restricts the state change to only provided quotas, when project state changes.</p>
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -1447,6 +1459,18 @@
             <p class="code"><span class="green"><strong>POST</strong></span>
             <span class="yellow">http://api-dev.peanutlabs.com/sample/v1/projects/project001/pause</span></p>
             <p>&nbsp;</p>
+            <h6>Example Request</h6>
+<pre class="CodeContainer">
+  <span class="ObjectBrace">{</span><span class="collapsible">
+    <span class="PropertyName">"extQuotaIdList"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+      <span class="String">"invite001"</span><span class="Comma">,</span>
+      <span class="String">"invite002"</span><span class="Comma">,</span>
+      <span class="String">"invite003"</span><span class="Comma">,</span>
+      <span class="String">"invite006"</span>
+    </span><span class="ArrayBrace">]</span>
+  </span><span class="ObjectBrace">}</span>
+</pre>
+            <p>&nbsp;</p>
             <h6>Example Response</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
   <span class="PropertyName">"resultCode"</span>: <span class="String">1</span>
@@ -1461,7 +1485,7 @@
           <div class="span6 column1">
             <h4>Update Quota Status</h4>
             <code class="color red">POST /quotas/:{extQuotaId}/{pause | launch | close}</code>
-            <p>This method updates a quota status. Following are the four possible operations on a quota:</p>
+            <p>This method updates a quota status. Following are the three possible operations on a quota:</p>
             <p><strong>Action</strong></p>
             <ul class="method-list-group">
               <li class="method-list-item">
