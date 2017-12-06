@@ -51,6 +51,10 @@
       <li><a href="#getQuotaReport">Get Quota Report</a></li>
       <li><a href="#reconciliations">Reconciliations</a></li>
       <li>
+        <h5><a href="#webhooks">Using Webhooks</a></h5>
+      </li>
+      <li><a href="#webhooks">Webhooks</a></li>
+      <li>
         <h5><a href="#targetingAttributes">Guides</a></h5>
       </li>
       <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
@@ -63,6 +67,7 @@
       </li>
       <li><a href="#ISOCodes">ISO Codes</a></li>
       <li><a href="#listAttributes">List of Available Attributes</a></li>
+      <li><a href="#ipwhitelist">IPs to Whitelist</a></li>
     </ul>
   </div>
 </div>
@@ -74,7 +79,7 @@
       <div class="logo"><a href="index.html" title="Samplify API"><img src="img/logo.svg" alt="Research Now" title="Samplify API"></a></div>
       <ul class="nav nav-list accordion" id="accordion2">
         <li>
-          <h4><a href="#collapseOne" class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion2">Introduction</a></h4>
+          <h4><a href="#collapseOne" class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion1">Introduction</a></h4>
           <ul id="collapseOne" class="collapse in">
             <li class="active"><a href="#intro">Introduction</a></li>
           </ul>
@@ -87,14 +92,14 @@
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">Getting Started</a></h4>
+          <h4><a href="#collapseThree" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3">Getting Started</a></h4>
           <ul id="collapseThree" class="collapse">
             <li><a href="#authentication">Authentication</a></li>
             <li><a href="#responseerrorcodes">Response &amp; Error codes</a></li>
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseThree" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3">API Methods</a></h4>
+          <h4><a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4">API Methods</a></h4>
           <ul id="collapseFour" class="collapse">
             <li><a href="#setupaProject">Setup a Project</a></li>
             <li><a href="#updateaProject">Update a Project</a></li>
@@ -114,8 +119,14 @@
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4">Guides</a></h4>
+          <h4><a href="#collapseFive" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5">Using Webhooks</a></h4>
           <ul id="collapseFive" class="collapse">
+            <li><a href="#webhooks">Webhooks</a></li>
+          </ul>
+        </li>
+        <li>
+          <h4><a href="#collapseSix" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6">Guides</a></h4>
+          <ul id="collapseSix" class="collapse">
             <li><a href="#targetingAttributes">Attributes and Nesting</a></li>
             <li><a href="#filters">Filters</a></li>
             <li><a href="#inclusionsExclusions">Inclusions/Exclusions</a></li>
@@ -124,15 +135,16 @@
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseFive" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5">Resources</a></h4>
-          <ul id="collapseSix" class="collapse">
+          <h4><a href="#collapseSeven" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion7">Resources</a></h4>
+          <ul id="collapseSeven" class="collapse">
             <li><a href="#ISOCodes">ISO Codes</a></li>
             <li><a href="#listAttributes">List of Attributes</a></li>
+            <li><a href="#ipwhitelist">IPs to Whitelist</a></li>
           </ul>
         </li>
         <li>
-          <h4><a href="#collapseSeven" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6">Contact</a></h4>
-          <ul id="collapseSeven" class="collapse">
+          <h4><a href="#collapseEight" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion8">Contact</a></h4>
+          <ul id="collapseEight" class="collapse">
             <li><a href="#contact">Write Us</a></li>
           </ul>
         </li>
@@ -2285,6 +2297,107 @@
         </div>
         <!-- Reconciliations -->
 
+        <!-- Using Webhooks -->
+        <!--webhooks  -->
+        <div class="section" id="webhooks">
+          <div class="span6 column1">
+            <h3>Using Webhooks</h3>
+            <h4>Webhooks</h4>
+            <p>Webhooks allow you to listen to events if something changes in your project.</p>
+            <p>We currently support webhooks for notifying you of the following events:</p>
+            <ul class="text">
+              <li>Project is paused by our performance evaluation rules</li>
+              <li>Project Quota is paused by our performance evaluation rules</li>
+            </ul>
+            <p>Please reach out to the Samplify API team to configure webhooks for your advertiser account</p>
+            <p>&nbsp;</p>
+            <p><strong>JSON Structure</strong></p>
+            <ul class="method-list-group">
+              <li class="method-list-item">
+                <h3>extProjectID<br>
+                  <span class="type">String</span></h3>
+                <p>A unique identifier for your project.</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>extInviteId<br>
+                  <span class="type">string</span></h3>
+                <p>A unique quota/invite identifier across all your projects</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>plAction<br>
+                  <span class="type">String</span></h3>
+                <p>The triggered action</p>
+                <div class="clearfix"></div>
+              </li>
+                <li class="method-list-item">
+                <h3>reason<br>
+                  <span class="type">String</span></h3>
+                <p>Reason why notification has been triggered</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>customParams<br>
+                  <span class="type">Array of Strings</span> </h3>
+                <p>List of metrics that you receive with this notification</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>configType<br>
+                  <span class="type">String</span> </h3>
+                <p>'invitation' = Only the quota has been paused<br>
+                'offer' = The entire survey has been paused</p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>projectData<br>
+                  <span class="type">String</span> </h3>
+                <p>An object string that has the snapshot data of current project and invitation performance</p>
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <p>&nbsp;</p>
+            <p><strong>Common Deployment Rules</strong></p>
+            <ul class="text">
+              <li> We highly recommend that you whitelist our IPs to ensure all valid webhooks are coming from our system. This will vastly decrease any fraudulent activity. If the list of IPs is to change, you will be notified via email prior to the change so that you may make the proper updates in your system. This full lists of IPs can also be found in the <a href="#ipwhitelist">Guides</a> section.</li>
+              <li>It must be publicly available on the internet</li>
+              <li>It must be secured via SSL/TLS</li>
+              <li>It must accept HTTP POST requests containing a JSON array of PublishedEvent objects</li>
+              <li>It must return a 2xx series status code</li>
+          </div>
+          <div class="span6 column2">
+            <h6>Definition</h6>
+            <p class="code"><span class="green"><strong>POST</strong></span>
+            <span class="yellow">http://{URL to send webhook to}</span></p>
+            <p>&nbsp;</p>
+            <h6>Structure of data we will POST to the URL</h6>
+            <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible">
+  <span class="PropertyName">"extProjectId"</span>:  <span class="String">"project001"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"extInviteId"</span>:  <span class="String">"invite001"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"plAction"</span>:  <span class="String">"invitation_close"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"reason"</span>:  <span class="String">"LowRPA"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"customParams"</span>: <span class="ArrayBrace">[</span><span class="collapsible">
+    <span class="PropertyName">"C_conversion"</span><span class="Comma">,</span>
+    <span class="PropertyName">"attempts"</span><span class="Comma">,</span>
+    <span class="PropertyName">"prescreener_attempts"</span><span class="Comma">,</span>
+    <span class="PropertyName">"C_count"</span><span class="Comma">,</span>
+    <span class="PropertyName">"F_count"</span><span class="Comma">,</span>
+    <span class="PropertyName">"P_count"</span><span class="Comma">,</span>
+    <span class="PropertyName">"S_count"</span><span class="Comma">,</span>
+  </span><span class="ArrayBrace">]</span><span class="Comma">,</span>
+  <span class="PropertyName">"config_type"</span>:  <span class="String">"invitation"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"projectData"</span>:  <span class="String">"{"C_conversion":"0.01","attempts":100,"prescreener_attempts":0, "C_count": 1, "F_count": 40, "P_count": 50, "S_count": 9}"</span>
+</span><span class="ObjectBrace">}</span>
+</pre>
+            <p class="text">The above example will pause the invitation/quota:</p>
+            <ul>
+              <li><span>RPA is quite low for the project.</span></li>
+              <li><span>The webhook POST url can be configured to any URL you specify</span></li>
+          </div>
+        </div>
+        <!-- Webhooks  -->
+        <!-- Using Webhooks -->
 
 
         <!-- guides -->
@@ -3176,6 +3289,101 @@
         </div>
         <!--Countries and ISO Codes -->
 
+        <!--ipwhitelist-->
+        <div class="section" id="ipwhitelist">
+          <div class="span6 column1">
+            <h4>IPs to Whitelist</h4>
+            <p>The following list contains all our IPs that should be whitelisted for webhooks: </p>
+            <div class="row-fluid">
+              <div class="span4">75.101.154.153<br>
+                54.243.235.176<br>
+                54.243.210.15<br>
+                54.243.204.6<br>
+                54.243.150.156<br>
+                54.243.150.126<br>
+                54.243.149.248<br>
+                54.243.149.247<br>
+                54.243.146.21<br>
+                54.243.143.97<br>
+                50.19.92.139<br>
+                50.17.194.132<br>
+                50.17.193.185<br>
+                50.17.191.62<br>
+                50.17.191.143<br>
+                50.17.190.69<br>
+                50.17.190.174<br>
+                50.17.189.251<br>
+                50.17.189.201<br>
+                50.17.189.138<br>
+                50.17.187.32<br>
+                50.17.187.218<br>
+                50.17.187.192<br>
+                50.17.187.145<br>
+                50.17.186.7<br>
+                50.17.186.39<br>
+                50.17.184.98 <br>
+              </div>
+              <div class="span4"> 50.17.184.153 <br>
+                50.17.182.38<br>
+                50.17.182.19<br>
+                50.17.182.17<br>
+                50.17.181.130<br>
+                50.17.181.118<br>
+                50.17.181.11<br>
+                50.16.250.192<br>
+                50.16.249.58<br>
+                50.16.249.162<br>
+                50.16.245.185<br>
+                50.16.243.67<br>
+                50.16.241.60<br>
+                50.16.239.186<br>
+                50.16.236.39<br>
+                23.21.123.40<br>
+                184.73.254.159<br>
+                184.73.254.133<br>
+                184.73.250.161<br>
+                184.73.249.128<br>
+                184.73.244.77<br>
+                184.73.196.208<br>
+                184.73.166.67 <br>
+                184.73.158.48<br>
+                184.73.153.111 <br>
+                184.72.230.119<br>
+                184.72.222.51 <br>
+              </div>
+              <div class="span4"> 184.72.222.104<br>
+                184.72.221.219<br>
+                174.129.37.199<br>
+                174.129.242.30<br>
+                174.129.240.137<br>
+                174.129.238.17<br>
+                174.129.237.1<br>
+                174.129.22.190<br>
+                174.129.219.230<br>
+                174.129.209.23<br>
+                174.129.209.2<br>
+                107.22.164.69<br>
+                107.22.164.67<br>
+                107.22.164.59<br>
+                107.22.164.55<br>
+                107.22.164.53<br>
+                107.22.164.5<br>
+                107.22.162.83<br>
+                107.22.160.89<br>
+                107.22.160.31<br>
+                107.22.160.14<br>
+                107.20.248.88<br>
+                107.20.246.140<br>
+                107.20.235.89<br>
+                107.20.201.76<br>
+                107.20.152.198 </div>
+            </div>
+          </div>
+          <div class="span6 column2"></div>
+        </div>
+        <!--ipwhitelist--> 
+        
+
         <!-- List of Targeting Attributes -->
         <div class="section" id="listAttributes">
           <div class="span6 column1">
@@ -3191,7 +3399,7 @@
         <div class="section" id="contact">
           <div class="span6 column1">
             <h4>Contact Us</h4>
-            <p>Please email <a href="sample.integration@peanutlabs.com">sample.integration@peanutlabs.com</a> for any questions or concerns.</p>
+            <p>Please email <a href="samplify-api@researchnow.com">samplify-api@researchnow.com</a> for any questions or concerns.</p>
           </div>
           <div class="span6 column2"></div>
         </div>
