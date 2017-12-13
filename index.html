@@ -67,6 +67,7 @@
       </li>
       <li><a href="#ISOCodes">ISO Codes</a></li>
       <li><a href="#listAttributes">List of Available Attributes</a></li>
+      <li><a href="#listCodes">List of Codes</a></li>
       <li><a href="#ipwhitelist">IPs to Whitelist</a></li>
     </ul>
   </div>
@@ -139,6 +140,7 @@
           <ul id="collapseSeven" class="collapse">
             <li><a href="#ISOCodes">ISO Codes</a></li>
             <li><a href="#listAttributes">List of Attributes</a></li>
+            <li><a href="#listCodes">List of Codes</a></li>
             <li><a href="#ipwhitelist">IPs to Whitelist</a></li>
           </ul>
         </li>
@@ -428,6 +430,24 @@
                 <p>Survey URL where Research Now would send its panelist to take the survey.</p>
                 <br>
                 <div class="alert"><i class="fa fa-info-circle"></i> Link should contain a placeholder <code class="color red">#sid#</code> which Research Now will replace with a unique session identifier <code class="color red">trackerId</code> to track respondents.</div>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>surveyTopic<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">Array of Integers</span></h3>
+                <p>List of <a href="#listCodes">survey topic codes</a></p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>studyType<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">Array of Integers</span></h3>
+                <p>List of <a href="#listCodes">study type codes </a></p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>respondentType<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">Array of Integers</span></h3>
+                <p>List of <a href="#listCodes">respondent type codes </a></p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -726,6 +746,9 @@
   <span class="PropertyName">"extProjectId"</span>: <span class="String">"project001"<span class="Comma">,</span> </span>
   <span class="PropertyName">"title"</span>: <span class="String">"Test Survey"<span class="Comma">,</span> </span>
   <span class="PropertyName">"link"</span>: <span class="String">"www.mysurvey.com?uid=#sid#"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"surveyTopic"</span>: <span class="ArrayBrace">[</span><span class="Number">510<span class="Comma">,</span></span><span class="Number">515</span><span class="ArrayBrace">]</span><span class="Comma">,</span>
+  <span class="PropertyName">"studyType"</span>: <span class="ArrayBrace">[</span><span class="Number">15<span class="ArrayBrace">]</span><span class="Comma">,</span>
+  <span class="PropertyName">"respondentType"</span>: <span class="ArrayBrace">[</span><span class="Number">2<span class="Comma">,</span></span><span class="Number">5</span><span class="ArrayBrace">]</span><span class="Comma">,</span>
   <span class="PropertyName">"country"</span>: <span class="String">"US"<span class="Comma">,</span> </span>
   <span class="PropertyName">"currency"</span>: <span class="String">"USD"<span class="Comma">,</span> </span>
   <span class="PropertyName">"notificationEmail"</span>: <span class="String">"testpm@abc.com"<span class="Comma">,</span> </span>
@@ -831,6 +854,24 @@
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
+                <h3>surveyTopic<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">Array of Integers</span></h3>
+                <p>List of <a href="#listCodes">surveyTopic codes</a></p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>studyType<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">Array of Integers</span></h3>
+                <p>List of <a href="#listCodes">studyType codes </a></p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
+                <h3>respondentType<br>
+                  <span class="label-badge orange">REQUIRED</span> <span class="type">Array of Integers</span></h3>
+                <p>List of <a href="#listCodes">respondentType codes </a></p>
+                <div class="clearfix"></div>
+              </li>
+              <li class="method-list-item">
                 <h3>notificationEmail<br>
                   <span class="type">string</span></h3>
                 <p>The email address to receive notifications, if project was paused due to conversion rules.</p>
@@ -908,6 +949,9 @@
             <h6>Example Request</h6>
             <pre class="CodeContainer"><span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
   <span class="PropertyName">"title"</span>: <span class="String">"Survey for you"<span class="Comma">,</span> </span>
+  <span class="PropertyName">"surveyTopic"</span>: <span class="ArrayBrace">[</span><span class="Number">511<span class="Comma">,</span></span><span class="Number">516</span><span class="ArrayBrace">]</span><span class="Comma">,</span>
+  <span class="PropertyName">"studyType"</span>: <span class="ArrayBrace">[</span><span class="Number">16<span class="ArrayBrace">]</span><span class="Comma">,</span>
+  <span class="PropertyName">"respondentType"</span>: <span class="ArrayBrace">[</span><span class="Number">7<span class="Comma">,</span></span><span class="Number">5</span><span class="ArrayBrace">]</span><span class="Comma">,</span>
   <span class="PropertyName">"indicativeIncidence"</span>: <span class="Number">10<span class="Comma">,</span> </span>
   <span class="PropertyName">"lengthOfInterview"</span>: <span class="Number">10<span class="Comma">,</span> </span>
   <span class="PropertyName">"deviceTargeting"</span>: <span class="ObjectBrace">{</span><span class="collapsible" style="display: inline;">
@@ -3289,6 +3333,28 @@
         </div>
         <!--Countries and ISO Codes -->
 
+        <!-- List of Targeting Attributes -->
+        <div class="section" id="listAttributes">
+          <div class="span6 column1">
+            <h4>List of Targeting Attributes</h4>
+            <p>The Research Now <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes and options that can be sent along with the targeting parameters.</p>
+          </div>
+          <div class="span6 column2"></div>
+        </div>
+        <!--List of Targeting Attributes -->
+
+        <!-- List of Codes -->
+        <div class="section" id="listCodes">
+          <div class="span6 column1">
+            <h4>List of Codes</h4>
+            <p><a href="https://docs.google.com/spreadsheets/d/123Ip6oFa32r0-kuWSN6talb2qZ2GCZN0boVe3XB7Ges/edit#gid=0" target="_blank">Survey Topics</a>: List of possible topics for any survey (Automotive, Food & Drinks)</p>
+            <p><a href="https://docs.google.com/spreadsheets/d/123Ip6oFa32r0-kuWSN6talb2qZ2GCZN0boVe3XB7Ges/edit#gid=1010956133" target="_blank">Study Types</a>: Types of study (AdHoc, Tracker, etc.)</p>
+            <p><a href="https://docs.google.com/spreadsheets/d/123Ip6oFa32r0-kuWSN6talb2qZ2GCZN0boVe3XB7Ges/edit#gid=57707106" target="_blank">Respondent Types</a>: Types of respondents needed for the survey (B2B, B2C, etc.)</p>
+          </div>
+          <div class="span6 column2"></div>
+        </div>
+        <!--List of Codes -->
+
         <!--ipwhitelist-->
         <div class="section" id="ipwhitelist">
           <div class="span6 column1">
@@ -3381,18 +3447,7 @@
           </div>
           <div class="span6 column2"></div>
         </div>
-        <!--ipwhitelist--> 
-        
-
-        <!-- List of Targeting Attributes -->
-        <div class="section" id="listAttributes">
-          <div class="span6 column1">
-            <h4>List of Targeting Attributes</h4>
-            <p>The Research Now <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes and options that can be sent along with the targeting parameters.</p>
-          </div>
-          <div class="span6 column2"></div>
-        </div>
-        <!--List of Targeting Attributes -->
+        <!--ipwhitelist-->
         <!--Resources -->
 
         <!-- Contact Us -->
