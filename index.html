@@ -15,7 +15,7 @@
 
 <!--For Mobile Menu-->
 <div class="mobile">
-  <div class="logo pull-left"><a href="index.html" title="Samplify API"><img src="img/logo.svg" alt="Research Now" title="Research Now Samplify API"></a></div>
+  <div class="logo pull-left"><a href="index.html" title="Samplify API"><img src="img/logo.png" alt="Peanut Labs" title="Samplify API"></a></div>
   <a href="javascript:void(0);" class="btn pull-right" data-toggle="collapse" data-target="#nav" ><i class="fa fa-chevron-down"></i><i class="fa fa-chevron-up" style="display:none"></i> Menu</a>
   <div id="nav" class="collapse out">
     <ul class="nav nav-list">
@@ -77,7 +77,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2 sidebar" id="sidebar">
-      <div class="logo"><a href="index.html" title="Samplify API"><img src="img/logo.svg" alt="Research Now" title="Samplify API"></a></div>
+      <div class="logo"><a href="index.html" title="Samplify API"><img src="img/logo.png" alt="Peanut Labs" title="Samplify API"></a></div>
       <ul class="nav nav-list accordion" id="accordion2">
         <li>
           <h4><a href="#collapseOne" class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion1">Introduction</a></h4>
@@ -159,7 +159,7 @@
         <div class="section" id="surveyoverview">
           <div class="span6 column1">
             <h3 id="intro">Samplify API Reference</h3>
-            <p>Samplify API, a REST based API, can be programmatically used to connect your client surveys directly with Research Now consumer panel. This API document describes the usage and resources needed for integrating with Samplify API.</p>
+            <p>Samplify API, a REST based API, can be programmatically used to connect your client surveys directly with Peanut Labs consumer panel. This API document describes the usage and resources needed for integrating with Samplify API.</p>
             <p>Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. JSON is returned by all API responses, including errors. To make the APIs explorable, we provide a Test account and a Live account. Requests sent to the test account does not go to our actual panelists and therefore does not incur any cost.</p>
             <p>We also provide a PHP SDK that you can use directly to make API requests. Please checkout this <a href="https://github.com/peanut-labs/php-sample-api-sdk" target="_blank">Github</a> page for the SDK. It provides built in logic for Authentication, and therefore makes it easier to consume our APIs.</p>
           </div>
@@ -206,7 +206,7 @@
         <div class="section" id="stateManagement">
           <div class="span6 column1">
             <h4>State Management</h4>
-            <p>Every Project/Quota in the Research Now system has an associated state that determines its behavior and the operations that are allowed within that state. It is therefore important to understand the different states and how transitions work within each state.</p>
+            <p>Every Project/Quota in the Peanut Labs system has an associated state that determines its behavior and the operations that are allowed within that state. It is therefore important to understand the different states and how transitions work within each state.</p>
             <p>Please see the state diagram on the right to learn about the lifecycle of Projects/Quotas and how they transisiton from one state to another</p>
             <p>Here is a list of valid states of project/quotas and what the state means</p>
             <ul class="method-list-group">
@@ -256,17 +256,17 @@
             <h4>Authentication</h4>
             <p>You authenticate all your requests with Samplify API server by sending an HTTP authorization header as specified below:</p>
             <code class="color red" >advertiser’sId:timestamp:HMAC</code>
-            <p>Samplify API server verifies the HTTP Authorization Header before allowing access to Research Now system.</p>
+            <p>Samplify API server verifies the HTTP Authorization Header before allowing access to Peanut Labs system.</p>
             <p>Here are all the parameters you will need to generate an HTTP Authorization Header.</p>
             <ul class="method-list-group">
               <li class="method-list-item">
                 <h3>Advertiser’s Id</h3>
-                <p>A unique identifier provided to you by Research Now</p>
+                <p>A unique identifier provided to you by Peanut Labs</p>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
                 <h3>secret_key</h3>
-                <p>A security key provided to you by Research Now.</p>
+                <p>A security key provided to you by Peanut Labs.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
                 <div class="clearfix"></div>
               </li>
@@ -379,7 +379,7 @@
               </li>
               <li class="method-list-item">
                 <h3>500</h3>
-                <p>Something went wrong on Research Now end</p>
+                <p>Something went wrong on Peanut Labs end</p>
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -409,7 +409,7 @@
             <h3>API Methods</h3>
             <h4>Setup a Project</h4>
             <code class="color red">POST /projects</code>
-            <p>Creating a project is the first step to launching your surveys to Research Now panelist. This API is used to create a project.</p>
+            <p>Creating a project is the first step to launching your surveys to Peanut Labs panelist. This API is used to create a project.</p>
             <p><strong>Request</strong></p>
             <ul class="method-list-group">
               <li class="method-list-item">
@@ -427,9 +427,9 @@
               <li class="method-list-item">
                 <h3>link<br>
                   <span class="label-badge orange">Required</span> <span class="type">string</span></h3>
-                <p>Survey URL where Research Now would send its panelist to take the survey.</p>
+                <p>Survey URL where Peanut Labs would send its panelist to take the survey.</p>
                 <br>
-                <div class="alert"><i class="fa fa-info-circle"></i> Link should contain a placeholder <code class="color red">#sid#</code> which Research Now will replace with a unique session identifier <code class="color red">trackerId</code> to track respondents.</div>
+                <div class="alert"><i class="fa fa-info-circle"></i> Link should contain a placeholder <code class="color red">#sid#</code> which Peanut Labs will replace with a unique session identifier <code class="color red">trackerId</code> to track respondents.</div>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -594,9 +594,9 @@
               </li>
               <li class="method-list-item">
                 <h3>preScreener<br>
-                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Research Now fraud prescreener</span></h3>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
                 <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener example</a> on how to define prescreeners.</p>
-                <div class="alert"><em class="fa fa-info-circle"></em> Research Now fraud prescreener will be used for no/empty prescreener definition.</div>
+                <div class="alert"><em class="fa fa-info-circle"></em> Peanut Labs fraud prescreener will be used for no/empty prescreener definition.</div>
                 <div class="clearfix"></div>
               </li>
               <li class="method-list-item">
@@ -629,7 +629,7 @@
                   <li class="method-list-item">
                     <h3>cpi<br>
                       <span class="label-badge orange">required</span> <span class="type">decimal &gt;= 0.00</span></h3>
-                    <p>Amount Research Now will be paid for each completes in USD for this quota.</p>
+                    <p>Amount Peanut Labs will be paid for each completes in USD for this quota.</p>
                     <div class="alert"><i class="fa fa-info-circle"></i> USD is the only currency supported.</div>
                     <div class="clearfix"></div>
                   </li>
@@ -690,7 +690,7 @@
                   <span class="type">hash</span></h3>
                 <p>Callback URL where you should redirect respondents after the survey. Each callback URL contains two placeholders - <code class="color red">#sid#</code> and <code class="color red">#hash#</code> which should be replaced before you call the callback URLs.<br>
                   <br>
-                  Replace <code class="color red">#sid#</code> by <code class="color red">trackerId</code> which was passed to you when Research Now redirected user to your survey.<br>
+                  Replace <code class="color red">#sid#</code> by <code class="color red">trackerId</code> which was passed to you when Peanut Labs redirected user to your survey.<br>
                   <br>
                   Replace <code class="color red">#hash#</code> with client-side generate hash.<br>
                   <code class="color red">#hash# = MD5 of (status + trackerId + shared secret_key)</code><br>
@@ -916,9 +916,9 @@
 
               <li class="method-list-item">
                 <h3>preScreener<br>
-                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Research Now fraud prescreener</span></h3>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
                 <p>A set of screening question that users take before qualifying for a survey. See <a href="#prescreenerFormat">precreener example</a> on how to define prescreeners.</p>
-                <div class="alert"><em class="fa fa-info-circle"></em> Research Now fraud prescreener will be used for no/empty prescreener definition.</div>
+                <div class="alert"><em class="fa fa-info-circle"></em> Peanut Labs fraud prescreener will be used for no/empty prescreener definition.</div>
                 <div class="clearfix"></div>
               </li>
 
@@ -995,7 +995,7 @@
               <li class="method-list-item">
                 <h3>cpi<br>
                   <span class="label-badge orange">REQUIRED</span> <span class="type">decimal &gt;= 0.00</span></h3>
-                <p>Amount Research Now will be paid for each completes in USD for this quota.</p>
+                <p>Amount Peanut Labs will be paid for each completes in USD for this quota.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> USD is the only currency supported.</div>
                 <div class="clearfix"></div>
               </li>
@@ -1141,7 +1141,7 @@
               <li class="method-list-item">
                 <h3>cpi<br>
                   <span class="label-badge orange">REQUIRED</span> <span class="type">decimal &gt;= 0.00</span></h3>
-                <p>Amount Research Now will be paid for each completes in USD for this quota.</p>
+                <p>Amount Peanut Labs will be paid for each completes in USD for this quota.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> USD is the only currency supported.</div>
                 <div class="clearfix"></div>
               </li>
@@ -1378,7 +1378,7 @@
             <ul class="method-list-group">
               <li class="method-list-item">
                 <h3>preScreener<br>
-                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Research Now fraud prescreener</span></h3>
+                  <span class="type">hash <a href="#prescreenerFormat">prescreener</a>; defaults to Peanut Labs fraud prescreener</span></h3>
                 <p>A set of screening question that users take before qualifying for a survey. Don’t pass this argument to delete a prescreener. See <a href="#prescreenerFormat">precreener format</a> for examples.</p>
                 <div class="alert"><i class="fa fa-info-circle"></i> No prescreener will be used for invalid preScreener definition.</div>
                 <div class="clearfix"></div>
@@ -1463,7 +1463,7 @@
           <div class="span6 column1">
             <h4>Update Project Status</h4>
             <code class="color red">POST /projects/:{extProjectId}/{pause | launch | close}</code>
-            <p>This method updates a project status with specified action.</p> 
+            <p>This method updates a project status with specified action.</p>
             <p>Project status also changes the status at the quota level. To ensure that it does not changes all the quotas, pass a list of Quota Ids as mentioned in the example request</p>
             <p><strong>Action</strong></p>
             <ul class="method-list-group">
@@ -1475,7 +1475,7 @@
               </li>
               <li class="method-list-item">
                 <h3>launch</h3>
-                <p>Takes a project live.</p> 
+                <p>Takes a project live.</p>
                 <p>Changes the state of all quotas from <strong>Paused/Prelaunch</strong> to <strong>Launched</strong></p>
                 <div class="clearfix"></div>
               </li>
@@ -2139,7 +2139,7 @@
           <div class="span6 column1">
             <h4>Reconciliations</h4>
             <code class="color red">POST /transactions/reconcile</code>
-            <p>Send reconciliations for a Research Now trackerId</p>
+            <p>Send reconciliations for a Peanut Labs trackerId</p>
             <p><strong>Request</strong></p>
             <ul class="method-list-group">
               <li class="method-list-item">
@@ -2655,13 +2655,13 @@
         <div class="section" id="secureRedirects">
           <div class="span6 column1">
             <h4>Secure Exit Redirects</h4>
-            <p>After the user completes the survey, user should be redirected to a secure exit redirect links. The link contains an encrypted hash which Research Now validates before updating the user status for the session.</p>
+            <p>After the user completes the survey, user should be redirected to a secure exit redirect links. The link contains an encrypted hash which Peanut Labs validates before updating the user status for the session.</p>
             <p>The <code class="color red">hash</code> parameter can be generated as follows:<br>
               <code class="color red">#hash# = MD5(status + trackerId + secret_key)</code></p>
             <p>where,<br>
               status = C for completes, P for screenout and F for overquota;<br>
-              <code class="color red">trackerId</code> = Research Now passed user’s session identifier along with the survey entry link;<br>
-              secret_key = A security key provided to you by Research Now.</p>
+              <code class="color red">trackerId</code> = Peanut Labs passed user’s session identifier along with the survey entry link;<br>
+              secret_key = A security key provided to you by Peanut Labs.</p>
             <div class="alert"><i class="fa fa-info-circle"></i> Please do not expose your key with anyone or in public. This could compromise the integrity of your data.</div>
           </div>
           <div class="span6 column2">
@@ -3337,7 +3337,7 @@
         <div class="section" id="listAttributes">
           <div class="span6 column1">
             <h4>List of Targeting Attributes</h4>
-            <p>The Research Now <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes and options that can be sent along with the targeting parameters.</p>
+            <p>The Peanut Labs <a href="https://docs.google.com/spreadsheets/d/1rTHUHfeU1oDbIeoUiwysaYn1jXZ655zdBEk3pvd4e-o/edit#gid=313234132" target="_blank">profile map</a> contains a complete list of target attributes and options that can be sent along with the targeting parameters.</p>
           </div>
           <div class="span6 column2"></div>
         </div>
@@ -3464,7 +3464,7 @@
     </div>
   </div>
 </div>
-<div class="row-fluid footer">&copy; 2017 <a href="http://www.peanutlabs.com" target="_blank">Research Now</a></div>
+<div class="row-fluid footer">&copy; 2017 <a href="http://www.peanutlabs.com" target="_blank">Peanut Labs</a></div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
